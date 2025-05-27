@@ -1,5 +1,4 @@
 .env
 permissions.json
-node_modules
 *.pem
-
+node_modules

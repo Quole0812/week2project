@@ -10,7 +10,10 @@ function AuthProvider({ children }) {
     fetch("http://127.0.0.1:3001/api/me", {
       credentials: "include",
     })
-      .then((res) => (res.status === 200 ? res.json() : null))
+    .then(async (res) => {
+      if (!res.ok) return null;
+        return res.json();
+    })
       .then((data) => {
         setUser(data);
         setLoading(false);
