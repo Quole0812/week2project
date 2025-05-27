@@ -4,10 +4,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from "./components/AuthContext"
 import App from './App.jsx'
 import Profile from './routes/Profile.jsx'
+import LikedSongs from './routes/LikedSongs.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { path: '/profile/:id', element: <Profile /> },
+  { path: '/liked', element: <LikedSongs /> },
 ]);
 
 createRoot(document.getElementById('root')).render(

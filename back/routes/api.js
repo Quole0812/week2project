@@ -25,8 +25,12 @@ function generateRandomString(length) {
 
 router.get("/login", function (req, res) {
   const redirectPath = req.query.redirect || redirect_url + "/";
-  var state = generateRandomString(16) + "::" + redirectPath;
-  var scope = "user-read-private user-read-email";
+  const state = generateRandomString(16) + "::" + redirectPath;
+  const scope = [
+    "user-read-private",
+    "user-read-email",
+    "user-library-read",
+  ].join(" ");
 
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
@@ -258,6 +262,86 @@ router.get("/me", async (req, res) => {
         }
       }
     );
+  }
+});
+
+router.get("/liked-songs", async (req, res) => {
+  const { limit = 50, offset = 0 } = req.query;
+  let access_token  = req.cookies.access_token;
+  let refresh_token = req.cookies.refresh_token;
+
+  const fetchSaved = (token) =>
+    new Promise((resolve, reject) => {
+      request.get(
+        {
+          url: "https://api.spotify.com/v1/me/tracks",
+          qs: { limit, offset },
+          headers: { Authorization: "Bearer " + token },
+          json: true,
+        },
+        (err, { statusCode }, body) => {
+          if (err) return reject(err);
+          if (statusCode === 401) return reject({ code: 401 });
+          if (statusCode !== 200) return reject(body);
+          resolve(body);
+        }
+      );
+    });
+
+  try {
+    const data = await fetchSaved(access_token);
+    const tracks = data.items.map(({ added_at, track }) => ({
+      id: track.id,
+      name: track.name,
+      artists: track.artists.map((a) => a.name).join(", "),
+      albumArt: track.album.images?.[1]?.url ?? "",
+      preview: track.preview_url,
+      added_at,
+    }));
+    return res.json({ tracks, nextOffset: +offset + tracks.length, total: data.total });
+  } catch (e) {
+    if (e.code === 401 && refresh_token) {
+      /* refresh then retry once */
+      request.post(
+        {
+          url: "https://accounts.spotify.com/api/token",
+          form: { grant_type: "refresh_token", refresh_token },
+          headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            Authorization: "Basic " + Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          },
+          json: true,
+        },
+        async (err, r, body) => {
+          if (err || r.statusCode !== 200)
+            return res.status(401).json({ error: "token_refresh_failed" });
+
+          access_token = body.access_token;
+          res.cookie("access_token", access_token, {
+            httpOnly: true, secure: false, sameSite: "Lax", maxAge: 3600 * 1000,
+          });
+
+          try {
+            const data = await fetchSaved(access_token);
+            const tracks = data.items.map(({ added_at, track }) => ({
+              id: track.id,
+              name: track.name,
+              artists: track.artists.map((a) => a.name).join(", "),
+              albumArt: track.album.images?.[1]?.url ?? "",
+              preview: track.preview_url,
+              added_at,
+            }));
+            return res.json({ tracks, nextOffset: +offset + tracks.length, total: data.total });
+          } catch (err2) {
+            console.error(err2);
+            return res.status(500).json({ error: "spotify_fetch_failed" });
+          }
+        }
+      );
+    } else {
+      console.error(e);
+      return res.status(500).json({ error: "spotify_fetch_failed" });
+    }
   }
 });
 
