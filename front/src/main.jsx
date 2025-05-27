@@ -6,19 +6,19 @@ import App from './App.jsx'
 
 import Forum from './routes/Forum.jsx'
 import Profile from './routes/Profile.jsx'
+import LikedSongs from './routes/LikedSongs.jsx'
 import Discover from './routes/Discover.jsx';
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { path: '/profile/:id', element: <Profile /> },
+  { path: '/liked', element: <LikedSongs /> },
   { path: '/forum', element: <Forum />},
   { path: '/discover', element: <Discover /> }
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <AuthProvider>
       <RouterProvider router={router}/>
     </AuthProvider>
-  </StrictMode>,
 )
