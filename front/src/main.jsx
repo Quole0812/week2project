@@ -15,6 +15,7 @@ const router = createBrowserRouter([
   { path: '/liked', element: <LikedSongs /> },
   { path: '/forum', element: <Forum />},
   { path: '/discover', element: <Discover /> }
+  { path: '/home', element: <App /> }
 ]);
 
 createRoot(document.getElementById('root')).render(
