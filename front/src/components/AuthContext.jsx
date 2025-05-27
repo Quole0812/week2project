@@ -31,7 +31,7 @@ function AuthProvider({ children }) {
       .then(() => setUser(null))
       .catch(() => setLoading(false));
     const currentPath = window.location.pathname;
-    window.location.href = `${encodeURIComponent(currentPath)}`;
+    window.location.href = currentPath;
   };
 
   return (
