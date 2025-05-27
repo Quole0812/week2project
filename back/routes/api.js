@@ -96,19 +96,20 @@ router.get("/callback", function (req, res) {
                 name: displayName,
               };
 
-              // create new user if not already exists ow update user
+              // create new user if not already exists
               try {
                 if (!userDoc.exists) {
                   await userRef.set({
                     ...data,
                     displayedArtists: [],
                     displayedSongs: [],
+                    bio: "",
                   });
                 } else {
-                  await db
-                    .collection("users")
-                    .doc(userId)
-                    .set(data, { merge: true });
+                  // await db
+                  //   .collection("users")
+                  //   .doc(userId)
+                  //   .set(data, { merge: true });
                 }
               } catch (e) {
                 console.error("Error creating/updating user info: ", e);
@@ -222,12 +223,16 @@ router.get("/me", async (req, res) => {
           },
           function (err, response, userData) {
             if (!err && response.statusCode === 200) {
-              res.json(userData);
+              return res.json(userData);
             } else {
-              res.status(500).json({ error: "Failed to fetch user profile" });
+              return res
+                .status(500)
+                .json({ error: "Failed to fetch user profile" });
             }
           }
         );
+      } else {
+        return res.status(401).json({ error: "Failed to refresh token" });
       }
     });
   } else {
