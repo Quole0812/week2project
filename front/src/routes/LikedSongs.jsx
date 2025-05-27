@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import Sidebar from "../components/Sidebar/Sidebar";
+import "../styles/LikedSongs.css";
 
 export default function LikedSongs() {
   const { user, login, loading } = useContext(AuthContext);
@@ -14,10 +15,13 @@ export default function LikedSongs() {
     if (busy) return;
     setBusy(true);
 
-    fetch(`/api/liked-songs?limit=50&offset=${offset}`, {
+    fetch(`http://127.0.0.1:3001/api/liked-songs?limit=50&offset=${offset}`, {
       credentials: "include",
     })
-      .then(r => (r.ok ? r.json() : Promise.reject(r)))
+    .then(async r => {        
+        if (!r.ok) throw r;
+        return r.json();
+    })
       .then(({ tracks: newT, nextOffset, total }) => {
         setTracks(prev => [...prev, ...newT]);
         setOffset(nextOffset);
