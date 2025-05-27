@@ -1,7 +1,9 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3001;
 
+app.use(cookieParser());
 app.use(express.json());
 
 const apiRouter = require("./routes/api");
@@ -14,6 +16,6 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Server is running!" });
 });
 
-app.listen(port, () => {
+app.listen(port, "127.0.0.1", () => {
   console.log(`Server is running on port ${port}`);
 });

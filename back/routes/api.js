@@ -223,12 +223,16 @@ router.get("/me", async (req, res) => {
           },
           function (err, response, userData) {
             if (!err && response.statusCode === 200) {
-              res.json(userData);
+              return res.json(userData);
             } else {
-              res.status(500).json({ error: "Failed to fetch user profile" });
+              return res
+                .status(500)
+                .json({ error: "Failed to fetch user profile" });
             }
           }
         );
+      } else {
+        return res.status(401).json({ error: "Failed to refresh token" });
       }
     });
   } else {

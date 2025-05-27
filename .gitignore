@@ -1,2 +1,4 @@
 back/.env
 back/permissions.json
+back/*.pem
+back/node_modules/
