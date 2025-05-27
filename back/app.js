@@ -4,9 +4,9 @@ const port = 3001;
 
 app.use(express.json());
 
-const loginRouter = require("./routes/login");
+const apiRouter = require("./routes/api");
 
-app.use("/login", loginRouter);
+app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Server is running!" });

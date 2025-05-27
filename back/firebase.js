@@ -15,12 +15,12 @@
 // const db = getFirestore(app);
 // export { db };
 
-const { initializeApp } = require("firebase/app");
-const { getFirestore } = require("firebase/firestore");
-
+const admin = require("firebase-admin");
 const serviceAccount = require("./permissions.json");
 
-const app = initializeApp(serviceAccount);
-const db = getFirestore(app);
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
+const db = admin.firestore();
 module.exports = db;
