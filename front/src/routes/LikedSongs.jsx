@@ -11,11 +11,11 @@ export default function LikedSongs() {
   const [total,  setTotal]  = useState(0);
   const [busy,   setBusy]   = useState(false);
 
-  const fetchBatch = () => {
+  const fetchBatch = (batchOffset) => {
     if (busy) return;
     setBusy(true);
 
-    fetch(`http://127.0.0.1:3001/api/liked-songs?limit=50&offset=${offset}`, {
+    fetch(`http://127.0.0.1:3001/api/liked-songs?limit=50&offset=${batchOffset}`, {
       credentials: "include",
     })
     .then(async r => {        
@@ -32,7 +32,10 @@ export default function LikedSongs() {
   };
 
   useEffect(() => {
-    if (user) fetchBatch();
+    if (user) {
+        setTracks([]);
+        fetchBatch(0);
+    }
   }, [user]);
 
   if (!user && !loading) {
@@ -40,8 +43,9 @@ export default function LikedSongs() {
   }
 
   return (
+    <>
+    <Sidebar />
     <main className="liked-page">
-        <Sidebar></Sidebar>
       <h1>Your Liked Songs</h1>
 
       <div className="grid">
@@ -56,14 +60,11 @@ export default function LikedSongs() {
       </div>
 
       {tracks.length < total && (
-        <button
-          className="more-btn"
-          disabled={busy}
-          onClick={fetchBatch}
-        >
-          {busy ? "Loading…" : "Load more"}
+        <button className="more-btn" disabled={busy} onClick={() => fetchBatch(offset)}>
+        {busy ? "Loading…" : "Load more"}
         </button>
       )}
     </main>
+    </>
   );
 }
