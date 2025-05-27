@@ -11,6 +11,7 @@ dotenv.config();
 let client_id = process.env.client_id;
 let client_secret = process.env.client_secret;
 let redirect_uri = "http://127.0.0.1:3001/api/callback";
+const redirect_url = "http://127.0.0.1:5173";
 
 function generateRandomString(length) {
   let text = "";
@@ -23,7 +24,8 @@ function generateRandomString(length) {
 }
 
 router.get("/login", function (req, res) {
-  var state = generateRandomString(16);
+  const redirectPath = req.query.redirect || redirect_url + "/";
+  var state = generateRandomString(16) + "::" + redirectPath;
   var scope = "user-read-private user-read-email";
 
   res.redirect(
@@ -45,13 +47,15 @@ router.get("/callback", function (req, res) {
   // redirected if bad state (tampered)
   if (state === null) {
     res.redirect(
-      "/#" +
+      redirect_url +
+        "/#" +
         querystring.stringify({
           error: "state_mismatch",
         })
     );
   } else {
     // set up post req
+    const [stateValue, redirectPath] = state.split("::");
     var authOptions = {
       url: "https://accounts.spotify.com/api/token",
       form: {
@@ -67,7 +71,6 @@ router.get("/callback", function (req, res) {
       },
       json: true,
     };
-
     request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         const access_token = body.access_token;
@@ -130,12 +133,14 @@ router.get("/callback", function (req, res) {
                 maxAge: 30 * 24 * 3600 * 1000,
               });
 
-              // TODO: change redirect to dashboard url
-              res.redirect("/");
+              res.redirect(
+                redirectPath ? redirect_url + redirectPath : redirect_url + "/"
+              );
             } else {
               console.error("Error fetching Spotify profile:", err || profile);
               res.redirect(
-                "/#" +
+                redirect_url +
+                  "/#" +
                   querystring.stringify({
                     error: "profile_fetch_failed",
                   })
@@ -146,7 +151,8 @@ router.get("/callback", function (req, res) {
       } else {
         console.error("Token exchange failed:", body || error);
         res.redirect(
-          "/#" +
+          redirect_url +
+            "/#" +
             querystring.stringify({
               error: "invalid_token",
             })
@@ -170,8 +176,7 @@ router.get("/logout", (req, res) => {
     sameSite: "Lax",
   });
 
-  //TODO: replace with dashboard url
-  res.redirect("/");
+  res.status(200).json({ message: "User logged out. " });
 });
 
 router.get("/me", async (req, res) => {
