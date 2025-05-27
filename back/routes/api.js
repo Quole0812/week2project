@@ -96,19 +96,20 @@ router.get("/callback", function (req, res) {
                 name: displayName,
               };
 
-              // create new user if not already exists ow update user
+              // create new user if not already exists
               try {
                 if (!userDoc.exists) {
                   await userRef.set({
                     ...data,
                     displayedArtists: [],
                     displayedSongs: [],
+                    bio: "",
                   });
                 } else {
-                  await db
-                    .collection("users")
-                    .doc(userId)
-                    .set(data, { merge: true });
+                  // await db
+                  //   .collection("users")
+                  //   .doc(userId)
+                  //   .set(data, { merge: true });
                 }
               } catch (e) {
                 console.error("Error creating/updating user info: ", e);
