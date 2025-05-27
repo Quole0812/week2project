@@ -57,6 +57,9 @@
   height: 35px;
   border: 2px solid #c9184a;
   border-radius: 50%;
+  display:flex;
+  justify-content:center;
+  align-items: center;
 }
 
 .user-info .name{
@@ -127,4 +130,11 @@
   border-radius: 50%;
   padding: 0.2rem 0.5rem;
   margin-left: 0.5rem;
+}
+.no-link-style {
+  text-decoration: none;
+}
+
+.no-link-style:visited {
+  text-decoration: none;
 }

@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import Dupifylogo from "./dupifylogo.png"
 import "./Sidebar.css";
+import { useContext } from "react";
+import { AuthContext } from "../../components/AuthContext";
 
 export default function Sidebar() {
-    return (
+    const { user, login, logout, loading } = useContext(AuthContext);
+    if(loading) {
+        return <></>
+    } else {
+            return (
         <>
         <div className="sidebar">
             <div className="logo-container">
@@ -13,15 +19,15 @@ export default function Sidebar() {
         <h1 className = "logo-title">Dupify</h1>
         </div>
         {/* To jacob wrap the user-card with the Link object like above to route it */}
-         <div className="user-card">
-            <div className="avatar">
-                {/* u can stuff image here */}
+        <Link className="no-link-style" to={`/profile/${user.id}`}>
+            <div className="user-card">
+                <img className="avatar" src={user.images[1].url}></img>
+                <div className="user-info">
+                <p className="name">{user.display_name}</p>
+                <p className="premium">{user.product.charAt(0).toUpperCase() + user.product.slice(1)}</p>
+                </div>
             </div>
-            <div className="user-info">
-            <p className="name">Alex Johnson</p>
-            <p className="premium">Premium</p>
-            </div>
-        </div>
+        </Link>
 
         {/* Menu Navigation here */}
         <div className="section">
@@ -38,7 +44,7 @@ export default function Sidebar() {
         <div className="section">
             <p className="section-label">Library</p>
             <Link to="/liked">Liked Songs</Link>
-            <Link to="/profile">My Profile</Link>
+            <Link to={`/profile/${user.id}`}>My Profile</Link>
         </div>
 
         <div className="space-padding">
@@ -60,4 +66,5 @@ export default function Sidebar() {
         </div>
         </>
     )
+    }
 }

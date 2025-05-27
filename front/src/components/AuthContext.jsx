@@ -13,6 +13,7 @@ function AuthProvider({ children }) {
       .then((res) => (res.status === 200 ? res.json() : null))
       .then((data) => {
         setUser(data);
+        console.log(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
