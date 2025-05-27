@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import axios from "axios";
 import "../styles/TopArtists.css";
+import Sidebar from '../components/Sidebar/Sidebar';
 
 const TopArtists = () => {
   const { user, loading } = useContext(AuthContext);
@@ -65,36 +66,38 @@ const TopArtists = () => {
   }
 
   return (
-    <div className="top-artists-container">
-      <div className="time-range-selector">
-        <h2>Your Top Artists</h2>
-        <div className="time-range-buttons">
-          {Object.entries(timeRangeLabels).map(([value, label]) => (
-            <button
-              key={value}
-              className={`time-range-button ${timeRange === value ? 'active' : ''}`}
-              onClick={() => setTimeRange(value)}
-            >
-              {label}
-            </button>
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <div className="top-artists-container" style={{ marginLeft: 240, width: "100%" }}>
+        <div className="time-range-selector">
+          <h2>Your Top Artists</h2>
+          <div className="time-range-buttons">
+            {Object.entries(timeRangeLabels).map(([value, label]) => (
+              <button
+                key={value}
+                className={`time-range-button ${timeRange === value ? 'active' : ''}`}
+                onClick={() => setTimeRange(value)}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="artists-grid">
+          {artists.map((artist) => (
+            <div key={artist.id} className="artist-card">
+              <img
+                src={artist.images[0]?.url || 'default-artist-image.png'}
+                alt={artist.name}
+                className="artist-image"
+              />
+              <h3 className="artist-name">{artist.name}</h3>
+              <p className="artist-genres">
+                {artist.genres.slice(0, 2).join(", ")}
+              </p>
+            </div>
           ))}
         </div>
-      </div>
-
-      <div className="artists-grid">
-        {artists.map((artist) => (
-          <div key={artist.id} className="artist-card">
-            <img 
-              src={artist.images[0]?.url || 'default-artist-image.png'} 
-              alt={artist.name}
-              className="artist-image"
-            />
-            <h3 className="artist-name">{artist.name}</h3>
-            <p className="artist-genres">
-              {artist.genres.slice(0, 2).join(", ")}
-            </p>
-          </div>
-        ))}
       </div>
     </div>
   );
