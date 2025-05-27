@@ -8,13 +8,15 @@ import Forum from './routes/Forum.jsx'
 import Profile from './routes/Profile.jsx'
 import LikedSongs from './routes/LikedSongs.jsx'
 import Discover from './routes/Discover.jsx';
+import TopArtists from './routes/TopArtists.jsx'
 
 const router = createBrowserRouter([
   { path: '/', element: <App /> },
   { path: '/profile/:id', element: <Profile /> },
   { path: '/liked', element: <LikedSongs /> },
   { path: '/forum', element: <Forum />},
-  { path: '/discover', element: <Discover /> }
+  { path: '/discover', element: <Discover /> },
+  { path: '/top-artists', element: <TopArtists /> }
 ]);
 
 createRoot(document.getElementById('root')).render(
