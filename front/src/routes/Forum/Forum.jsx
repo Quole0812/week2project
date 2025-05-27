@@ -39,9 +39,9 @@ export default function Forum() {
             <div className="post-title">Post Title: something something</div>
             <div className="post-content">Content/Photos/Video?</div>
             <div className="post-actions">
-                <button>upvote placeholder</button>
-                <button>icon placeholder</button>
-                <button>share placeholder</button>
+                <button className='reddit-button'>upvote placeholder</button>
+                <button className='reddit-button'>icon placeholder</button>
+                <button className='reddit-button'>share placeholder</button>
             </div>
         </div>
 

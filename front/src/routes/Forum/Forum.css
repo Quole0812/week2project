@@ -60,5 +60,36 @@
 }
 
 .username {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+}
+
+.post-title {
+    font-size:24px;
+    font-weight:bold;
+}
+
+.post-content {
+    margin-top: 5px;
+    font-size: 0.85rem;
+}
+
+.post-actions {
+    margin-top: 15px;
+}
+
+.reddit-button {
+    margin-right: 10px;
+    border-radius: 25px;
+    padding: 5px;
+    background-color: #212129;
+    color:white;
+}
+
+.filter-btn {
+    background-color:#323949;
+    color:white;
+    border-radius: 25px;
+    padding:10px;
+    border:0;
 }
