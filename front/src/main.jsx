@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from "./components/AuthContext"
 import App from './App.jsx'
-import Forum from './routes/Forum.jsx'
+import Forum from './routes/Forum/Forum.jsx'
 import Profile from './routes/Profile.jsx'
 
 const router = createBrowserRouter([
