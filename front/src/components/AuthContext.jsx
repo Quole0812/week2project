@@ -13,6 +13,7 @@ function AuthProvider({ children }) {
       .then((res) => (res.status === 200 ? res.json() : null))
       .then((data) => {
         setUser(data);
+        console.log(data);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -31,7 +32,7 @@ function AuthProvider({ children }) {
       .then(() => setUser(null))
       .catch(() => setLoading(false));
     const currentPath = window.location.pathname;
-    window.location.href = `${encodeURIComponent(currentPath)}`;
+    window.location.href = currentPath;
   };
 
   return (
