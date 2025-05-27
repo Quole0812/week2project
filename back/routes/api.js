@@ -106,7 +106,8 @@ router.get("/callback", function (req, res) {
                     ...data,
                     displayedArtists: [],
                     displayedSongs: [],
-                    bio: "",
+                    bio: "Music Lover!",
+                    profile_picture: profile.images[0].url,
                   });
                 } else {
                   // await db
@@ -208,7 +209,7 @@ router.get("/me", async (req, res) => {
     request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         const new_access_token = body.access_token;
-        const refresh_token = body.refresh_token || refresh_token;
+        const new_refresh_token = body.refresh_token || refresh_token;
 
         // store new access token in cookies
         res.cookie("access_token", new_access_token, {
