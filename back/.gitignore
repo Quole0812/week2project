@@ -1,3 +1,4 @@
 .env
 permissions.json
 *.pem
+node_modules
