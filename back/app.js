@@ -16,6 +16,6 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Server is running!" });
 });
 
-app.listen(port, () => {
+app.listen(port, "127.0.0.1", () => {
   console.log(`Server is running on port ${port}`);
 });
