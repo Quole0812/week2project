@@ -1,13 +1,16 @@
 import { useState, useEffect, use } from "react";
-import { AuthContext } from "../components/AuthContext";
 import Sidebar from "../components/Sidebar/Sidebar";
 import DiscoverGrid from "../components/Discover/DiscoverGrid";
+import { useContext } from "react";
+import { AuthContext } from "../components/AuthContext";
 import axios from "axios";
 
 
+
 export default function Discover() {
-    const [users, setUsers] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const { user, login, logout } = useContext(AuthContext);
+    const [loading, setLoading] = useState(true); // loading state to show loading spinner
+    const [users, setUsers] = useState([{}]); // array of objects to hold user data
     const [error, setError] = useState(null);
 
 
@@ -29,54 +32,61 @@ export default function Discover() {
         fetchUsers();
 
     }, [])
+
+    useEffect(() => {
+        if (!loading) {
+            console.log("Users fetched:", users);
+        }
+    }, [users, loading]);
     
     return (
             <div className="discover-main-bg">
                 <Sidebar />
                 <div className="discover-top">
-                <input type="text" className="discover-search-bar" placeholder="Search for users..." />
-                <h1 className="discover-results-header">Discover</h1>
-                <div className="discover-main-content">
-                    
-                    {loading ? (
-                        <>
-                            <div className="discover-container">
-                                {[...Array(3)].map((_, index) => (
-                                    <div className="discover-card">
-                                        <div className="discover-profile-picture" />
-                                        <div className="discover-card-text" />
-                                    </div>
-                                ))}
-                            </div>
+                    <input type="text" className="discover-search-bar" placeholder="Search for users..." />
+                    <h1 className="discover-results-header">Discover</h1>
+                    <div className="discover-main-content">
+                        
+                        {loading ? (
+                            <>
+                                <div className="discover-container">
+                                    {[...Array(3)].map((_, index) => (
+                                        <div className="discover-card" key={index}>
+                                            <div className="discover-profile-picture" />
+                                            <div className="discover-card-text" />
+                                        </div>
+                                    ))}
+                                </div>
 
-                        </>
-                    
-                    ) :
-                    error ? (
-                        <div>Error: {error}</div>
-                    ) : (
-                            <div className="discover-container">
-                                
-                                {users.map((user => (
-                                    <div className="discover-card" key={user.id}>
-                                        {/* pass these names to DiscoverGrid */}
-                                        
-                                        <div className="discover-profile-picture"></div>
-                                        <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
-                                        {/* <br /> */}
-                                    </div>
+                            </>
+                        
+                        ) :
+                        error ? (
+                            <div>Error: {error}</div>
+                        ) : (
+                               
+                                <div className="discover-container">
                                     
-                                
-                                
-                                )
-                                ))}
-                            </div>
-                    )}
-                </div>
-                
-                
-                
+                                    {users.map((user => (
+                                        <div className="discover-card" key={user.id}>
+                                            {/* pass these names to DiscoverGrid */}
+                                            
+                                            <div className="discover-profile-picture"></div>
+                                            <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
+                                            {/* <br /> */}
+                                        </div>
+                                        
+                                    
+                                    
+                                    )
+                                    ))}
+                                </div>
+                        )}
                     </div>
+                
+                
+                
+                </div>
             </div>
     );
 }
