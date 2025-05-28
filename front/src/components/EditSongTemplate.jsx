@@ -5,9 +5,7 @@ function EditSongTemplate({ songObj }) {
     return (
         <>
             <div className="songTemplateContainer">
-                <div className="songTemplateImageContainer">
-                    <img className="songTemplateImage" src={songObj.album.images[0].url}/>
-                </div>
+                <img className="songTemplateImage" src={songObj.album.images[0].url}/>
                 <div className="songTemplateTextContainer">
                     <div className="songTemplateName">
                         {songObj.name}

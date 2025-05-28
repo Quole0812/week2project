@@ -11,7 +11,7 @@ html, body {
     min-height: 100vh;
     width:100vw;
     margin-left: 240px;
-    padding: 1rem;
+    padding: 1rem 4rem;
     background-color: #212129;
 }
 
@@ -245,7 +245,7 @@ html, body {
 }
 
 .bioEditTextField {
-  width: 70%;
+  width: 89%;
   padding: 12px 16px;
   background-color: #1e1e25;
   color: #e5e7eb;
@@ -267,7 +267,7 @@ html, body {
 }
 
 .artistSearch {
-  width: 70%;
+  width: 85%;
   padding: 12px 16px;
   background-color: #1e1e25;
   color: #e5e7eb;
@@ -289,7 +289,7 @@ html, body {
 }
 
 .songSearch {
-  width: 70%;
+  width: 85%;
   padding: 12px 16px;
   background-color: #1e1e25;
   color: #e5e7eb;
@@ -333,5 +333,117 @@ html, body {
 .editSearch:hover {
     border-color: #66b574;
     box-shadow: 0 0 0 2px #50905c;
+    text-decoration: none;
+}
+
+.editButtonAdd {
+    width: 88%;
+    display:flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left; 
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+    justify-content: space-between;
+}
+
+.editButtonAdd:hover {
+    text-decoration: none;
+    transform: translateY(-4px);
+    color: #1db954;
+}
+
+.addIcon {
+    margin-left: 1rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: #e5e7eb;
+}
+
+.editButtonAdd:hover .addIcon {
+  color: #5fd775;
+}
+
+.removeIcon {
+    margin-left: 1rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: #e5e7eb;
+}
+
+.editButtonAdd:hover .removeIcon {
+  color: #e03e58;
+}
+
+.nextPrevContainer {
+    display:flex;
+    gap: 0.5rem;
+}
+
+.nextButton {
+    width: 100px;
+    text-decoration: none;
+    display: inline-block;
+    justify-content:center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background-color: #66b574;
+    border-radius: 25px;
+    border: 0;
+    box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(82, 0, 97, 0.1) 0 3px 6px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    line-height: 24px;
+    margin: 0;
+    padding: 8px 30px;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.nextButton:hover {
+    background-color: #50905c;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.prevButton {
+    width: 100px;
+    text-decoration: none;
+    display: inline-block;
+    justify-content:center;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background-color: #e03e58;
+    border-radius: 25px;
+    border: 0;
+    box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(82, 0, 97, 0.1) 0 3px 6px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    line-height: 24px;
+    margin: 0;
+    padding: 8px 20px;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.prevButton:hover {
+    background-color: #b9334a;
+    transform: translateY(-2px);
     text-decoration: none;
 }

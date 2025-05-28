@@ -26,7 +26,6 @@ function Profile() {
         const userRes = await fetch(`http://127.0.0.1:3001/profile/${id}`);
         const userJson = await userRes.json();
         setUserData(userJson);
-        console.log(userJson);
 
         if (userJson.displayedArtists.length > 0) {
           const artistsRes = await fetch("http://127.0.0.1:3001/profile/artists", {
@@ -105,7 +104,7 @@ function Profile() {
               <div className="artistsContainer">
                 <div className="artistsHeaderText">Displayed Artists</div>
                 <div className="displayedArtistsContainer">
-                    {artists.length > 0 ? (artists.map((artist) => (
+                    {artists && artists.length > 0 ? (artists.map((artist) => (
                       <ArtistTemplate key={artist.id} artistObj={artist} />
                     ))) : (
                       <div className="noContent"> No artists to display </div>
@@ -115,7 +114,7 @@ function Profile() {
               <div className="songsContainer">
                 <div className="songsHeaderText">Displayed Songs</div>
                 <div className="displayedSongsContainer">
-                    {songs.length > 0 ? (songs.map((song) => (
+                    {songs && songs.length > 0 ? (songs.map((song) => (
                         <SongTemplate key={song.id} songObj={song} />
                     ))) : (
                       <div className="noContent"> No songs to display </div>
