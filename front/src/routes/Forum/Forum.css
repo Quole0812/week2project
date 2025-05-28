@@ -39,6 +39,8 @@
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
+  width:60%;
+  margin-left: 320px;
 }
 
 .create-btn {
@@ -67,11 +69,14 @@
 .post-title {
     font-size:24px;
     font-weight:bold;
+    margin-bottom: 12px
 }
 
 .post-content {
     margin-top: 5px;
-    font-size: 0.85rem;
+    font-size: 0.80rem;
+    font-weight: lighter;
+    line-height: 150%;
 }
 
 .post-actions {
@@ -92,4 +97,12 @@
     border-radius: 25px;
     padding:10px;
     border:0;
+}
+
+.profile-pic {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* circle shape */
+  object-fit: cover;
+  margin-right: 5px;
 }

@@ -1,15 +1,46 @@
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../components/AuthContext.jsx";
 import './Forum.css'
-
+import axios from "axios";
 
 export default function Forum() {
     const { user, login, logout, loading } = useContext(AuthContext);
+    const [posts, setPosts] = useState([]);
+    const [users, setUsers] = useState([]);
 
-    //3. if user is not null, they are logged in
-    //4. login and logout are functions that can be called to have a user sign in/sign out
-    //5. set loading screen if loading is true
+    
+
+
+    useEffect(() => {
+        async function fetchPosts() {
+        try {
+            const res = await axios.get("http://127.0.0.1:3001/forum/posts");
+            setPosts(res.data);
+        } catch (err) {
+            console.error("Failed to fetch posts", err);
+        }
+        }
+
+        fetchPosts();
+    }, []);
+
+
+    useEffect(() => {
+        async function fetchUsers() {
+        try {
+            const res = await axios.get("http://127.0.0.1:3001/forum/users");
+            setUsers(res.data);
+            console.log(res.data);
+        } catch (err) {
+            console.error("Failed to fetch users", err);
+        }
+        }
+
+        fetchUsers();
+    }, []);
+
     if (loading) {
         return (<></>)
     } else {
@@ -27,23 +58,36 @@ export default function Forum() {
 
         <div className="forum-controls">
             <button className="filter-btn">filter by: Recent</button>
-            <button className="create-btn">Create Post</button>
+            <Link to="/forum/create">
+            <button className="create-btn">Create Post</button></Link>
         </div>
 
 
-        <div className="post-card">
+        {posts.map((post) => (
+          <div key={post.id} className="post-card">
             <div className="post-header">
-                <div className="avatar-circle"></div>
-                <span className="username">User something</span>
+              <div className="avatar-circle"></div>
+              <img
+                src={
+                    (users.find(u => u.id === post.userId)?.profile_picture) || "https://images.unsplash.com/11/sky-rose.jpg?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                }
+                alt="Profile"
+                className="profile-pic"
+                />
+              <span className="username">{user?.id === post.userId ? user.display_name : post.userId}</span>
             </div>
-            <div className="post-title">Post Title: something something</div>
-            <div className="post-content">Content/Photos/Video?</div>
+            <Link to={`/forum/${post.id}`} className="post-card">
+            <div className="post-title">{post.title}</div>
+            <div className="post-content">{post.content || "No content."}</div>
+            </Link>
             <div className="post-actions">
-                <button className='reddit-button'>upvote placeholder</button>
-                <button className='reddit-button'>icon placeholder</button>
-                <button className='reddit-button'>share placeholder</button>
+              <button className='reddit-button'>upvote</button>
+              <Link to={`/forum/${post.id}`} className="post-card">
+              <button className='reddit-button'>comment</button></Link>
+              <button className='reddit-button'>share</button>
             </div>
-        </div>
+          </div>
+        ))}
 
 
         </main>

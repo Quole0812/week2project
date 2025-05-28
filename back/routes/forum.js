@@ -18,7 +18,8 @@ router.get("/posts", async (req, res) => {
 
 // post method create a post
 router.post("/posts", async (req, res) => {
-    const { userId, title, content, flair } = req.body; 
+    try {
+      const { userId, title, content, flair } = req.body; 
     const post = {
         userId, 
         title, 
@@ -30,6 +31,10 @@ router.post("/posts", async (req, res) => {
     };
     const ref = await db.collection("posts").add(post);
     res.json({ id: ref.id, message: "the post is made yuh" });
+    } catch (error) {
+      console.error("uh i can't make the post", error)
+      res.status(500).json({ error: 'Internal server error'});
+    }
 });
 
 //post method, upvote a post
@@ -55,6 +60,18 @@ router.post("/posts/:postId/upvote", async (req, res) => {
   res.json({ message: "Upvote added" });
 });
 
+
+router.get("/users", async (req, res) => {
+  // const id = req.params.id;
+  try {
+        const ss = await db.collection("users").get();
+        const users = ss.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        res.json(users);
+    } catch (error) {
+        console.error("my brother in christ i can't get the users");
+        res.status(500).json({ error: 'Internal server error'});
+    }
+});
 
 
 module.exports = router;
