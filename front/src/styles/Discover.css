@@ -1,10 +1,74 @@
+.discover-main-bg {
+  background-color: #212129;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 150px;
+  ;
+}
+
+.discover-top {
+  display: flex;
+}
+
+.discover-main-content {
+  background: #323949;
+  overflow-y: auto;
+  border-radius: 18px;
+  width: 900px;
+  padding: 40px;
+  min-height: 300px;
+  max-height: 500px;
+  box-shadow: 0 6px 32px #00000030;
+  
+}
+
+.discover-results-header {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 36px;
+}
+
+.discover-card-text {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: bold;
+  padding-top: 40px;
+  margin-bottom: 24px;
+  vertical-align: bottom;
+}
+
 .discover-container {
+  
   display: grid;
-  grid-template-columns: 20% 20% 20%;
-  grid-template-rows: 20% 20% 20%;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: center;
+  background-color:#323949;
+}
+
+.discover-card {
+  background-color: #323949;
+  /* border: 1px solid #000000; */
+  padding: 10px;
+  font-size: 30px;
+  min-height: 300px;
+  max-width: 300px;
+  text-align: center;
+  margin: 5px;
+}
+
+.discover-card:hover {
+  background-color: #4C5265;
+  
 }
 
 .discover-item {
-    grid-column: 2 / 2;
-    grid-row: 2 / 2;
+  position: relative;
 }
