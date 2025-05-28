@@ -1,0 +1,87 @@
+/* ===== page container (same offsets as sidebar & liked-songs) ===== */
+.home-container {
+  margin-left: 220px;        /* sidebar width */
+  padding: 2rem 3rem;
+  min-height: 100vh;
+  background: #f8f9fb;
+  color: #1b1e2f;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* ===== discover banner ===== */
+.discover-card {
+  position: relative;
+  background: linear-gradient(135deg, #ff4f79 0%, #7f46ff 100%);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+}
+
+.discover-info h2  { font-size: 1.7rem; font-weight: 700; margin: 0 0 0.5rem; }
+.discover-info p   { max-width: 28rem; opacity: 0.85; margin-bottom: 1.2rem; }
+.connect-btn       {
+  background:#fff; color:#1b1e2f; padding:0.55rem 1.6rem;
+  border:none; border-radius:9999px; font-weight:600; cursor:pointer;
+}
+.disc-art {                /* decorative circle */
+  position:absolute; right:2.5rem; top:50%; transform:translateY(-50%);
+  width:90px; height:90px; border-radius:50%; background:#fff; opacity:0.9;
+}
+
+/* ===== two-column grid ===== */
+.two-col {
+  display:grid;
+  gap:2rem;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+}
+
+/* ===== reusable dark panel ===== */
+.dark-panel {
+  background:#1b1e2f;
+  border-radius:12px;
+  padding:1.5rem 1.4rem;
+  color:#fff;
+  display:flex; flex-direction:column; gap:1rem;
+}
+
+.panel-head {
+  display:flex; justify-content:space-between; align-items:center;
+}
+.panel-head h3 { font-size:1.1rem; margin:0; }
+.panel-head a  { font-size:.8rem; color:#ff4f79; text-decoration:none; }
+
+.empty-note { font-size:.85rem; opacity:.7; }
+
+/* ===== top artists grid ===== */
+.artist-grid {
+  display:flex; gap:1rem; flex-wrap:wrap;
+}
+
+.artist-card {
+  width:90px; text-align:center; font-size:.75rem;
+  display:flex; flex-direction:column; gap:.35rem; align-items:center;
+}
+
+.avatar {
+  width:90px; height:90px; border-radius:12px;
+  background:#2d3146 center/cover no-repeat;
+}
+
+.plays { font-size:.7rem; opacity:.65; }
+
+/* ===== top songs ordered list ===== */
+.song-list {
+  list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:.6rem;
+}
+.song-list li {
+  background:#262a3d; border-radius:8px; padding:.6rem .8rem;
+  display:grid; grid-template-columns:32px 1fr auto; gap:1rem; align-items:center;
+}
+.rank        { font-weight:700; opacity:.7; }
+.song-meta   { display:flex; flex-direction:column; gap:.1rem; }
+.song-meta em{ font-size:.75rem; opacity:.65; font-style:normal; }
