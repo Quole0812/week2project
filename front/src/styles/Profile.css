@@ -3,13 +3,22 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .main-content {
-    height:100vh;
+    height:auto;
+    min-height: 100vh;
     width:100vw;
     margin-left: 240px;
     padding: 1rem;
+    background-color: #212129;
+}
+
+.loadingPage {
+    height:auto;
+    min-height: 100vh;
+    width:100vw;
     background-color: #212129;
 }
 
@@ -56,6 +65,18 @@ html, body {
     margin-bottom: 10px;
 
     color: #e03e58;
+}
+
+.editProfileText {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    margin-left: 32px;
+    margin-bottom: 10px;
+
+    color: #66b574;
 }
 
 .profileUsernameText {
@@ -105,5 +126,212 @@ html, body {
 }
 
 .profileEditButton:visited {
+    text-decoration: none;
+}
+
+.profileSaveButton {
+    text-decoration: none;
+    display: inline-block;
+    justify-content:center;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+    background-color: #66b574;
+    border-radius: 25px;
+    border: 0;
+    box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(82, 0, 97, 0.1) 0 3px 6px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    line-height: 24px;
+    margin: 0;
+    padding: 10px 30px;
+    position: relative;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+}
+
+.profileSaveButton:hover {
+    background-color: #50905c;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.profileSaveButton:visited {
+    text-decoration: none;
+}
+
+.noContent {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 12px;
+
+    color: #FFFFFF;
+}
+
+.artistsContainer {
+    margin: 2rem 0rem;
+    max-width: calc(100% - 240px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.displayedArtistsContainer {
+    margin: 1rem 0rem;
+    display:flex; 
+    flex-wrap: wrap;
+    padding-right: 3rem;
+    gap: 2rem 4.5rem;
+}
+
+.artistsHeaderText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+}
+
+.songsContainer {
+    margin: 2rem 0rem;
+    max-width: calc(100% - 240px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.displayedSongsContainer {
+    margin: 1rem 0rem;
+    display:flex;
+    flex-direction:column;
+    gap: 1rem;
+}
+
+.songsHeaderText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+}
+
+.bioHeaderText {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+}
+
+.bioContainer {
+    margin: 2rem 0rem;
+    max-width: calc(100% - 240px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bioEditTextField {
+  width: 70%;
+  padding: 12px 16px;
+  background-color: #1e1e25;
+  color: #e5e7eb;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid #bcbcbc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.bioEditTextField::placeholder {
+  color: #9ca3af;
+}
+
+.bioEditTextField:focus {
+  border-color: #66b574;
+  box-shadow: 0 0 0 2px #50905c;
+}
+
+.artistSearch {
+  width: 70%;
+  padding: 12px 16px;
+  background-color: #1e1e25;
+  color: #e5e7eb;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid #bcbcbc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.artistSearch::placeholder {
+  color: #9ca3af;
+}
+
+.artistSearch:focus {
+  border-color: #66b574;
+  box-shadow: 0 0 0 2px #50905c;
+}
+
+.songSearch {
+  width: 70%;
+  padding: 12px 16px;
+  background-color: #1e1e25;
+  color: #e5e7eb;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid #bcbcbc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.songSearch::placeholder {
+  color: #9ca3af;
+}
+
+.songSearch:focus {
+  border-color: #66b574;
+  box-shadow: 0 0 0 2px #50905c;
+}
+
+.searchContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.editSearch {
+    height: 48px;
+    width: 48px;
+    background-color: #1e1e25;
+    color: #e5e7eb;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    border: 2px solid #bcbcbc;
+    border-radius: 8px;
+    outline: none;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+    cursor: pointer;
+}
+
+.editSearch:hover {
+    border-color: #66b574;
+    box-shadow: 0 0 0 2px #50905c;
     text-decoration: none;
 }
