@@ -71,7 +71,7 @@ export default function Discover() {
                                         <div className="discover-card" key={user.id}>
                                             {/* pass these names to DiscoverGrid */}
                                             
-                                            <div className="discover-profile-picture"></div>
+                                            <img src={user?.profile_picture} className="discover-profile-picture" />
                                             <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
                                             {/* <br /> */}
                                         </div>
