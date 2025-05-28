@@ -60,9 +60,7 @@ export default function Discover() {
         <>
             <div className="discover-main-bg">
                 <Sidebar />
-                
                 <div className="discover-center-wrapper">
-                    
                     <div className="discover-top">
                         <div className="discover-search-wrapper">
                             <input
@@ -79,22 +77,16 @@ export default function Discover() {
                                 <h1 className="discover-results-header">Discover user profiles</h1>   
                             )
                         }
-                        
-                        <div className="discover-main-content">
-                            
+                        <div className="discover-main-content">   
                             { loading ? (
-                                <>
-                                    <div className="discover-container">
-                                        {[...Array(3)].map((_, index) => (
-                                            <div className="discover-card" key={index}>
-                                                <div className="discover-profile-picture" />
-                                                <div className="discover-card-text" />
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                </>
-                            
+                                <div className="discover-container">
+                                    {[...Array(3)].map((_, index) => (
+                                        <div className="discover-card" key={index}>
+                                            <div className="discover-profile-picture" />
+                                            <div className="discover-card-text" />
+                                        </div>
+                                    ))}
+                                </div>
                             ) :
                             error ? (
                                 <div>Error: {error}</div>
@@ -102,10 +94,9 @@ export default function Discover() {
                                 searchValue !== "" ? (
                                     <div className="discover-container">
                                         {filteredUsers.length > 0 ? (
-                                            
                                             filteredUsers.map((user => (
-                                                <Link to={`../profile/${user.id}`}>
-                                                    <div className="discover-card" key={user.id}>
+                                                <Link to={`../profile/${user.id}`} key={user.id}>
+                                                    <div className="discover-card" >
                                                         <div className="discover-profile-picture-wrapper">
                                                             <img src={user?.profile_picture} className="discover-profile-picture" />
                                                         </div>
@@ -114,35 +105,29 @@ export default function Discover() {
                                                 </Link>
                                             )))
                                         ) : (
-                                            // no match found
-                                            <div><strong className="discover-card-text">No results found.</strong></div> 
-                                        )
-                                             
-                                        
-                                         
+                                                // no match found
+                                                <div><strong className="discover-card-text">No results found.</strong></div> 
+                                            )
                                         }
                                         </div>   
-                                    ) :
+                                    ) : 
                                     (
-                                        <div className="discover-container">
-                                            
-                                            {users.map((user => (
-                                                <Link to={`../profile/${user.id}`}>
-                                                    <div className="discover-card" key={user.id}>
-                                                        {/* pass these names to DiscoverGrid */}
-                                                        <div className="discover-profile-picture-wrapper">
-                                                            <img src={user?.profile_picture} className="discover-profile-picture" />
+                                            <div className="discover-container">
+                                                {users.map((user => (
+                                                    <Link to={`../profile/${user.id}`} key={user.id}>
+                                                        <div className="discover-card" >
+                                                            {/* pass these names to DiscoverGrid */}
+                                                            <div className="discover-profile-picture-wrapper">
+                                                                <img src={user?.profile_picture} className="discover-profile-picture" />
+                                                            </div> 
+                                                            <strong className="discover-card-text">{user.name}</strong>  
+                                                            {/* <br /> */}
                                                         </div>
-                                                        
-                                                        <strong className="discover-card-text">{user.name}</strong>  
-                                                        {/* <br /> */}
-                                                    </div>
-                                                </Link>
-                                            )))}
-                                        </div>
-                                    )
-                        }
-                                
+                                                    </Link>
+                                                )))}
+                                            </div>
+                                        )
+                            }    
                             </div>
                     </div>
                 </div>
