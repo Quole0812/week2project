@@ -69,7 +69,7 @@ export default function Discover() {
                                 <div className="discover-container">
                                     
                                     {users.map((user => (
-                                        <Link to="/profile/{user.id}">
+                                        <Link to={`../profile/${user.id}`}>
                                             <div className="discover-card" key={user.id}>
                                                 {/* pass these names to DiscoverGrid */}
                                                 
