@@ -41,55 +41,64 @@ export default function Discover() {
     }, [users, loading]);
     
     return (
+        <>
             <div className="discover-main-bg">
                 <Sidebar />
-                <div className="discover-top">
-                    <input type="text" className="discover-search-bar" placeholder="Search for users..." />
-                    <h1 className="discover-results-header">Discover</h1>
-                    <div className="discover-main-content">
+                
+                <div className="discover-center-wrapper">
+                    
+                    <div className="discover-top">
+                        <div className="discover-search-wrapper">
+                            <input
+                            type="text"
+                            className="discover-search-bar"
+                            placeholder="Search for users..."
+                            />
+                        </div>
                         
-                        {loading ? (
-                            <>
-                                <div className="discover-container">
-                                    {[...Array(3)].map((_, index) => (
-                                        <div className="discover-card" key={index}>
-                                            <div className="discover-profile-picture" />
-                                            <div className="discover-card-text" />
-                                        </div>
-                                    ))}
-                                </div>
-
-                            </>
-                        
-                        ) :
-                        error ? (
-                            <div>Error: {error}</div>
-                        ) : (
-                               
-                                <div className="discover-container">
-                                    
-                                    {users.map((user => (
-                                        <Link to={`../profile/${user.id}`}>
-                                            <div className="discover-card" key={user.id}>
-                                                {/* pass these names to DiscoverGrid */}
-                                                
-                                                <img src={user?.profile_picture} className="discover-profile-picture" />
-                                                <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
-                                                {/* <br /> */}
+                        <h1 className="discover-results-header">Discover user profiles</h1>
+                        <div className="discover-main-content">
+                            
+                            {loading ? (
+                                <>
+                                    <div className="discover-container">
+                                        {[...Array(3)].map((_, index) => (
+                                            <div className="discover-card" key={index}>
+                                                <div className="discover-profile-picture" />
+                                                <div className="discover-card-text" />
                                             </div>
-                                        </Link>
+                                        ))}
+                                    </div>
+
+                                </>
+                            
+                            ) :
+                            error ? (
+                                <div>Error: {error}</div>
+                            ) : 
+                                (
+                                    <div className="discover-container">
                                         
-                                    
-                                    
-                                    )
-                                    ))}
-                                </div>
-                        )}
+                                        {users.map((user => (
+                                            <Link to={`../profile/${user.id}`}>
+                                                <div className="discover-card" key={user.id}>
+                                                    {/* pass these names to DiscoverGrid */}
+                                                    <div className="discover-profile-picture-wrapper">
+                                                        <img src={user?.profile_picture} className="discover-profile-picture" />
+                                                    </div>
+                                                    
+                                                    <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
+                                                    {/* <br /> */}
+                                                </div>
+                                            </Link>
+                                        )))}
+                                    </div>
+                                )
+                            }
+                        </div>
                     </div>
-                
-                
-                
                 </div>
             </div>
+        </>
     );
 }

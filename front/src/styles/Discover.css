@@ -1,3 +1,9 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .discover-main-bg {
   background-color: #212129;
   overflow: hidden;
@@ -7,23 +13,43 @@
   align-items: flex-start;
   padding-top: 100px;
   padding-bottom: 150px;
-  ;
+}
+
+.discover-center-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .discover-top {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Keep this for left-aligning header + content */
   padding-top: 20px;
-  text-align: left;
-  
+}
+
+.discover-search-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* 👈 this is key */
+  margin-bottom: 20px;
 }
 
 .discover-search-bar{
-  width: 420;
+  width: 420px;
   font-size: 1.5rem;
   padding: 5px 48px 12px 40px;
   box-shadow: 5px 10px #0002;
+}
+
+.discover-results-header {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
 }
 
 .discover-main-content {
@@ -38,14 +64,7 @@
   
 }
 
-.discover-results-header {
-  color: white;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 36px;
-}
+
 
 .discover-card {
   background-color: #323949;
@@ -59,9 +78,9 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: left;
+  justify-content: flex-end;
+  align-items: flex-start;
+  
 }
 
 .discover-card:hover {
@@ -73,19 +92,23 @@
   color: white;
   font-family: "Inter", sans-serif;
   font-style: normal;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  padding-top: 80px;
-  margin-bottom: 12px;
+  margin-top: auto;
   vertical-align: bottom;
 }
 
 .discover-container {
-  
   display: grid;
   grid-template-columns: 30% 30% 30%;
   justify-content: center;
   background-color:#323949;
+}
+
+.discover-profile-picture-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .discover-profile-picture {
@@ -94,13 +117,16 @@
   align-items: center;
   box-sizing: border-box;
   border-radius: 50%;
-  width: 131px;
-  height: 128px;
+  width: 182px;
+  height: 182px;
   margin-top: 12px;
-
   background: #323949;
-  border: 2px solid #C9184A;
+  
 
+}
+
+.discover-card:hover .discover-profile-picture {
+  border: 2px solid #C9184A;
 }
 
 .discover-item {
