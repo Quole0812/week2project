@@ -19,7 +19,7 @@ const router = createBrowserRouter([
   { path: '/liked', element: <LikedSongs /> },
   { path: '/forum', element: <Forum />},
   { path: '/discover', element: <Discover /> },
-  { path: '/home', element: <Home /> }
+  { path: '/home', element: <Home /> },
   { path: '/forum/create', element: <CreatePost />},
 ]);
 
