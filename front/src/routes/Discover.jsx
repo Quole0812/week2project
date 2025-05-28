@@ -87,7 +87,7 @@ export default function Discover() {
                                                         <img src={user?.profile_picture} className="discover-profile-picture" />
                                                     </div>
                                                     
-                                                    <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
+                                                    <strong className="discover-card-text">{user.name}</strong>  
                                                     {/* <br /> */}
                                                 </div>
                                             </Link>

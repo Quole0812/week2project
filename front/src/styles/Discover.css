@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 100px;
-  padding-bottom: 150px;
+  padding-bottom: 100px;
 }
 
 .discover-center-wrapper {
@@ -25,14 +25,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* Keep this for left-aligning header + content */
-  padding-top: 20px;
 }
 
 .discover-search-wrapper {
   display: flex;
   justify-content: center;
   width: 100%; /* 👈 this is key */
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .discover-search-bar{
