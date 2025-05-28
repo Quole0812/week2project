@@ -9,7 +9,7 @@ export default function Discover() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+
 
     const apiUrl = "http://127.0.0.1:3001/profile";
       
@@ -32,6 +32,8 @@ export default function Discover() {
     
     return (
             <div className="discover-main-bg">
+                <div className="discover-top">
+                <input type="text" className="discover-search-bar" placeholder="Search for users..." />
                 <h1 className="discover-results-header">Discover</h1>
                 <div className="discover-main-content">
                     
@@ -46,7 +48,7 @@ export default function Discover() {
                                 {users.map((user => (
                                     <div className="discover-card" key={user.id}>
                                         {/* pass these names to DiscoverGrid */}
-                                        <strong className="discover-card-text"><span style={{ verticalAlign: 'bottom' }}>{user.name}</span></strong>  
+                                        <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
                                         {/* <br /> */}
                                     </div>
                                     
@@ -55,15 +57,15 @@ export default function Discover() {
                             )
                             ))}
                             <div className="discover-card" >
-                                    test
-                                    </div>
+                                test
                             </div>
+                        </div>
                     )}
                 </div>
                 {/* <Sidebar /> */}
                 
                 
-                
+                    </div>
             </div>
     );
 }
