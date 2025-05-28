@@ -11,6 +11,7 @@ const TopArtistsGrid = ({ artists }) => {
           <div
             key={artist.id}
             className={`artist-grid-card trophy-${["second", "first", "third"][idx]}`}
+            style={{ animationDelay: `${idx * 0.15 + 0.2}s` }}
           >
             <div className="artist-star-row">
               <span className={`star ${idx === 1 ? "star-accent" : "star-secondary"}`}>
