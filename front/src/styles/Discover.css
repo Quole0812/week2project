@@ -48,7 +48,7 @@
 
 .discover-card {
   background-color: #323949;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   padding: 10px;
   font-size: 30px;
   min-height: 300px;
