@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.create-post-container {
+    /* margin-top: 0; */
+  margin-left: 230px; 
+  padding: 2rem;
+  background-color: #212129;
+  min-height: 100vh;
+  color: white;
+}
+
+.create-post-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+
+
