@@ -32,13 +32,32 @@ export default function Discover() {
     
     return (
             <div className="discover-main-bg">
+                <Sidebar />
                 <div className="discover-top">
                 <input type="text" className="discover-search-bar" placeholder="Search for users..." />
                 <h1 className="discover-results-header">Discover</h1>
                 <div className="discover-main-content">
                     
                     {loading ? (
-                    <div>Loading...</div>
+                        <>
+                            <div className="discover-container">
+                                <div className="discover-card" />
+                                <div className="discover-profile-picture" />
+                            </div>
+                            <div className="discover-container">
+                                <div className="discover-card" />
+                                <div className="discover-profile-picture" />
+                            </div>
+                            <div className="discover-container">
+                                <div className="discover-card" />
+                                <div className="discover-profile-picture" />
+                            </div>
+                            <div className="discover-container">
+                                <div className="discover-card" />
+                                <div className="discover-profile-picture" />
+                            </div>
+                        </>
+                    
                     ) :
                     error ? (
                         <div>Error: {error}</div>
@@ -48,6 +67,8 @@ export default function Discover() {
                                 {users.map((user => (
                                     <div className="discover-card" key={user.id}>
                                         {/* pass these names to DiscoverGrid */}
+                                        
+                                        <div className="discover-profile-picture"></div>
                                         <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
                                         {/* <br /> */}
                                     </div>
@@ -56,13 +77,10 @@ export default function Discover() {
                                 
                             )
                             ))}
-                            <div className="discover-card" >
-                                test
-                            </div>
                         </div>
                     )}
                 </div>
-                {/* <Sidebar /> */}
+                
                 
                 
                     </div>

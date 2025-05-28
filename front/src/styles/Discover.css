@@ -5,7 +5,8 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 150px;
+  padding-top: 100px;
+  padding-bottom: 150px;
   ;
 }
 
@@ -14,6 +15,12 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+}
+
+.discover-search-bar{
+  width: 420;
+  font-size: 1.5rem;
+  padding: 5px 48px 12px 40px;
 }
 
 .discover-main-content {
@@ -69,7 +76,23 @@
 
 .discover-card:hover {
   background-color: #4C5265;
-  
+  cursor: pointer; 
+}
+
+.discover-profile-picture {
+  /* Ellipse 6 */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 50%;
+  width: 131px;
+  height: 128px;
+  left: 411px;
+  top: 250px;
+
+  background: #FFFFFF;
+  border: 2px solid #C9184A;
+
 }
 
 .discover-item {
