@@ -5,6 +5,7 @@ import { AuthContext } from "../components/AuthContext";
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
 import ArtistTemplate from "../components/ArtistTemplate";
 import SongTemplate from "../components/SongTemplate";
+import CircularProgress from '@mui/material/CircularProgress';
 import "@fontsource/inter";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
@@ -68,7 +69,31 @@ function Profile() {
 
   if (loading || pageLoading) {
     return (
-      <div className="loadingPage"></div>
+      <>
+        <Sidebar/>
+        <div className="main-content">
+          <div className="loadingCenter">
+            <CircularProgress
+              variant="determinate"
+              value={100}
+              size={40}
+              thickness={4}
+              sx={{
+                color: '#ddd',
+                position: 'absolute',
+                left: 0,
+              }}
+            />
+            <CircularProgress
+              size={40}
+              thickness={4}
+              sx={{
+                color: '#e03e58',
+              }}
+            />
+          </div>
+        </div>
+      </>
     )
   } else {
     return (

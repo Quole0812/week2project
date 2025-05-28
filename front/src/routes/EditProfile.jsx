@@ -8,6 +8,7 @@ import EditSongTemplate from '../components/EditSongTemplate'
 import EditArtistTemplate from '../components/EditArtistTemplate'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import CircularProgress from '@mui/material/CircularProgress';
 import "@fontsource/inter";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
@@ -216,7 +217,31 @@ function EditProfile() {
 
   if (loading || pageLoading) {
     return (
-      <div className="loadingPage"></div>
+        <>
+            <Sidebar/>
+            <div className="main-content">
+                <div className="loadingCenter">
+                <CircularProgress
+                    variant="determinate"
+                    value={100}
+                    size={40}
+                    thickness={4}
+                    sx={{
+                    color: '#ddd',
+                    position: 'absolute',
+                    left: 0,
+                    }}
+                />
+                <CircularProgress
+                    size={40}
+                    thickness={4}
+                    sx={{
+                    color: '#e03e58',
+                    }}
+                />
+                </div>
+            </div>
+        </>
     )
   } else {
     return (
