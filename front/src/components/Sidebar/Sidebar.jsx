@@ -7,7 +7,7 @@ import { AuthContext } from "../../components/AuthContext";
 export default function Sidebar() {
     const { user, login, logout, loading } = useContext(AuthContext);
     if(loading) {
-        return <></>
+        return <div className="sidebar"></div>
     } else {
         return (
             <>

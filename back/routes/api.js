@@ -110,7 +110,8 @@ router.get("/callback", function (req, res) {
                     ...data,
                     displayedArtists: [],
                     displayedSongs: [],
-                    bio: "",
+                    bio: "Music Lover!",
+                    profile_picture: profile.images[0].url,
                   });
                 } else {
                   // await db
@@ -212,7 +213,7 @@ router.get("/me", async (req, res) => {
     request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         const new_access_token = body.access_token;
-        refresh_token = body.refresh_token || refresh_token;
+        const new_refresh_token = body.refresh_token || refresh_token;
 
         // store new access token in cookies
         res.cookie("access_token", new_access_token, {
@@ -267,7 +268,7 @@ router.get("/me", async (req, res) => {
 
 router.get("/liked-songs", async (req, res) => {
   const { limit = 50, offset = 0 } = req.query;
-  let access_token  = req.cookies.access_token;
+  let access_token = req.cookies.access_token;
   let refresh_token = req.cookies.refresh_token;
 
   const fetchSaved = (token) =>
@@ -298,7 +299,11 @@ router.get("/liked-songs", async (req, res) => {
       preview: track.preview_url,
       added_at,
     }));
-    return res.json({ tracks, nextOffset: +offset + tracks.length, total: data.total });
+    return res.json({
+      tracks,
+      nextOffset: +offset + tracks.length,
+      total: data.total,
+    });
   } catch (e) {
     if (e.code === 401 && refresh_token) {
       /* refresh then retry once */
@@ -308,7 +313,9 @@ router.get("/liked-songs", async (req, res) => {
           form: { grant_type: "refresh_token", refresh_token },
           headers: {
             "content-type": "application/x-www-form-urlencoded",
-            Authorization: "Basic " + Buffer.from(client_id + ":" + client_secret).toString("base64"),
+            Authorization:
+              "Basic " +
+              Buffer.from(client_id + ":" + client_secret).toString("base64"),
           },
           json: true,
         },
@@ -318,7 +325,10 @@ router.get("/liked-songs", async (req, res) => {
 
           access_token = body.access_token;
           res.cookie("access_token", access_token, {
-            httpOnly: true, secure: false, sameSite: "Lax", maxAge: 3600 * 1000,
+            httpOnly: true,
+            secure: false,
+            sameSite: "Lax",
+            maxAge: 3600 * 1000,
           });
 
           try {
@@ -331,7 +341,11 @@ router.get("/liked-songs", async (req, res) => {
               preview: track.preview_url,
               added_at,
             }));
-            return res.json({ tracks, nextOffset: +offset + tracks.length, total: data.total });
+            return res.json({
+              tracks,
+              nextOffset: +offset + tracks.length,
+              total: data.total,
+            });
           } catch (err2) {
             console.error(err2);
             return res.status(500).json({ error: "spotify_fetch_failed" });
