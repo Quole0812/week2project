@@ -4,6 +4,7 @@ import DiscoverGrid from "../components/Discover/DiscoverGrid";
 import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 
@@ -68,13 +69,15 @@ export default function Discover() {
                                 <div className="discover-container">
                                     
                                     {users.map((user => (
-                                        <div className="discover-card" key={user.id}>
-                                            {/* pass these names to DiscoverGrid */}
-                                            
-                                            <img src={user?.profile_picture} className="discover-profile-picture" />
-                                            <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
-                                            {/* <br /> */}
-                                        </div>
+                                        <Link to="/profile/{user.id}">
+                                            <div className="discover-card" key={user.id}>
+                                                {/* pass these names to DiscoverGrid */}
+                                                
+                                                <img src={user?.profile_picture} className="discover-profile-picture" />
+                                                <strong className="discover-card-text"><span style={{ alignContent: 'flex-end' }}>{user.name}</span></strong>  
+                                                {/* <br /> */}
+                                            </div>
+                                        </Link>
                                         
                                     
                                     
