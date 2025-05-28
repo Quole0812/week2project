@@ -15,12 +15,14 @@
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
+  
 }
 
 .discover-search-bar{
   width: 420;
   font-size: 1.5rem;
   padding: 5px 48px 12px 40px;
+  box-shadow: 5px 10px #0002;
 }
 
 .discover-main-content {
@@ -44,14 +46,36 @@
   margin-bottom: 36px;
 }
 
+.discover-card {
+  background-color: #323949;
+  border: 1px solid #000000;
+  padding: 10px;
+  font-size: 30px;
+  min-height: 300px;
+  max-width: 300px;
+  text-align: center;
+  margin: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.discover-card:hover {
+  background-color: #4C5265;
+  cursor: pointer; 
+}
+
 .discover-card-text {
   color: white;
   font-family: "Inter", sans-serif;
   font-style: normal;
   font-size: 2rem;
   font-weight: bold;
-  padding-top: 40px;
-  margin-bottom: 24px;
+  padding-top: 80px;
+  margin-bottom: 12px;
   vertical-align: bottom;
 }
 
@@ -63,22 +87,6 @@
   background-color:#323949;
 }
 
-.discover-card {
-  background-color: #323949;
-  /* border: 1px solid #000000; */
-  padding: 10px;
-  font-size: 30px;
-  min-height: 300px;
-  max-width: 300px;
-  text-align: center;
-  margin: 5px;
-}
-
-.discover-card:hover {
-  background-color: #4C5265;
-  cursor: pointer; 
-}
-
 .discover-profile-picture {
   /* Ellipse 6 */
   display: flex;
@@ -87,10 +95,9 @@
   border-radius: 50%;
   width: 131px;
   height: 128px;
-  left: 411px;
-  top: 250px;
+  margin-top: 12px;
 
-  background: #FFFFFF;
+  background: #323949;
   border: 2px solid #C9184A;
 
 }

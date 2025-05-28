@@ -41,21 +41,14 @@ export default function Discover() {
                     {loading ? (
                         <>
                             <div className="discover-container">
-                                <div className="discover-card" />
-                                <div className="discover-profile-picture" />
+                                {[...Array(3)].map((_, index) => (
+                                    <div className="discover-card">
+                                        <div className="discover-profile-picture" />
+                                        <div className="discover-card-text" />
+                                    </div>
+                                ))}
                             </div>
-                            <div className="discover-container">
-                                <div className="discover-card" />
-                                <div className="discover-profile-picture" />
-                            </div>
-                            <div className="discover-container">
-                                <div className="discover-card" />
-                                <div className="discover-profile-picture" />
-                            </div>
-                            <div className="discover-container">
-                                <div className="discover-card" />
-                                <div className="discover-profile-picture" />
-                            </div>
+
                         </>
                     
                     ) :
@@ -75,9 +68,9 @@ export default function Discover() {
                                     
                                 
                                 
-                            )
-                            ))}
-                        </div>
+                                )
+                                ))}
+                            </div>
                     )}
                 </div>
                 
