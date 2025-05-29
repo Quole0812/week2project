@@ -127,7 +127,6 @@ The backend server should now be running on port 3001, and the development serve
   ],
   email: “ExampleEmail”,
   bio: “Example Bio”,
-  privateProfile: false
   profile_picture: “ExampleLink”
 }
 ```
