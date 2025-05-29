@@ -8,10 +8,10 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
+  /* margin: 0; */
+  /* padding: 0;
   box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace; */
 }
 
 /* Main container for the detail page */
@@ -50,42 +50,7 @@
   line-height: 1.5;
 }
 
-/* Comment form */
-.comment-input {
-  width: 100%;
-  max-width: 640px;
-  background-color: #3a3f56;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 1rem;
-  font-size: 1rem;
-  min-height: 100px;
-  resize: vertical;
-  margin-bottom: 1rem;
-}
 
-.submit-comment {
-  background-color: #c9184a;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  padding: 0.6rem 1.5rem;
-  align-self: flex-end;
-  cursor: pointer;
-}
-
-/* Comment list */
-.comment-list {
-  margin-top: 2rem;
-  width: 100%;
-  max-width: 640px;
-}
-
-.comment {
-  background-color: #3a3f56;
-  color: white;
-  border-radius: 20px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+.post-actions2 {
+    margin-top: 15px;
 }

@@ -88,13 +88,12 @@ export default function PostDetail() {
           <div className="post-title">{post.title}</div>
           <div className="post-content">{post.content}</div>
 
-          <div className="post-actions">
+          <div className="post-actions2">
             <button className="reddit-button">upvote</button>
-            <button className="reddit-button">comment</button>
             <button className="reddit-button">share</button>
           </div>
         </div>
-
+        {/* <div className="commentfixer">
         <form onSubmit={handleComment} className="comment-form">
           <textarea
             value={newComment}
@@ -104,8 +103,9 @@ export default function PostDetail() {
           />
           <button type="submit" className="create-btn">Post</button>
         </form>
+        </div> */}
 
-        <div className="comment-list">
+        {/* <div className="comment-list">
           {comments.map((c) => {
             const commenter = users.find((u) => u.id === c.userId);
             const commenterPic = commenter?.profile_picture || profilePic;
@@ -119,7 +119,7 @@ export default function PostDetail() {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </main>
         </>
     );
