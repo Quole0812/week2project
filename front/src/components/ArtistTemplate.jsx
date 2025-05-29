@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from "react-router";
 import '../styles/ArtistTemplate.css'
 
 function ArtistTemplate({ artistObj }) {
     return (
         <>
-            <div className="artistTemplateContainer">
+            <Link to={artistObj.external_urls.spotify} className="artistTemplateContainer">
                 <div className="artistTemplateImageContainer">
                     <img className="artistTemplateImage" src={artistObj.images[1].url}/>
                 </div>
@@ -14,7 +15,7 @@ function ArtistTemplate({ artistObj }) {
                 <div className="artistTemplateType">
                     {artistObj.type.charAt(0).toUpperCase() + artistObj.type.slice(1)}
                 </div>
-            </div>
+            </Link>
         </>
     )
 }

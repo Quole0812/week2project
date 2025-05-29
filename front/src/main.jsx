@@ -16,7 +16,7 @@ import Inbox from './routes/Inbox.jsx'
 import InboxChat from './routes/InboxChat.jsx'
 
 const router = createBrowserRouter([
-  { path: '/', element: <App /> },
+  { path: '/', element: <Home /> },
   { path: '/profile/:id', element: <Profile /> },
   { path: '/editprofile/:id', element: <EditProfile /> },
   { path: '/liked', element: <LikedSongs /> },
