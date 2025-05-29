@@ -1,10 +1,151 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.discover-main-bg {
+  background-color: #212129;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.discover-center-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.discover-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Keep this for left-aligning header + content */
+}
+
+.discover-search-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* 👈 this is key */
+  margin-bottom: 40px;
+}
+
+.discover-search-bar{
+  width: 420px;
+  font-size: 1.5rem;
+  padding: 5px 48px 12px 40px;
+  box-shadow: 5px 10px #0002;
+}
+
+.discover-results-header {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.discover-main-content {
+  background: #323949;
+  overflow-y: auto;
+  border-radius: 18px;
+  width: 900px;
+  padding: 40px;
+  min-height: 300px;
+  max-height: 500px;
+  box-shadow: 0 6px 32px #00000030;
+  
+}
+
+
+
+.discover-card {
+  background-color: #323949;
+  /* border: 1px solid #000000; */
+  padding: 10px;
+  font-size: 30px;
+  min-height: 300px;
+  max-width: 300px;
+  text-align: center;
+  margin: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  
+}
+
+.discover-card a {
+  all: unset;
+  display: contents;
+  background: none !important;
+  color: inherit !important;
+}
+
+.discover-card-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.discover-card:hover {
+  background-color: #4C5265;
+  cursor: pointer; 
+}
+
+.discover-card-text {
+  color: white;
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: auto;
+  vertical-align: bottom;
+}
+
 .discover-container {
   display: grid;
-  grid-template-columns: 20% 20% 20%;
-  grid-template-rows: 20% 20% 20%;
+  grid-template-columns: 30% 30% 30%;
+  justify-content: center;
+  background-color:#323949;
+}
+
+.discover-profile-picture-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.discover-profile-picture {
+  /* Ellipse 6 */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 50%;
+  width: 182px;
+  height: 182px;
+  margin-top: 12px;
+  background: #323949;
+  
+
+}
+
+.discover-card:hover .discover-profile-picture {
+  border: 2px solid #C9184A;
 }
 
 .discover-item {
-    grid-column: 2 / 2;
-    grid-row: 2 / 2;
+  position: relative;
 }

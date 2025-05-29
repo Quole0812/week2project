@@ -94,6 +94,13 @@ function Inbox() {
         }
     }
 
+    const handleKeyDown = async (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            await addMessage();
+        }
+    };
+
     if (loading || pageLoading) {
         return (
           <>
@@ -159,7 +166,7 @@ function Inbox() {
                         </div>
                     )}
                     <div className="inboxInputContainer">
-                        <input className="inboxInputField" placeholder="Type a message..." value={message} onChange={(e) => setMessage(e.target.value)}/>
+                        <input className="inboxInputField" placeholder="Type a message..." value={message} onChange={(e) => setMessage(e.target.value)} onKeyDown={handleKeyDown}/>
                         <button className="inboxInputSendButton" onClick={() => addMessage()}>Send</button>
                     </div>
                 </div>

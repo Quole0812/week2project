@@ -10,7 +10,8 @@ import Discover from './routes/Discover.jsx';
 import Home from './routes/Home.jsx';
 import EditProfile from './routes/EditProfile.jsx';
 import CreatePost from './routes/Forum/CreatePost/CreatePost.jsx';
-import TopArtists from './routes/TopArtists.jsx'
+import PostDetail from './routes/Forum/PostDetail/PostDetail.jsx';
+import TopArtists from './routes/TopArtists.jsx';
 import Inbox from './routes/Inbox.jsx'
 import InboxChat from './routes/InboxChat.jsx'
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   { path: '/discover', element: <Discover /> },
   { path: '/home', element: <Home /> },
   { path: '/forum/create', element: <CreatePost />},
+  { path: '/forum/posts/:postId', element: <PostDetail />},
   { path: '/top-artists', element: <TopArtists /> },
   { path: '/inbox', element: <Inbox /> },
   { path: '/inbox/:id', element: <InboxChat /> }
