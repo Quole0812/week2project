@@ -102,6 +102,14 @@
   border-radius: 6px;
 }
 
+.section a.link-active {
+  background: none !important;
+  text-decoration: underline;
+  text-decoration-color: #c9184a;
+  text-underline-offset: 6px;
+  color: white !important;
+}
+
 .space-padding {
     padding: 8px 0;
 }

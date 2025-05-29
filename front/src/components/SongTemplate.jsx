@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from "react-router";
 import '../styles/SongTemplate.css'
 
 function SongTemplate({ songObj }) {
     return (
         <>
-            <div className="songTemplateContainer">
+            <Link to={songObj.external_urls.spotify} className="songTemplateContainer">
                 <div className="songTemplateImageContainer">
                     <img className="songTemplateImage" src={songObj.album.images[0].url}/>
                 </div>
@@ -16,7 +17,7 @@ function SongTemplate({ songObj }) {
                         {songObj.artists[0].name}
                     </div>
                 </div>
-            </div>
+            </Link>
         </>
     )
 }

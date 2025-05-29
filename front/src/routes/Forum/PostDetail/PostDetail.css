@@ -54,3 +54,40 @@
 .post-actions2 {
     margin-top: 15px;
 }
+
+
+.comment-input {
+    position: absolute;
+    left: 585px;
+    width:100%;
+    min-height: 60px;
+    max-width: 1100px;
+    background-color: #3a3f56;
+    color:white;
+    border-radius: 25px;
+    padding:1rem;
+}
+
+.comment-input::placeholder {
+  color: white;
+  opacity: 1; 
+}
+
+.create-btn {
+    position:absolute;
+    right:460px;
+    top:300px;
+}
+
+.comment-list {
+  background-color: #3a3f56;
+  padding: 1rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1100px;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  position:absolute;
+  left:585px;
+  top:350px;
+}

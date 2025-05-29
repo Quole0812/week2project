@@ -1,16 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Dupifylogo from "./dupifylogo.png"
 import "./Sidebar.css";
-import { useContext } from "react";
+import { use, useContext, useState } from "react";
 import { AuthContext } from "../../components/AuthContext";
 
 export default function Sidebar() {
     const { user, login, logout, loading } = useContext(AuthContext);
+    const location = useLocation();
+    const [activeLink, setActiveLink] = useState(location.pathname);
+
     if(loading) {
         return <div className="sidebar"></div>
     } else {
         return (
             <>
+            {console.log("User in:", activeLink)}
                 <div className="sidebar">
                     <div className="logo-container">
                     <Link to="/">
@@ -33,10 +37,30 @@ export default function Sidebar() {
 
                             <div className="section">
                                 <p className="section-label">Menu</p>
-                                <Link to="/home">Home</Link>
-                                <Link to="/discover">Discover</Link>
-                                <Link to="/top-artists">Top Artists</Link>
-                                <Link to="/top-songs">Top Songs</Link>
+                                <Link 
+                                    to="/home"
+                                    className={location.pathname === "/home" ? "link-active" : ""}
+                                >
+                                    Home
+                                </Link>
+                                <Link 
+                                    to="/discover"
+                                    className={location.pathname === "/discover" ? "link-active" : ""}
+                                >
+                                    Discover
+                                </Link>
+                                <Link 
+                                    to="/top-artists" 
+                                    className={location.pathname === "/top-artists" ? "link-active" : ""}
+                                >
+                                    Top Artists
+                                </Link>
+                                <Link 
+                                    to="/top-songs"
+                                    className={location.pathname === "/top-songs" ? "link-active" : ""}
+                                >
+                                    Top Songs
+                                </Link>
                             </div>
 
                             <div className="space-padding">
@@ -44,8 +68,18 @@ export default function Sidebar() {
 
                             <div className="section">
                                 <p className="section-label">Library</p>
-                                <Link to={`/profile/${user.id}`}>My Profile</Link>
-                                <Link to="/liked">Liked Songs</Link>
+                                <Link 
+                                    to={`/profile/${user.id}`}
+                                    className={location.pathname === `/profile/${user.id}` ? "link-active" : ""}
+                                >
+                                    My Profile
+                                </Link>
+                                <Link 
+                                    to="/liked"
+                                    className={location.pathname === "/liked" ? "link-active" : ""}
+                                >
+                                    Liked Songs
+                                </Link>
                             </div>
 
                             <div className="space-padding">
@@ -53,11 +87,15 @@ export default function Sidebar() {
 
                             <div className="section">
                                 <p className="section-label">Social</p>
-                                <Link to="/inbox" className="inbox-link">
-                                Inbox 
+                                <Link 
+                                    to="/inbox" 
+                                    className={location.pathname === "/inbox" ? "link-active" : "inbox-link"}>
+                                    Inbox 
                                 {/* <span className="badge">3</span> */}
                                 </Link>
-                                <Link to="/forum" className="forum-link active"> Forum</Link>
+                                <Link 
+                                    to="/forum" 
+                                    className={location.pathname === "/forum" ? "link-active" : ""}> Forum</Link>
                             </div>
                         </>
                     ) : (
@@ -65,19 +103,43 @@ export default function Sidebar() {
                         <>
                             <div className="section">
                                 <p className="section-label">Menu</p>
-                                <Link to="/home">Home</Link>
-                                <Link to="/discover">Discover</Link>
-                                <Link to="/top-artists">Top Artists</Link>
-                                <Link to="/top-songs">Top Songs</Link>
+                                <Link 
+                                    to="/home"
+                                    className={location.pathname === "/home" ? "link-active" : ""}
+                                >
+                                    Home
+                                </Link>
+                                <Link 
+                                    to="/discover"
+                                    className={location.pathname === "/discover" ? "link-active" : ""}
+                                >
+                                    Discover
+                                </Link>
+                                <Link 
+                                    to="/top-artists" 
+                                    className={location.pathname === "/top-artists" ? "link-active" : ""}
+                                >
+                                    Top Artists
+                                </Link>
+                                <Link 
+                                    to="/top-songs"
+                                    className={location.pathname === "/top-songs" ? "link-active" : ""}
+                                >
+                                    Top Songs
+                                </Link>
                             </div>
 
-                            <div className="space-padding">
-                            </div>
+                            <div className="space-padding"></div>
 
                             <div className="section">
                                 <p className="section-label">Library</p>
-                                <Link onClick={() => login()}>My Profile</Link>
-                                <Link to="/liked">Liked Songs</Link>
+                                <Link to={`/home`} className={location.pathname === `/` ? "link-active" : ""}
+                                >
+                                    My Profile
+                                </Link>
+                                <Link to="/liked" className={location.pathname === "/liked" ? "link-active" : ""}>
+                                    Liked Songs
+                                </Link>
                             </div>
 
                             <div className="space-padding">
@@ -85,11 +147,18 @@ export default function Sidebar() {
 
                             <div className="section">
                                 <p className="section-label">Social</p>
-                                <Link to="/inbox" className="inbox-link">
-                                Inbox 
+                                <Link 
+                                    to="/inbox" 
+                                    className={location.pathname === "/inbox" ? "link-active" : "inbox-link"}
+                                >
+                                    Inbox 
                                 {/* <span className="badge">3</span> */}
                                 </Link>
-                                <Link to="/forum" className="forum-link active"> Forum</Link>
+                                <Link 
+                                    to="/forum" 
+                                    className={location.pathname === "/forum" ? "link-active" : "forum-link active"}> 
+                                    Forum
+                                </Link>
                             </div>
                         </>
                     )}

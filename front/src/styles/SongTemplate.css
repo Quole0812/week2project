@@ -38,8 +38,20 @@
 }
 
 .songTemplateContainer {
+    width: fit-content;
     display:flex;
     gap: 0rem 1rem;
+    transition: all .2s cubic-bezier(.22, .61, .36, 1);
+    text-decoration: none;
+}
+
+.songTemplateContainer:hover {
+    transform: translateY(-4px);
+    text-align: none;
+}
+
+.songTemplateContainer:visited {
+    text-decoration: none;
 }
 
 .songTemplateTextContainer {
