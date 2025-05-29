@@ -411,7 +411,7 @@ router.get("/top-artists", async (req, res) => {
   }
 
   function fetchTopArtists(token) {
-    const timeRange = req.query.time_range || 'long_term'; // short_term, medium_term, or long_term
+    const timeRange = req.query.time_range || "long_term"; // short_term, medium_term, or long_term
     const limit = req.query.limit || 20;
 
     request.get(
@@ -432,100 +432,135 @@ router.get("/top-artists", async (req, res) => {
       }
     );
   }
-  
-router.get("/top-songs", async (req, res) => {
-  let access_token = req.cookies.access_token;
-  let refresh_token = req.cookies.refresh_token;
-  const time_range = req.query.time_range || "medium_term";
 
-  if (!access_token) {
-    return res.status(401).json({ error: "Not logged in" });
-  }
+  router.get("/top-songs", async (req, res) => {
+    let access_token = req.cookies.access_token;
+    let refresh_token = req.cookies.refresh_token;
+    const time_range = req.query.time_range || "medium_term";
 
-  try {
-    const response = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${time_range}`, {
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    });
-    const data = await response.json();
-    if (data.error) {
-      return res.status(data.error.status || 500).json({ error: data.error });
+    if (!access_token) {
+      return res.status(401).json({ error: "Not logged in" });
     }
-    res.json({ items: data.items });
-  } catch (err) {
-    res.status(500).json({ error: "Failed to fetch top songs" });
-  }
-});
+
+    try {
+      const response = await fetch(
+        `https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${time_range}`,
+        {
+          headers: {
+            Authorization: `Bearer ${access_token}`,
+          },
+        }
+      );
+      const data = await response.json();
+      if (data.error) {
+        return res.status(data.error.status || 500).json({ error: data.error });
+      }
+      res.json({ items: data.items });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to fetch top songs" });
+    }
+  });
 });
 
 router.get("/recently-played", async (req, res) => {
-  const limit         = req.query.limit || 5;
-  let   access_token  = req.cookies.access_token;
-  const refresh_token = req.cookies.refresh_token;
+  // const limit = req.query.limit || 5;
+  let access_token = req.cookies.access_token;
+  // const refresh_token = req.cookies.refresh_token;
 
-  const fetchRecent = (token) => new Promise((resolve, reject) => {
-    request.get(
-      {
-        url: "https://api.spotify.com/v1/me/player/recently-played",
-        qs:  { limit },
-        headers: { Authorization: "Bearer " + token },
-        json: true,
-      },
-      (err, { statusCode }, body) => {
-        if (err)               return reject(err);
-        if (statusCode === 401) return reject({ code: 401 });
-        if (statusCode !== 200) return reject(body);
-        resolve(body);
-      }
-    );
-  });
+  // const fetchRecent = (token) =>
+  //   new Promise((resolve, reject) => {
+  //     request.get(
+  //       {
+  //         url: "https://api.spotify.com/v1/me/player/recently-played",
+  //         qs: { limit },
+  //         headers: { Authorization: "Bearer " + token },
+  //         json: true,
+  //       },
+  //       (err, { statusCode }, body) => {
+  //         if (err) return reject(err);
+  //         if (statusCode === 401) return reject({ code: 401 });
+  //         if (statusCode !== 200) return reject(body);
+  //         resolve(body);
+  //       }
+  //     );
+  //   });
 
   try {
-    const data = await fetchRecent(access_token);
-    const songs = data.items.map(({ track }) => ({
-      id:   track.id,
-      name: track.name,
-    }));
-    res.json({ songs });
-  } catch (e) {
-    if (e.code === 401 && refresh_token) {
-      request.post(
-        {
-          url: "https://accounts.spotify.com/api/token",
-          form: { grant_type: "refresh_token", refresh_token },
-          headers: {
-            "content-type": "application/x-www-form-urlencoded",
-            Authorization:
-              "Basic " + Buffer.from(client_id + ":" + client_secret).toString("base64"),
-          },
-          json: true,
+    request.get(
+      {
+        url: `https://api.spotify.com/v1/me/player/recently-played?limit=5`,
+        headers: {
+          Authorization: "Bearer " + access_token,
         },
-        async (err2, r2, body2) => {
-          if (err2 || r2.statusCode !== 200)
-            return res.status(401).json({ error: "token_refresh_failed" });
-
-          access_token = body2.access_token;
-          res.cookie("access_token", access_token, {
-            httpOnly: true, secure: false, sameSite: "Lax", maxAge: 3600 * 1000,
-          });
-
-          try {
-            const data2 = await fetchRecent(access_token);
-            const songs = data2.items.map(({ track }) => ({
-              id: track.id,
-              name: track.name,
-            }));
-            res.json({ songs });
-          } catch (e2) {
-            res.status(500).json({ error: "spotify_fetch_failed" });
-          }
+        json: true,
+      },
+      function (err, response, songsJson) {
+        if (!err && response.statusCode === 200) {
+          return res.json({ songs: songsJson.items });
+        } else {
+          return res
+            .status(500)
+            .json({ error: "Failed to fetch recently played." });
         }
-      );
-    } else {
-      res.status(500).json({ error: "spotify_fetch_failed" });
-    }
+      }
+    );
+  } catch (e) {
+    console.error("Error fetching artist search: ", e);
+    res.status(500).json({ error: "Internal server error" });
   }
+
+  // try {
+  //   const data = await fetchRecentGoat();
+  //   console.log(data);
+  //   const songs = data.items.map(({ track }) => ({
+  //     id: track.id,
+  //     name: track.name,
+  //   }));
+  //   res.json({ songs });
+  // } catch (e) {
+  // if (e.code === 401 && refresh_token) {
+  //   request.post(
+  //     {
+  //       url: "https://accounts.spotify.com/api/token",
+  //       form: { grant_type: "refresh_token", refresh_token },
+  //       headers: {
+  //         "content-type": "application/x-www-form-urlencoded",
+  //         Authorization:
+  //           "Basic " +
+  //           Buffer.from(client_id + ":" + client_secret).toString("base64"),
+  //       },
+  //       json: true,
+  //     },
+  //     async (err2, r2, body2) => {
+  //       if (err2 || r2.statusCode !== 200)
+  //         return res.status(401).json({ error: "token_refresh_failed" });
+
+  //       access_token = body2.access_token;
+  //       res.cookie("access_token", access_token, {
+  //         httpOnly: true,
+  //         secure: false,
+  //         sameSite: "Lax",
+  //         maxAge: 3600 * 1000,
+  //       });
+
+  //       try {
+  //         const data2 = await fetchRecent(access_token);
+  //         const songs = data2.items.map(({ track }) => ({
+  //           id: track.id,
+  //           name: track.name,
+  //         }));
+  //         res.json({ songs });
+  //       } catch (e2) {
+  //         res.status(500).json({ error: "spotify_fetch_failed" });
+  //       }
+  //     }
+  //   );
+  // } else {
+  //   res.status(500).json({ error: "spotify_fetch_failed" });
+  // }
+  //   console.error("Error fetching recent tracks: ", e);
+  //   res.status(500).json({ error: "Internal server error" });
+  // }
 });
 
 module.exports = router;

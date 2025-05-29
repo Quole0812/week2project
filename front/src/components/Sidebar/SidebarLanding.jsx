@@ -10,13 +10,27 @@ export default function Sidebar() {
   const [recentSongs, setRecentSongs] = useState([]);
 
   useEffect(() => {
-    if (!user) return;
-    fetch("http://127.0.0.1:3001/api/recently-played?limit=5", {
-      credentials: "include",
-    })
-      .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-      .then(({ songs }) => setRecentSongs(songs || []))
-      .catch(() => setRecentSongs([]));
+    // if (!user) return;
+    // fetch("http://127.0.0.1:3001/api/recently-played", {
+    //   credentials: "include",
+    // })
+    //   .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+    //   .then(({ songs }) => setRecentSongs(songs || []))
+    //   .catch(() => setRecentSongs([]));
+    const fetchData = async () => {
+      try {
+        const recentRes = await fetch("http://127.0.0.1:3001/api/recently-played", {
+          credentials: "include",
+        });
+        const recentJson = await recentRes.json();
+        setRecentSongs(recentJson.songs);
+      } catch (e) {
+        console.error("Failed to fetch recently played: ", e);
+      }
+    }
+    if (user) {
+      fetchData()
+    }
   }, [user]);
 
   if (loading) return <div className="sidebar" />;
@@ -69,11 +83,11 @@ export default function Sidebar() {
                     {recentSongs.map((t) => (
                       <li key={t.id} className="recent-item">
                         <img
-                          src={t.image || t.album?.images?.[0]?.url || "/default-song.png"}
-                          alt={t.name}
+                          src={t.track.album.images[0].url || "/default-song.png"}
+                          alt={t.track.name}
                           className="recent-img"
                         />
-                        <span className="recent-title">{t.name}</span>
+                        <span className="recent-title">{t.track.name}</span>
                       </li>
                     ))}
                   </ul>
