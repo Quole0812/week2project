@@ -8,6 +8,7 @@ import './CreatePost.css';
 
 export default function CreatePost() {
     const { user } = useContext(AuthContext);
+    // console.log(user);
     const navigate = useNavigate();
 
     const [title, setTitle] = useState('');
@@ -20,8 +21,8 @@ export default function CreatePost() {
         e.preventDefault();
         if (!title.trim()) return; //reddit forced title
         try {
-            await axios.post('api/forum/posts', {
-                userId: user?.uid,
+            await axios.post('http://127.0.0.1:3001/forum/posts', {
+                userId: user.id,
                 title,
                 content,
                 flair,
@@ -38,8 +39,9 @@ export default function CreatePost() {
         <>
         <Sidebar></Sidebar>
         <main className='create-post-container'>
-            <h1 className='create-post-title'>Create Post</h1>
+            {/* <h1 className='create-post-title'>Create Post</h1> */}
             <form onSubmit={handleSubmit} className='create-post-form'>
+                <h1 className='create-post-title'>Create Post</h1>
                 <div className='input-container'>
                     <input
                     className='title-input'
@@ -50,9 +52,9 @@ export default function CreatePost() {
                     onChange={(e) => setTitle(e.target.value)}
                     required>    
                     </input>
-                    <span className='"char-count'>{title.length}/{maxChars}</span>
-                </div>
+                     <span className='char-count'>{title.length}/{maxChars}</span>
 
+                </div>
                 <button
                     type="button"
                     className="add-flair-btn"

@@ -1,0 +1,56 @@
+.no-link-style {
+  text-decoration: none;
+  color:white
+}
+
+.no-link-style:visited {
+  text-decoration: none;
+}
+
+* {
+  /* margin: 0; */
+  /* padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace; */
+}
+
+/* Main container for the detail page */
+.post-detail-container {
+  margin-left: 230px;
+  padding: 2rem;
+  background-color: #212129;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Post title and author */
+.post-detail-container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.post-author {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+/* Post content */
+.post-detail-container p {
+  background-color: #3a3f56;
+  padding: 1rem;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+
+.post-actions2 {
+    margin-top: 15px;
+}
