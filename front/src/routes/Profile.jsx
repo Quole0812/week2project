@@ -59,13 +59,38 @@ function Profile() {
         }
 
       } catch (err) {
-        console.error("Error fetching user data:", err);
+        console.error("Error fetching user data: ", err);
       } finally {
         setPageLoading(false);
       }
     };
     fetchData();
   }, [id]);
+
+  const messageUser = async () => {
+    try {
+      const chatRes = await fetch("http://127.0.0.1:3001/inbox/createChat", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user1: id,
+          user2: user.id
+        }),
+      })
+      const chat = await chatRes.json();
+
+      if (chatRes.ok && chat?.id) {
+        window.location.href = `http://127.0.0.1:5173/inbox/${chat.id}`;
+      } else {
+        console.error("Failed to create chat: ", chat);
+      }
+    } catch (e) {
+      console.error("Error creating chat: ", e);
+    }
+  }
 
   if (loading || pageLoading) {
     return (
@@ -80,9 +105,8 @@ function Profile() {
               thickness={4}
               sx={{
                 color: '#ddd',
-                position: 'absolute',
-                left: 0,
               }}
+              className="backgroundSpinner"
             />
             <CircularProgress
               size={40}
@@ -90,6 +114,7 @@ function Profile() {
               sx={{
                 color: '#e03e58',
               }}
+              className="foregroundSpinner"
             />
           </div>
         </div>
@@ -98,7 +123,6 @@ function Profile() {
   } else {
     return (
       <>
-        <Sidebar/>
         <div className="main-content">
           {user ? (
             <div className="profileOffset">
@@ -113,11 +137,11 @@ function Profile() {
                       @{userData.name}
                     </div>
                     {id === user.id ? (
-                      <Link className="profileEditLink" to={`/editprofile/${id}`}>
-                        <button className="profileEditButton">Edit</button>
-                      </Link>
+                        <Link className="profileEditLink" to={`/editprofile/${id}`}>
+                          <button className="profileEditButton">Edit</button>
+                        </Link>
                       ) : (
-                        <></>
+                        <button className="profileEditButton" onClick={() => messageUser()}>Message</button>
                       )
                     }
                   </div>
@@ -126,31 +150,40 @@ function Profile() {
                   </div>
                 </div>
               </div>
-              <div className="artistsContainer">
-                <div className="artistsHeaderText">Displayed Artists</div>
-                <div className="displayedArtistsContainer">
-                    {artists && artists.length > 0 ? (artists.map((artist) => (
-                      <ArtistTemplate key={artist.id} artistObj={artist} />
-                    ))) : (
-                      <div className="noContent"> No artists to display </div>
-                    )}
-                </div>
-              </div>
-              <div className="songsContainer">
-                <div className="songsHeaderText">Displayed Songs</div>
-                <div className="displayedSongsContainer">
-                    {songs && songs.length > 0 ? (songs.map((song) => (
-                        <SongTemplate key={song.id} songObj={song} />
-                    ))) : (
-                      <div className="noContent"> No songs to display </div>
-                    )}
-                </div>
-              </div>
+              {userData.privateProfile && id !== user.id ? (
+                <>
+                  <div className="profileCenter">User is private.</div>
+                </>
+              ) : (
+                <>
+                  <div className="artistsContainer">
+                    <div className="artistsHeaderText">Displayed Artists</div>
+                    <div className="displayedArtistsContainer">
+                        {artists && artists.length > 0 ? (artists.map((artist) => (
+                          <ArtistTemplate key={artist.id} artistObj={artist} />
+                        ))) : (
+                          <div className="noContent"> No artists to display </div>
+                        )}
+                    </div>
+                  </div>
+                  <div className="songsContainer">
+                    <div className="songsHeaderText">Displayed Songs</div>
+                    <div className="displayedSongsContainer">
+                        {songs && songs.length > 0 ? (songs.map((song) => (
+                            <SongTemplate key={song.id} songObj={song} />
+                        ))) : (
+                          <div className="noContent"> No songs to display </div>
+                        )}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           ) : (
-            <div className="noContent">Must sign in to view this page.</div>
+              <div className="profileMustSignIn">Must sign in to view this page.</div>
           )}
         </div>
+        <Sidebar/>
       </>
     )
   }

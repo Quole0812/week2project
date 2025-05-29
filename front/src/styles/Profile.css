@@ -9,17 +9,30 @@ html, body {
 .main-content {
     height:auto;
     min-height: 100vh;
-    width:100vw;
+    width:calc(100vw - 240px);
     margin-left: 240px;
     padding: 1rem 4rem;
     background-color: #212129;
 }
 
-.loadingPage {
-    height:auto;
-    min-height: 100vh;
-    width:100vw;
-    background-color: #212129;
+.loadingCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.backgroundSpinner,
+.foregroundSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .profileOffset {
@@ -113,11 +126,12 @@ html, body {
     touch-action: manipulation;
     vertical-align: baseline;
     transition: all .2s cubic-bezier(.22, .61, .36, 1);
-}
-
-.profileEditLink {
     margin-left:25px;
 }
+
+/* .profileEditLink {
+    margin-left:25px;
+} */
 
 .profileEditButton:hover {
     background-color: #b9334a;
@@ -153,6 +167,7 @@ html, body {
     touch-action: manipulation;
     vertical-align: baseline;
     transition: all .2s cubic-bezier(.22, .61, .36, 1);
+    margin-left:25px;
 }
 
 .profileSaveButton:hover {
@@ -177,7 +192,7 @@ html, body {
 
 .artistsContainer {
     margin: 2rem 0rem;
-    max-width: calc(100% - 240px);
+    max-width: calc(100vw - 240px);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -187,7 +202,6 @@ html, body {
     margin: 1rem 0rem;
     display:flex; 
     flex-wrap: wrap;
-    padding-right: 3rem;
     gap: 2rem 4.5rem;
 }
 
@@ -448,9 +462,34 @@ html, body {
     text-decoration: none;
 }
 
-.loadingCenter {
+.privateProfileContainer {
+    display: flex;
+    align-items: center;
+}
+
+.profileCenter {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:50vh;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+
+    color: #FFFFFF;
+
+    padding-right:12rem;
+}
+
+.profileMustSignIn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+    width: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
 }

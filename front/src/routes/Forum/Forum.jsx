@@ -18,6 +18,15 @@ export default function Forum() {
         );
 
     const handleUpvote = async (postId) => {
+        async function fetchPosts() {
+            try {
+                const res = await axios.get("http://127.0.0.1:3001/forum/posts");
+                setPosts(res.data);
+            } catch (error) {
+                console.error("Failed to fetch posts", error);
+            }
+        }
+
         try {
             console.log("my fellow american, we are now voting");
             const res = await axios.post(`http://127.0.0.1:3001/forum/posts/${postId}/upvote`, {
@@ -31,6 +40,7 @@ export default function Forum() {
             console.error("Error upvoting:", error);
             }
         }
+        fetchPosts();
     };
 
     const handleCopy = async(postId) => {
@@ -108,7 +118,7 @@ export default function Forum() {
                 alt="Profile"
                 className="profile-pic"
                 />
-              <span className="username">{user?.id === post.userId ? user.display_name : post.userId}</span>
+              <span className="username">{users.filter((u) => (u.id == post.userId))[0].name}</span>
             </div>
             <Link to={`/forum/posts/${post.id}`} className="post-card no-link-style">
             <div className="post-title">{post.title}</div>
