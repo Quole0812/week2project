@@ -3,13 +3,13 @@ body, html {
     color: #fff;
   }
   
-  .top-artists-page {
+  .top-songs-page {
     display: flex;
     min-height: 100vh;
     background: #212129;
   }
   
-  .top-artists-main {
+  .top-songs-main {
     flex: 1;
     margin-left: 240px;
     padding: 2.5rem 3rem;
@@ -17,20 +17,20 @@ body, html {
     min-height: 100vh;
   }
   
-  .top-artists-header {
+  .top-songs-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2.5rem;
   }
   
-  .top-artists-title {
+  .top-songs-title {
     font-size: 2.2rem;
     font-weight: 700;
     margin: 0;
   }
   
-  .top-artists-subtitle {
+  .top-songs-subtitle {
     color: #b3b3b3;
     font-size: 1.1rem;
     margin-top: 0.3rem;
@@ -63,7 +63,7 @@ body, html {
       transform: scale(1.05);
       box-shadow: 0 4px 16px 0 rgba(201,24,74,0.15);
     }
-  .top-artists-grid {
+  .top-songs-grid {
     display: flex;
     gap: 2vw;
     margin-bottom: 2.5rem;
@@ -71,7 +71,7 @@ body, html {
     align-items: flex-end;
   }
   
-  .artist-grid-card {
+  .song-grid-card {
     background: #323949;
     border-radius: 1.5rem;
     text-align: center;
@@ -88,33 +88,33 @@ body, html {
     padding-bottom: 2.5rem;
   }
   
-  .artist-grid-card.trophy-first {
+  .song-grid-card.trophy-first {
       height: clamp(220px, 28vw, 270px);
       background: linear-gradient(230deg, #C9184A 0%, #323949 110%);
       color: #fff;
       z-index: 2;
     }
   
-  .artist-grid-card.trophy-second {
+  .song-grid-card.trophy-second {
     height: clamp(200px, 24vw, 240px);
     background: #323949;
     color: #fff;
     z-index: 1;
   }
   
-  .artist-grid-card.trophy-third {
+  .song-grid-card.trophy-third {
     height: clamp(190px, 21vw, 220px);
     background: #323949;
     color: #fff;
     z-index: 1;
   }
   
-  .artist-grid-card.empty {
+  .song-grid-card.empty {
     background: transparent;
     box-shadow: none;
   }
   
-  .artist-rank-badge {
+  .song-rank-badge {
     position: absolute;
     top: 1.2rem;
     left: 1.2rem;
@@ -123,7 +123,7 @@ body, html {
     font-size: 1.5rem;
   }
   
-  .artist-grid-image-container {
+  .song-grid-image-container {
     width: clamp(60px, 7vw, 90px);
     height: clamp(60px, 7vw, 90px);
     margin: 0 auto 1.2rem auto;
@@ -136,33 +136,33 @@ body, html {
     border: 3px solid #fff;
   }
   
-  .artist-grid-card.trophy-first .artist-grid-image-container {
+  .song-grid-card.trophy-first .artist-grid-image-container {
     width: clamp(80px, 9vw, 120px);
     height: clamp(80px, 9vw, 120px);
     background: #C9184A;
     border: 4px solid #fff;
   }
   
-  .artist-grid-image {
+  .song-grid-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
   }
   
-  .artist-grid-name {
+  .song-grid-name {
     font-size: 1.2rem;
     font-weight: 600;
     margin-top: 0.5rem;
   }
   
-  .top-artists-list-1 {
+  .top-songs-list-1 {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
   }
   
-  .artist-list-item-1 {
+  .song-list-item-1 {
     display: flex;
     align-items: center;
     background: #323949;
@@ -172,7 +172,7 @@ body, html {
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
   }
   
-  .artist-list-rank-1 {
+  .song-list-rank-1 {
     width: 38px;
     height: 38px;
     color: #b3b3b3;
@@ -184,7 +184,7 @@ body, html {
     margin-right: 1.5rem;
   }
   
-  .artist-list-image-container-1 {
+  .song-list-image-container-1 {
       width: 48px;
       height: 48px;
       border-radius: 50%;
@@ -196,20 +196,20 @@ body, html {
       margin-right: 1.2rem;
     }
     
-    .artist-list-image-1 {
+    .song-list-image-1 {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
     }
     
-    .artist-list-info-1 {
+    .song-list-info-1 {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
   
-  .artist-list-name-1 {
+  .song-list-name-1 {
     flex: 1;
     font-size: 1.1rem;
     font-weight: 500;
@@ -231,7 +231,12 @@ body, html {
     margin-bottom: 1rem;
   }
   
-  .artist-star-row {
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  } 
+  
+  .song-star-row {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -264,15 +269,15 @@ body, html {
       height: clamp(32px, 2vw, 48px);
     }
   
-  .artist-grid-bottom {
+  .song-grid-bottom {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 0.5rem;
   }
-  .artist-grid-card,
-  .artist-list-item {
+  .song-grid-card,
+  .song-list-item {
     opacity: 0;
     animation: fadeInUp 0.7s cubic-bezier(.22,.61,.36,1) forwards;
   }
@@ -281,12 +286,25 @@ body, html {
       to { opacity: 1; transform: translateY(0);}
     }
   
-  .artist-grid-card:hover,
-  .artist-list-item:hover {
+  .song-grid-card:hover,
+  .song-list-item:hover {
       box-shadow:
       0 8px 32px 0 rgba(0,0,0,0.32),
       0 0 0 4px rgba(255,255,255,0.18), /* white glow border */
       0 3px 12px 0 rgba(201,24,74,0.10);
       transition: box-shadow 0.1s;
       z-index: 2;
+  }
+
+  .song-grid-name, .song-list-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    color: #fff;
+  }
+  
+  .song-grid-title, .song-list-name {
+    color: #b3b3b3;
+    font-size: 1rem;
+    margin-top: 0.2rem;
   }
