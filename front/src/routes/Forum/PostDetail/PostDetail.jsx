@@ -14,12 +14,27 @@ export default function PostDetail() {
     const [newComment, setNewComment] = useState("");
 
     const handleUpvote = async (postId) => {
+        const fetchData = async () => {
+            try {
+                console.log("getting post")
+                const resPost = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}`);
+                const resComments = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}/comments`);
+                setPost(resPost.data);
+                setComments(resComments.data);
+                console.log(resPost.data);
+                console.log(resComments.data);
+            } catch (error) {
+                console.error("uh we got a problem", error);
+            }
+        };
+
         try {
             console.log("my fellow american, we are now voting");
             const res = await axios.post(`http://127.0.0.1:3001/forum/posts/${postId}/upvote`, {
                 userId: user.id,
             })
             console.log("Upvoted this", res.data);
+            fetchData();
         } catch (error) {
             if (error.response?.status === 400) {
                 alert("fam u alr upvoted this");
@@ -27,7 +42,9 @@ export default function PostDetail() {
             console.error("Error upvoting:", error);
             }
         }
+        fetchPosts();
     };
+
 
     const handleCopy = async(postId) => {
         try {
@@ -108,7 +125,7 @@ export default function PostDetail() {
             <div className="avatar-circle"></div>
             <img src={profilePic} alt="Profile" className="profile-pic" />
             <span className="username">
-              {user?.id === post.userId ? user.display_name : post.userId}
+              {postAuthor.name}
             </span>
           </div>
 
@@ -116,7 +133,7 @@ export default function PostDetail() {
           <div className="post-content">{post.content}</div>
 
           <div className="post-actions2">
-            <button className="reddit-button" onClick={() => handleUpvote(post.id)}>upvote</button>
+            <button className="reddit-button" onClick={() => handleUpvote(post.id)}>{post.upvotes} upvote</button>
             <button className="reddit-button" onClick={() => handleCopy(post.id)}>share</button>
           </div>
         </div>
