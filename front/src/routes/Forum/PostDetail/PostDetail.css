@@ -8,13 +8,6 @@
   text-decoration: none;
 }
 
-* {
-  /* margin: 0; */
-  /* padding: 0;
-  box-sizing: border-box;
-  font-family: 'Courier New', Courier, monospace; */
-}
-
 /* Main container for the detail page */
 .post-detail-container {
   margin-left: 230px;
