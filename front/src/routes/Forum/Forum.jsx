@@ -84,6 +84,7 @@ export default function Forum() {
         fetchUsers();
     }, []);
 
+
     if (loading) {
         return (<></>)
     } else {
@@ -118,7 +119,7 @@ export default function Forum() {
                 alt="Profile"
                 className="profile-pic"
                 />
-              <span className="username">{users.filter((u) => (u.id == post.userId))[0].name}</span>
+              <span className="username">{users.find(u => u.id === post.userId)?.name }</span>
             </div>
             <Link to={`/forum/posts/${post.id}`} className="post-card no-link-style">
             <div className="post-title">{post.title}</div>

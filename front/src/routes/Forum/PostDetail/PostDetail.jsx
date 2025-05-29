@@ -121,7 +121,7 @@ export default function PostDetail() {
         <Sidebar />
       <main className="forum-container">
         <div className="post-card">
-          <div className="post-header">
+          <div className="post-header2">
             <div className="avatar-circle"></div>
             <img src={profilePic} alt="Profile" className="profile-pic" />
             <span className="username">
@@ -145,7 +145,7 @@ export default function PostDetail() {
             placeholder="Add a comment..."
             className="comment-input"
           />
-          <button type="submit" className="create-btn">Post</button>
+          <button type="submit" className="create-btn3">Post</button>
         </form>
         </div>
 
