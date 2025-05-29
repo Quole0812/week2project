@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link }           from "react-router-dom";
 import Dupifylogo         from "./dupifylogo.png";
-import "./Sidebar.css";
+import "./SidebarLanding.css";
 import { AuthContext }    from "../../components/AuthContext";
 
 export default function Sidebar() {
@@ -65,14 +65,18 @@ export default function Sidebar() {
                     {recentSongs.length === 0 ? (
                 <span className="empty-recent">No history yet.</span>
                 ) : (
-                <ul className="recent-list">
+                  <ul className="recent-list">
                     {recentSongs.map((t) => (
-                    <li key={t.id} className="recent-item">
-                        <span className="square" /> {t.name}
-                        <div className="space-padding"></div>
-                    </li>
+                      <li key={t.id} className="recent-item">
+                        <img
+                          src={t.image || t.album?.images?.[0]?.url || "/default-song.png"}
+                          alt={t.name}
+                          className="recent-img"
+                        />
+                        <span className="recent-title">{t.name}</span>
+                      </li>
                     ))}
-                </ul>
+                  </ul>
                 )}
                 </div>
             </div>
