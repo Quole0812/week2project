@@ -156,19 +156,13 @@ body, html {
     margin-top: 0.5rem;
   }
   
-  .artist-grid-plays {
-    color: #b3b3b3;
-    font-size: 1rem;
-    margin-top: 0.2rem;
-  }
-  
-  .top-artists-list {
+  .top-artists-list-1 {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
   }
   
-  .artist-list-item {
+  .artist-list-item-1 {
     display: flex;
     align-items: center;
     background: #323949;
@@ -178,7 +172,7 @@ body, html {
     box-shadow: 0 2px 8px 0 rgba(0,0,0,0.08);
   }
   
-  .artist-list-rank {
+  .artist-list-rank-1 {
     width: 38px;
     height: 38px;
     color: #b3b3b3;
@@ -190,7 +184,7 @@ body, html {
     margin-right: 1.5rem;
   }
   
-  .artist-list-image-container {
+  .artist-list-image-container-1 {
       width: 48px;
       height: 48px;
       border-radius: 50%;
@@ -202,29 +196,23 @@ body, html {
       margin-right: 1.2rem;
     }
     
-    .artist-list-image {
+    .artist-list-image-1 {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
     }
     
-    .artist-list-info {
+    .artist-list-info-1 {
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
   
-  .artist-list-name {
+  .artist-list-name-1 {
     flex: 1;
     font-size: 1.1rem;
     font-weight: 500;
-  }
-  
-  .artist-list-plays {
-    color: #b3b3b3;
-    font-size: 1rem;
-    margin-left: 1.5rem;
   }
   
   .loading-container, .not-logged-in, .error-container {
