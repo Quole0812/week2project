@@ -11,6 +11,11 @@ export default function Forum() {
     const { user, login, logout, loading } = useContext(AuthContext);
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const filteredPosts = posts.filter(post =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
     const handleUpvote = async (postId) => {
         try {
@@ -78,7 +83,8 @@ export default function Forum() {
         <main className='forum-container'>
         {/* now we do the search bar  */}
         <div className='search-bar'>
-            <input type='text' placeholder='Search posts...'></input>
+            <input type='text' placeholder='Search posts...' value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}></input>
         </div>
 
         {/* now the header */}
@@ -91,7 +97,7 @@ export default function Forum() {
         </div>
 
 
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <div key={post.id} className="post-card">
             <div className="post-header">
               <div className="avatar-circle"></div>

@@ -13,6 +13,33 @@ export default function PostDetail() {
     const [users, setUsers] = useState([]);
     const [newComment, setNewComment] = useState("");
 
+    const handleUpvote = async (postId) => {
+        try {
+            console.log("my fellow american, we are now voting");
+            const res = await axios.post(`http://127.0.0.1:3001/forum/posts/${postId}/upvote`, {
+                userId: user.id,
+            })
+            console.log("Upvoted this", res.data);
+        } catch (error) {
+            if (error.response?.status === 400) {
+                alert("fam u alr upvoted this");
+            } else {
+            console.error("Error upvoting:", error);
+            }
+        }
+    };
+
+    const handleCopy = async(postId) => {
+        try {
+            navigator.clipboard.writeText(`http://127.0.0.1:5173/forum/posts/${postId}`)
+            .then(() => {
+                console.log("Link copied to clipboard:", link);
+                // Optionally show a toast or alert here
+            })
+        } catch (error) {
+            console.error("ayo i cant copy")
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -89,8 +116,8 @@ export default function PostDetail() {
           <div className="post-content">{post.content}</div>
 
           <div className="post-actions2">
-            <button className="reddit-button">upvote</button>
-            <button className="reddit-button">share</button>
+            <button className="reddit-button" onClick={() => handleUpvote(post.id)}>upvote</button>
+            <button className="reddit-button" onClick={() => handleCopy(post.id)}>share</button>
           </div>
         </div>
         {/* <div className="commentfixer">
