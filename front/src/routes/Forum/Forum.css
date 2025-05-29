@@ -36,19 +36,25 @@
 }
 
 .forum-controls {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  position:relative;
+  right:-960px;
   margin: 1rem 0;
   width:60%;
-  margin-left: 320px;
+  margin-left: 360px;
 }
 
 .create-btn {
-  background-color: #c9184a;
+  background: linear-gradient(230deg, #C9184A 0%, #323949 110%);
   color: white;
   padding: 0.5rem 1.25rem;
   border: none;
   border-radius: 25px;
+}
+
+.create-btn:hover { 
+  opacity: 0.5;
 }
 
 .post-card {
@@ -57,13 +63,21 @@
   border-radius: 12px;
   margin-bottom: 1rem;
   width:60%;
-  margin-left: 320px;
+  /* position:relative; */
+  margin-left: 360px;
   /* font-size: 1rem; */
+  /* display: flex;
+  justify-content: center;
+  margin-bottom: 1rem; */
 }
 
 .username {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-bottom: 3px;
+}
+
+.username:hover {
+  opacity: 0.5;
 }
 
 .post-title {
@@ -87,12 +101,19 @@
     margin-right: 10px;
     border-radius: 25px;
     padding: 5px;
-    background-color: #212129;
+    padding-left: 8px;
+    padding-right:8px;
+    background: linear-gradient(230deg, #C9184A 0%, #323949 110%);
     color:white;
+    border:none;
+}
+
+.reddit-button:hover {
+  opacity:0.5;
 }
 
 .filter-btn {
-    background-color:#323949;
+    background:linear-gradient(230deg, #C9184A 0%, #323949 110%);
     color:white;
     border-radius: 25px;
     padding:10px;
