@@ -133,7 +133,7 @@ export default function Sidebar() {
 
                             <div className="section">
                                 <p className="section-label">Library</p>
-                                <Link to={`/`} className={location.pathname === `/` ? "link-active" : ""}
+                                <Link to={`/home`} className={location.pathname === `/` ? "link-active" : ""}
                                 >
                                     My Profile
                                 </Link>

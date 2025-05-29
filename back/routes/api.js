@@ -360,58 +360,6 @@ router.get("/liked-songs", async (req, res) => {
   }
 });
 
-// router.get("/top-artists", async (req, res) => {
-//   const limit = req.query.limit || 3;
-//   const token = req.cookies.access_token;
-//   if (!token) return res.status(401).json({ error: "Not logged in" });
-
-//   request.get(
-//     {
-//       url: "https://api.spotify.com/v1/me/top/artists",
-//       qs:  { limit, time_range: "short_term" },
-//       headers: { Authorization: "Bearer " + token },
-//       json: true,
-//     },
-//     (err, r, body) => {
-//       if (err || r.statusCode !== 200)
-//         return res.status(r.statusCode).json({ error: body || err });
-//       const items = body.items.map((a) => ({
-//         id: a.id,
-//         name: a.name,
-//         image: a.images?.[1]?.url,
-//         play_count: a.popularity,
-//       }));
-//       res.json({ items });
-//     }
-//   );
-// });
-
-// router.get("/top-songs", async (req, res) => {
-//   const limit = req.query.limit || 4;
-//   const token = req.cookies.access_token;
-//   if (!token) return res.status(401).json({ error: "Not logged in" });
-
-//   request.get(
-//     {
-//       url: "https://api.spotify.com/v1/me/top/tracks",
-//       qs:  { limit, time_range: "short_term" },
-//       headers: { Authorization: "Bearer " + token },
-//       json: true,
-//     },
-//     (err, r, body) => {
-//       if (err || r.statusCode !== 200)
-//         return res.status(r.statusCode).json({ error: body || err });
-
-//       const items = body.items.map((t) => ({
-//         id:         t.id,
-//         name:       t.name,
-//         artist:     t.artists.map((a) => a.name).join(", "),
-//         play_count: t.popularity,
-//       }));
-//       res.json({ items });
-//     }
-//   );
-// });
 router.get("/top-artists", async (req, res) => {
   let access_token = req.cookies.access_token;
   let refresh_token = req.cookies.refresh_token;
@@ -462,7 +410,7 @@ router.get("/top-artists", async (req, res) => {
   }
 
   function fetchTopArtists(token) {
-    const timeRange = req.query.time_range || 'medium_term'; // short_term, medium_term, or long_term
+    const timeRange = req.query.time_range || 'long_term'; // short_term, medium_term, or long_term
     const limit = req.query.limit || 20;
 
     request.get(
@@ -483,6 +431,31 @@ router.get("/top-artists", async (req, res) => {
       }
     );
   }
+  
+router.get("/top-songs", async (req, res) => {
+  let access_token = req.cookies.access_token;
+  let refresh_token = req.cookies.refresh_token;
+  const time_range = req.query.time_range || "medium_term";
+
+  if (!access_token) {
+    return res.status(401).json({ error: "Not logged in" });
+  }
+
+  try {
+    const response = await fetch(`https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=${time_range}`, {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+    const data = await response.json();
+    if (data.error) {
+      return res.status(data.error.status || 500).json({ error: data.error });
+    }
+    res.json({ items: data.items });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch top songs" });
+  }
+});
 });
 
 module.exports = router;

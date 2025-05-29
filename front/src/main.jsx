@@ -14,9 +14,10 @@ import PostDetail from './routes/Forum/PostDetail/PostDetail.jsx';
 import TopArtists from './routes/TopArtists.jsx';
 import Inbox from './routes/Inbox.jsx'
 import InboxChat from './routes/InboxChat.jsx'
+import TopSongs from './routes/TopSongs.jsx'
 
 const router = createBrowserRouter([
-  { path: '/', element: <App /> },
+  { path: '/', element: <Home /> },
   { path: '/profile/:id', element: <Profile /> },
   { path: '/editprofile/:id', element: <EditProfile /> },
   { path: '/liked', element: <LikedSongs /> },
@@ -27,7 +28,8 @@ const router = createBrowserRouter([
   { path: '/forum/posts/:postId', element: <PostDetail />},
   { path: '/top-artists', element: <TopArtists /> },
   { path: '/inbox', element: <Inbox /> },
-  { path: '/inbox/:id', element: <InboxChat /> }
+  { path: '/inbox/:id', element: <InboxChat /> },
+  { path: '/top-songs', element: <TopSongs /> },
 ]);
 
 createRoot(document.getElementById('root')).render(

@@ -13,6 +13,50 @@ export default function PostDetail() {
     const [users, setUsers] = useState([]);
     const [newComment, setNewComment] = useState("");
 
+    const handleUpvote = async (postId) => {
+        const fetchData = async () => {
+            try {
+                console.log("getting post")
+                const resPost = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}`);
+                const resComments = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}/comments`);
+                setPost(resPost.data);
+                setComments(resComments.data);
+                console.log(resPost.data);
+                console.log(resComments.data);
+            } catch (error) {
+                console.error("uh we got a problem", error);
+            }
+        };
+
+        try {
+            console.log("my fellow american, we are now voting");
+            const res = await axios.post(`http://127.0.0.1:3001/forum/posts/${postId}/upvote`, {
+                userId: user.id,
+            })
+            console.log("Upvoted this", res.data);
+            fetchData();
+        } catch (error) {
+            if (error.response?.status === 400) {
+                alert("fam u alr upvoted this");
+            } else {
+            console.error("Error upvoting:", error);
+            }
+        }
+        fetchPosts();
+    };
+
+
+    const handleCopy = async(postId) => {
+        try {
+            navigator.clipboard.writeText(`http://127.0.0.1:5173/forum/posts/${postId}`)
+            .then(() => {
+                console.log("Link copied to clipboard:", link);
+                // Optionally show a toast or alert here
+            })
+        } catch (error) {
+            console.error("ayo i cant copy")
+        }
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -81,7 +125,7 @@ export default function PostDetail() {
             <div className="avatar-circle"></div>
             <img src={profilePic} alt="Profile" className="profile-pic" />
             <span className="username">
-              {user?.id === post.userId ? user.display_name : post.userId}
+              {postAuthor.name}
             </span>
           </div>
 
@@ -89,11 +133,11 @@ export default function PostDetail() {
           <div className="post-content">{post.content}</div>
 
           <div className="post-actions2">
-            <button className="reddit-button">upvote</button>
-            <button className="reddit-button">share</button>
+            <button className="reddit-button" onClick={() => handleUpvote(post.id)}>{post.upvotes} upvote</button>
+            <button className="reddit-button" onClick={() => handleCopy(post.id)}>share</button>
           </div>
         </div>
-        {/* <div className="commentfixer">
+        <div className="commentfixer">
         <form onSubmit={handleComment} className="comment-form">
           <textarea
             value={newComment}
@@ -103,9 +147,9 @@ export default function PostDetail() {
           />
           <button type="submit" className="create-btn">Post</button>
         </form>
-        </div> */}
+        </div>
 
-        {/* <div className="comment-list">
+        <div className="comment-list">
           {comments.map((c) => {
             const commenter = users.find((u) => u.id === c.userId);
             const commenterPic = commenter?.profile_picture || profilePic;
@@ -113,13 +157,13 @@ export default function PostDetail() {
               <div key={c.id} className="comment">
                 <div className="post-header">
                   <img src={commenterPic} alt="pfp" className="profile-pic" />
-                  <span className="username">{commenter?.display_name || c.userId}</span>
+                  <span className="username">{users.filter((u) => u.id === c.userId)[0].name}</span>
                 </div>
                 <div className="post-content">{c.content}</div>
               </div>
             );
           })}
-        </div> */}
+        </div>
       </main>
         </>
     );

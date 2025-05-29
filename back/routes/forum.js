@@ -1,6 +1,11 @@
 const db = require("../firebase");
 const express = require("express");
 const router = express.Router();
+const admin = require("firebase-admin");
+
+if (!admin.apps.length) {
+  admin.initializeApp();
+}
 
 
 // get all posts 
@@ -25,7 +30,7 @@ router.post("/posts", async (req, res) => {
         title, 
         content, 
         flair,
-        upvote: 0,
+        upvotes: 0,
         commentCount: 0,
         createdAt: new Date(),
     };
@@ -124,7 +129,7 @@ router.post("/posts/:postId/comments", async (req, res) => {
 
     // increment the comment count
     await db.collection("posts").doc(postId).update({
-      commentCount: db.FieldValue.increment(1),
+      commentCount: admin.firestore.FieldValue.increment(1),
     });
 
     res.status(201).json({ id: ref.id, message: "Comment added" });
