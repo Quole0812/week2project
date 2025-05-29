@@ -4,13 +4,46 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../components/AuthContext.jsx";
 import './Forum.css'
 import axios from "axios";
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ShareIcon from '@mui/icons-material/Share';
 
 export default function Forum() {
     const { user, login, logout, loading } = useContext(AuthContext);
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
 
-    
+    const filteredPosts = posts.filter(post =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+
+    const handleUpvote = async (postId) => {
+        try {
+            console.log("my fellow american, we are now voting");
+            const res = await axios.post(`http://127.0.0.1:3001/forum/posts/${postId}/upvote`, {
+                userId: user.id,
+            })
+            console.log("Upvoted this", res.data);
+        } catch (error) {
+            if (error.response?.status === 400) {
+                alert("fam u alr upvoted this");
+            } else {
+            console.error("Error upvoting:", error);
+            }
+        }
+    };
+
+    const handleCopy = async(postId) => {
+        try {
+            navigator.clipboard.writeText(`http://127.0.0.1:5173/forum/posts/${postId}`)
+            .then(() => {
+                console.log("Link copied to clipboard:", link);
+                // Optionally show a toast or alert here
+            })
+        } catch (error) {
+            console.error("ayo i cant copy")
+        }
+    }
 
 
     useEffect(() => {
@@ -18,8 +51,8 @@ export default function Forum() {
         try {
             const res = await axios.get("http://127.0.0.1:3001/forum/posts");
             setPosts(res.data);
-        } catch (err) {
-            console.error("Failed to fetch posts", err);
+        } catch (error) {
+            console.error("Failed to fetch posts", error);
         }
         }
 
@@ -33,8 +66,8 @@ export default function Forum() {
             const res = await axios.get("http://127.0.0.1:3001/forum/users");
             setUsers(res.data);
             console.log(res.data);
-        } catch (err) {
-            console.error("Failed to fetch users", err);
+        } catch (error) {
+            console.error("Failed to fetch users", error);
         }
         }
 
@@ -50,7 +83,8 @@ export default function Forum() {
         <main className='forum-container'>
         {/* now we do the search bar  */}
         <div className='search-bar'>
-            <input type='text' placeholder='Search posts...'></input>
+            <input type='text' placeholder='Search posts...' value={searchTerm}
+  onChange={(e) => setSearchTerm(e.target.value)}></input>
         </div>
 
         {/* now the header */}
@@ -63,7 +97,7 @@ export default function Forum() {
         </div>
 
 
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <div key={post.id} className="post-card">
             <div className="post-header">
               <div className="avatar-circle"></div>
@@ -81,10 +115,10 @@ export default function Forum() {
             {/* <div className="post-content">{post.content || "No content."}</div> */}
             </Link>
             <div className="post-actions">
-              <button className='reddit-button'>upvote</button>
+              <button className='reddit-button' onClick={() => handleUpvote(post.id)}> {post.upvotes} upvotes</button>
               {/* <Link to={`/forum/posts/${post.id}`} className="no-link-style">
               <button className='reddit-button'>comment</button></Link> */}
-              <button className='reddit-button'>share</button>
+              <button className='reddit-button' onClick={() => handleCopy(post.id)}><ShareIcon style={{ fontSize: '10px' }}/></button>
             </div>
           </div>
         ))}
