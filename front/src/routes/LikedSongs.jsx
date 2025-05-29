@@ -52,19 +52,7 @@ export default function LikedSongs() {
             <span className="sub">{total} songs</span>
           </div>
         </header>
-
-        <div className="pill-row">
-          {["recent", "artists", "albums"].map((k) => (
-            <button
-              key={k}
-              className={tab === k ? "pill active" : "pill"}
-              onClick={() => setTab(k)}
-            >
-              {k === "recent" ? "Recently Added" : k[0].toUpperCase() + k.slice(1)}
-            </button>
-          ))}
-        </div>
-
+        
         <div className="grid">
           {tracks.map((t) => (
             <article key={t.id} className="card">
