@@ -5,6 +5,7 @@ import { AuthContext } from "../components/AuthContext";
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
 import ArtistTemplate from "../components/ArtistTemplate";
 import SongTemplate from "../components/SongTemplate";
+import CircularProgress from '@mui/material/CircularProgress';
 import "@fontsource/inter";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
@@ -26,7 +27,6 @@ function Profile() {
         const userRes = await fetch(`http://127.0.0.1:3001/profile/${id}`);
         const userJson = await userRes.json();
         setUserData(userJson);
-        console.log(userJson);
 
         if (userJson.displayedArtists.length > 0) {
           const artistsRes = await fetch("http://127.0.0.1:3001/profile/artists", {
@@ -69,7 +69,31 @@ function Profile() {
 
   if (loading || pageLoading) {
     return (
-      <div className="loadingPage"></div>
+      <>
+        <Sidebar/>
+        <div className="main-content">
+          <div className="loadingCenter">
+            <CircularProgress
+              variant="determinate"
+              value={100}
+              size={40}
+              thickness={4}
+              sx={{
+                color: '#ddd',
+                position: 'absolute',
+                left: 0,
+              }}
+            />
+            <CircularProgress
+              size={40}
+              thickness={4}
+              sx={{
+                color: '#e03e58',
+              }}
+            />
+          </div>
+        </div>
+      </>
     )
   } else {
     return (
@@ -105,7 +129,7 @@ function Profile() {
               <div className="artistsContainer">
                 <div className="artistsHeaderText">Displayed Artists</div>
                 <div className="displayedArtistsContainer">
-                    {artists.length > 0 ? (artists.map((artist) => (
+                    {artists && artists.length > 0 ? (artists.map((artist) => (
                       <ArtistTemplate key={artist.id} artistObj={artist} />
                     ))) : (
                       <div className="noContent"> No artists to display </div>
@@ -115,7 +139,7 @@ function Profile() {
               <div className="songsContainer">
                 <div className="songsHeaderText">Displayed Songs</div>
                 <div className="displayedSongsContainer">
-                    {songs.length > 0 ? (songs.map((song) => (
+                    {songs && songs.length > 0 ? (songs.map((song) => (
                         <SongTemplate key={song.id} songObj={song} />
                     ))) : (
                       <div className="noContent"> No songs to display </div>
