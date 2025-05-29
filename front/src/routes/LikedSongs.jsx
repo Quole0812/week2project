@@ -11,7 +11,6 @@ export default function LikedSongs() {
   const [offset, setOffset] = useState(0);
   const [total,  setTotal]  = useState(0);
   const [busy,   setBusy]   = useState(false);
-  const [tab,    setTab]    = useState("recent");
 
   const fetchBatch = (batchOffset) => {
     if (busy) return;
@@ -39,6 +38,7 @@ export default function LikedSongs() {
   }, [user]);
 
   if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
+  if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
 
   return (
     <>
@@ -52,19 +52,7 @@ export default function LikedSongs() {
             <span className="sub">{total} songs</span>
           </div>
         </header>
-
-        <div className="pill-row">
-          {["recent", "artists", "albums"].map((k) => (
-            <button
-              key={k}
-              className={tab === k ? "pill active" : "pill"}
-              onClick={() => setTab(k)}
-            >
-              {k === "recent" ? "Recently Added" : k[0].toUpperCase() + k.slice(1)}
-            </button>
-          ))}
-        </div>
-
+        
         <div className="grid">
           {tracks.map((t) => (
             <article key={t.id} className="card">
@@ -74,12 +62,6 @@ export default function LikedSongs() {
             </article>
           ))}
         </div>
-
-        {tracks.length < total && tab === "recent" && (
-          <button className="more-btn" disabled={busy} onClick={() => fetchBatch(offset)}>
-            {busy ? "Loading…" : "Load more"}
-          </button>
-        )}
       </main>
     </>
   );
