@@ -56,12 +56,11 @@ export default function Home() {
         <section className="discover-card">
           <div className="discover-info">
             <h2>Discover Users</h2>
-            <p>
+            <Link to="/discover" className="connect-btn">
+              <p>
               Connect with fellow music lovers and create a community exploring
               new sounds together.
-            </p>
-            <Link to="/discover" className="connect-btn">
-              Connect Now
+              </p>
             </Link>
           </div>
           <div className="disc-art" />
@@ -78,16 +77,25 @@ export default function Home() {
               <p className="empty-note">No data yet.</p>
             ) : (
               <div className="artist-grid">
-                {topArtists.map((a) => (
-                  <div key={a.id} className="artist-card">
-                    <div
-                      className="avatar"
-                      style={{ backgroundImage: `url(${a.image})` }}
-                    />
-                    <h4>{a.name}</h4>
-                    <span className="plays">{a.play_count} plays</span>
-                  </div>
-                ))}
+                {topArtists.map((a) => {
+                  const imgSrc =
+                    a.images?.[0]?.url
+                    || a.image
+                    || "/default-artist.png";
+
+                  return (
+                    <div key={a.id} className="artist-card">
+                      <div className="artist-list-image-container">
+                        <img
+                          src={imgSrc}
+                          alt={a.name}
+                          className="artist-list-image"
+                        />
+                      </div>
+                      <h4 className="artist-grid-name">{a.name}</h4>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -109,7 +117,7 @@ export default function Home() {
                       <strong>{s.name}</strong>
                       <em>{s.artist}</em>
                     </div>
-                    <span className="plays">{s.play_count} plays</span>
+                    
                   </li>
                 ))}
               </ol>

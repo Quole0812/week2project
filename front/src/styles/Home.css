@@ -21,7 +21,7 @@
   box-sizing:border-box;
   position:relative;
   min-height:140px;
-  background:linear-gradient(135deg,#ff4f79 0%,#7f46ff 100%);
+  background:linear-gradient(135deg,#ff4f79 0%,#262a3d 100%);
   border-radius:16px;
   padding:2rem 2.5rem;
   display:flex;
@@ -242,5 +242,16 @@
 }
 
 .tag{
-  background:#7f46ff;
+  background:#262a3d;
 }
+
+.artist-list-image-container{
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  background:#23232d;
+  margin: 0 auto .6rem auto;
+}
+.artist-list-image{width:100%;height:100%;object-fit:cover}
+.artist-grid-name{font-size:0.5rem;font-weight:200;margin:0}
