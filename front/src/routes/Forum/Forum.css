@@ -106,3 +106,12 @@
   object-fit: cover;
   margin-right: 5px;
 }
+
+
+.no-link-style {
+  text-decoration: none;
+}
+
+.no-link-style:visited {
+  text-decoration: none;
+}

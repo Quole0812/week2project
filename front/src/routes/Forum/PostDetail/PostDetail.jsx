@@ -16,10 +16,17 @@ export default function PostDetail() {
 
     useEffect(() => {
         const fetchData = async () => {
-        const resPost = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}`);
-        const resComments = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}/comments`);
-        setPost(resPost.data);
-        setComments(resComments.data);
+            try {
+                console.log("getting post")
+                const resPost = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}`);
+                const resComments = await axios.get(`http://127.0.0.1:3001/forum/posts/${postId}/comments`);
+                setPost(resPost.data);
+                setComments(resComments.data);
+                console.log(resPost.data);
+                console.log(resComments.data);
+            } catch (error) {
+                console.error("uh we got a problem", error);
+            }
         };
 
         fetchData();
@@ -28,6 +35,7 @@ export default function PostDetail() {
     useEffect(() => {
         async function fetchUsers() {
         try {
+            console.log("getting users btw")
             const res = await axios.get("http://127.0.0.1:3001/forum/users");
             setUsers(res.data);
             console.log(res.data);
@@ -55,33 +63,64 @@ export default function PostDetail() {
 
         if (!post) return <div>Something happened to the post</div>;
     };
+    if (!post) return <div>Something happened to the post</div>;
+    console.log("bruh i gotta print the post")
+    console.log(post);
+    const postAuthor = users.find(u => u.id === post.userId);
+    const profilePic = postAuthor?.profile_picture ||
+    "https://images.unsplash.com/11/sky-rose.jpg?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+
+    if (!post) return <div>Something happened to the post</div>;
     return (
         <>
         <Sidebar />
-        <main className="post-detail-container">
-            <h1>{post.title}</h1>
-            <p className="post-author">by {user.id === post.userId ? "You" : post.userId}</p>
-            <p>{post.content}</p>
+      <main className="forum-container">
+        <div className="post-card">
+          <div className="post-header">
+            <div className="avatar-circle"></div>
+            <img src={profilePic} alt="Profile" className="profile-pic" />
+            <span className="username">
+              {user?.id === post.userId ? user.display_name : post.userId}
+            </span>
+          </div>
 
-            <h2>Comments</h2>
-            <form onSubmit={handleComment}>
-            <textarea
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Add a comment..."
-                className="comment-input"
-            />
-            <button type="submit" className="submit-comment">Post</button>
-            </form>
+          <div className="post-title">{post.title}</div>
+          <div className="post-content">{post.content}</div>
 
-            <div className="comment-list">
-            {comments.map((c) => (
-                <div key={c.id} className="comment">
-                <strong>{c.username || c.userId}</strong>: {c.content}
+          <div className="post-actions">
+            <button className="reddit-button">upvote</button>
+            <button className="reddit-button">comment</button>
+            <button className="reddit-button">share</button>
+          </div>
+        </div>
+
+        <form onSubmit={handleComment} className="comment-form">
+          <textarea
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Add a comment..."
+            className="comment-input"
+          />
+          <button type="submit" className="create-btn">Post</button>
+        </form>
+
+        <div className="comment-list">
+          {comments.map((c) => {
+            const commenter = users.find((u) => u.id === c.userId);
+            const commenterPic = commenter?.profile_picture || profilePic;
+            return (
+              <div key={c.id} className="comment">
+                <div className="post-header">
+                  <img src={commenterPic} alt="pfp" className="profile-pic" />
+                  <span className="username">{commenter?.display_name || c.userId}</span>
                 </div>
-            ))}
-            </div>
-        </main>
+                <div className="post-content">{c.content}</div>
+              </div>
+            );
+          })}
+        </div>
+      </main>
         </>
     );
 

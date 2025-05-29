@@ -76,13 +76,13 @@ export default function Forum() {
                 />
               <span className="username">{user?.id === post.userId ? user.display_name : post.userId}</span>
             </div>
-            <Link to={`/forum/${post.id}`} className="post-card">
+            <Link to={`/forum/posts/${post.id}`} className="post-card no-link-style">
             <div className="post-title">{post.title}</div>
             <div className="post-content">{post.content || "No content."}</div>
             </Link>
             <div className="post-actions">
               <button className='reddit-button'>upvote</button>
-              <Link to={`/forum/${post.id}`} className="post-card">
+              <Link to={`/forum/posts/${post.id}`} className="no-link-style">
               <button className='reddit-button'>comment</button></Link>
               <button className='reddit-button'>share</button>
             </div>
