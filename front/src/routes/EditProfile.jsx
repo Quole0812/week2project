@@ -8,6 +8,7 @@ import EditSongTemplate from '../components/EditSongTemplate'
 import EditArtistTemplate from '../components/EditArtistTemplate'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import Switch from '@mui/material/Switch';
 import CircularProgress from '@mui/material/CircularProgress';
 import "@fontsource/inter";
 import "@fontsource/inter/400.css";
@@ -27,6 +28,7 @@ function EditProfile() {
   const [artistSearchBool, setArtistSearchBool] = useState(false);
 
   const [bio, setBio] = useState("");
+  const [privateProfile, setPrivateProfile] = useState(false);
   const [searchArtistRes, setSearchArtistRes] = useState({ items: [] });
   const [searchSongRes, setSearchSongRes] = useState({ items: [] });
 
@@ -47,6 +49,7 @@ function EditProfile() {
             const userJson = await userRes.json();
             setUserData(userJson);
             setBio(userJson.bio)
+            setPrivateProfile(userJson.privateProfile)
 
             if (userJson.displayedArtists.length > 0) {
             const artistsRes = await fetch("http://127.0.0.1:3001/profile/artists", {
@@ -148,15 +151,14 @@ function EditProfile() {
                 userData: {
                     bio: bio,
                     displayedArtists: userData.displayedArtists,
-                    displayedSongs: userData.displayedSongs
+                    displayedSongs: userData.displayedSongs,
+                    privateProfile: privateProfile
                 }
             }),
         });
         if (!res.ok) {
             const errorData = await res.json();
             console.error("Save failed:", errorData);
-        } else {
-            console.log("Profile updated successfully!");
         }
     } catch (e) {
         console.error("Error saving edits: ", e);
@@ -215,30 +217,34 @@ function EditProfile() {
         await searchArtists(searchArtist, newOffset);
     };
 
+    const handlePrivateProfile = (event) => {
+        setPrivateProfile(event.target.checked);
+    }
+
   if (loading || pageLoading) {
     return (
         <>
             <Sidebar/>
             <div className="main-content">
                 <div className="loadingCenter">
-                <CircularProgress
-                    variant="determinate"
-                    value={100}
-                    size={40}
-                    thickness={4}
-                    sx={{
-                    color: '#ddd',
-                    position: 'absolute',
-                    left: 0,
-                    }}
-                />
-                <CircularProgress
-                    size={40}
-                    thickness={4}
-                    sx={{
-                    color: '#e03e58',
-                    }}
-                />
+                    <CircularProgress
+                        variant="determinate"
+                        value={100}
+                        size={40}
+                        thickness={4}
+                        sx={{
+                        color: '#ddd',
+                        }}
+                        className="backgroundSpinner"
+                    />
+                    <CircularProgress
+                        size={40}
+                        thickness={4}
+                        sx={{
+                        color: '#e03e58',
+                        }}
+                        className="foregroundSpinner"
+                    />
                 </div>
             </div>
         </>
@@ -275,6 +281,21 @@ function EditProfile() {
               <div className="bioContainer">
                 <div className="bioHeaderText">Bio</div>
                 <input className="bioEditTextField" type="text" value={bio} placeholder="Bio" onChange={(e) => setBio(e.target.value)}/>
+              </div>
+              <div className="privateProfileContainer">
+                <div className="bioHeaderText">Private Profile</div>
+                <Switch
+                    checked={privateProfile}
+                    onChange={handlePrivateProfile}
+                    sx={{
+                        '& .MuiSwitch-switchBase.Mui-checked': {
+                        color: '#66b574',
+                        },
+                        '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                        backgroundColor: '#66b574',
+                        },
+                    }}
+                />
               </div>
               <div className="artistsContainer">
                 <div className="artistsHeaderText">Displayed Artists</div>

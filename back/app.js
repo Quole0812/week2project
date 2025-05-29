@@ -15,9 +15,11 @@ app.use(
 
 const apiRouter = require("./routes/api");
 const profileRouter = require("./routes/profile");
+const inboxRouter = require("./routes/inbox");
 
 app.use("/api", apiRouter);
 app.use("/profile", profileRouter);
+app.use("/inbox", inboxRouter);
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Server is running!" });
