@@ -70,15 +70,15 @@ export default function Discover() {
                                 onChange={(e) => handleSearch(users, e.target.value)}
                             />
                         </div>
-                        { searchValue !== "" ? (
-                                <h1 className="discover-results-header">Results for '{searchValue}'</h1>
-                            ) : 
-                            (    
-                                <h1 className="discover-results-header">Discover user profiles</h1>   
-                            )
-                        }
-                        <div className="discover-main-content">   
-                            { loading ? (
+
+                        {searchValue !== "" ? (
+                            <h1 className="discover-results-header">Results for '{searchValue}'</h1>
+                        ) : (
+                            <h1 className="discover-results-header">Discover user profiles</h1>
+                        )}
+
+                        <div className="discover-main-content">
+                            {loading ? (
                                 <div className="discover-container">
                                     {[...Array(3)].map((_, index) => (
                                         <div className="discover-card" key={index}>
@@ -87,48 +87,48 @@ export default function Discover() {
                                         </div>
                                     ))}
                                 </div>
-                            ) :
-                            error ? (
+                            ) : error ? (
                                 <div>Error: {error}</div>
-                            ) : 
-                                searchValue !== "" ? (
-                                    <div className="discover-container">
-                                        {filteredUsers.length > 0 ? (
-                                            filteredUsers.map((user => (
-                                                <Link to={`../profile/${user.id}`} key={user.id}>
-                                                    <div className="discover-card" >
-                                                        <div className="discover-profile-picture-wrapper">
-                                                            <img src={user?.profile_picture} className="discover-profile-picture" />
-                                                        </div>
-                                                        <strong className="discover-card-text">{user.name}</strong>
+                            ) : searchValue !== "" ? (
+                                <div className="discover-container">
+                                    {filteredUsers.length > 0 ? (
+                                        filteredUsers.map((user) => (
+                                            <Link to={`../profile/${user.id}`} key={user.id}>
+                                                <div className="discover-card">
+                                                    <div className="discover-profile-picture-wrapper">
+                                                        <img
+                                                            src={user?.profile_picture}
+                                                            className="discover-profile-picture"
+                                                        />
                                                     </div>
-                                                </Link>
-                                            )))
-                                        ) : (
-                                                // no match found
-                                                <div><strong className="discover-card-text">No results found.</strong></div> 
-                                            )
-                                        }
-                                        </div>   
-                                    ) : 
-                                    (
-                                            <div className="discover-container">
-                                                {users.map((user => (
-                                                    <Link to={`../profile/${user.id}`} key={user.id}>
-                                                        <div className="discover-card" >
-                                                            {/* pass these names to DiscoverGrid */}
-                                                            <div className="discover-profile-picture-wrapper">
-                                                                <img src={user?.profile_picture} className="discover-profile-picture" />
-                                                            </div> 
-                                                            <strong className="discover-card-text">{user.name}</strong>  
-                                                            {/* <br /> */}
-                                                        </div>
-                                                    </Link>
-                                                )))}
+                                                    <strong className="discover-card-text">{user.name}</strong>
+                                                </div>
+                                            </Link>
+                                        ))
+                                    ) : (
+                                        <div>
+                                            <strong className="discover-card-text">No results found.</strong>
+                                        </div>
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="discover-container">
+                                    {users.map((user) => (
+                                        <Link to={`../profile/${user.id}`} key={user.id}>
+                                            <div className="discover-card">
+                                                <div className="discover-profile-picture-wrapper">
+                                                    <img
+                                                        src={user?.profile_picture}
+                                                        className="discover-profile-picture"
+                                                    />
+                                                </div>
+                                                <strong className="discover-card-text">{user.name}</strong>
                                             </div>
-                                        )
-                            }    
-                            </div>
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
