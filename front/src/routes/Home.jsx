@@ -11,8 +11,6 @@ export default function Home() {
   const [topSongs,   setTopSongs]   = useState([]);
   const [messages,   setMessages]   = useState([]);
   const [threads,    setThreads]    = useState([]);
-  const [messages,   setMessages]   = useState([]);
-  const [threads,    setThreads]    = useState([]);
 
   const fetchJSON = (url) =>
     fetch(url, { credentials: "include" }).then((r) => (r.ok ? r.json() : []));
