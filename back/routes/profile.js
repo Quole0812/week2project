@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     const usersSnapshot = await db.collection("users").get();
     const users = [];
 
-    usersSnapshot.forEach(doc => {
+    usersSnapshot.forEach((doc) => {
       users.push({ id: doc.id, ...doc.data() });
     });
 

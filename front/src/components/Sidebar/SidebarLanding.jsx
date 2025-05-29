@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link }           from "react-router-dom";
 import Dupifylogo         from "./dupifylogo.png";
-import "./Sidebar.css";
+import "./SidebarLanding.css";
 import { AuthContext }    from "../../components/AuthContext";
 
 export default function Sidebar() {
@@ -10,13 +10,27 @@ export default function Sidebar() {
   const [recentSongs, setRecentSongs] = useState([]);
 
   useEffect(() => {
-    if (!user) return;
-    fetch("http://127.0.0.1:3001/api/recently-played?limit=5", {
-      credentials: "include",
-    })
-      .then((r) => (r.ok ? r.json() : Promise.reject(r)))
-      .then(({ songs }) => setRecentSongs(songs || []))
-      .catch(() => setRecentSongs([]));
+    // if (!user) return;
+    // fetch("http://127.0.0.1:3001/api/recently-played", {
+    //   credentials: "include",
+    // })
+    //   .then((r) => (r.ok ? r.json() : Promise.reject(r)))
+    //   .then(({ songs }) => setRecentSongs(songs || []))
+    //   .catch(() => setRecentSongs([]));
+    const fetchData = async () => {
+      try {
+        const recentRes = await fetch("http://127.0.0.1:3001/api/recently-played", {
+          credentials: "include",
+        });
+        const recentJson = await recentRes.json();
+        setRecentSongs(recentJson.songs);
+      } catch (e) {
+        console.error("Failed to fetch recently played: ", e);
+      }
+    }
+    if (user) {
+      fetchData()
+    }
   }, [user]);
 
   if (loading) return <div className="sidebar" />;
@@ -65,14 +79,18 @@ export default function Sidebar() {
                     {recentSongs.length === 0 ? (
                 <span className="empty-recent">No history yet.</span>
                 ) : (
-                <ul className="recent-list">
+                  <ul className="recent-list">
                     {recentSongs.map((t) => (
-                    <li key={t.id} className="recent-item">
-                        <span className="square" /> {t.name}
-                        <div className="space-padding"></div>
-                    </li>
+                      <li key={t.id} className="recent-item">
+                        <img
+                          src={t.track.album.images[0].url || "/default-song.png"}
+                          alt={t.track.name}
+                          className="recent-img"
+                        />
+                        <span className="recent-title">{t.track.name}</span>
+                      </li>
                     ))}
-                </ul>
+                  </ul>
                 )}
                 </div>
             </div>
