@@ -129,7 +129,7 @@ router.post("/posts/:postId/comments", async (req, res) => {
 
     // increment the comment count
     await db.collection("posts").doc(postId).update({
-      commentCount: db.FieldValue.increment(1),
+      commentCount: admin.firestore.FieldValue.increment(1),
     });
 
     res.status(201).json({ id: ref.id, message: "Comment added" });

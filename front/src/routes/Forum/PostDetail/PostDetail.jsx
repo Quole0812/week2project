@@ -137,7 +137,7 @@ export default function PostDetail() {
             <button className="reddit-button" onClick={() => handleCopy(post.id)}>share</button>
           </div>
         </div>
-        {/* <div className="commentfixer">
+        <div className="commentfixer">
         <form onSubmit={handleComment} className="comment-form">
           <textarea
             value={newComment}
@@ -147,9 +147,9 @@ export default function PostDetail() {
           />
           <button type="submit" className="create-btn">Post</button>
         </form>
-        </div> */}
+        </div>
 
-        {/* <div className="comment-list">
+        <div className="comment-list">
           {comments.map((c) => {
             const commenter = users.find((u) => u.id === c.userId);
             const commenterPic = commenter?.profile_picture || profilePic;
@@ -157,13 +157,13 @@ export default function PostDetail() {
               <div key={c.id} className="comment">
                 <div className="post-header">
                   <img src={commenterPic} alt="pfp" className="profile-pic" />
-                  <span className="username">{commenter?.display_name || c.userId}</span>
+                  <span className="username">{users.filter((u) => u.id === c.userId)[0].name}</span>
                 </div>
                 <div className="post-content">{c.content}</div>
               </div>
             );
           })}
-        </div> */}
+        </div>
       </main>
         </>
     );
