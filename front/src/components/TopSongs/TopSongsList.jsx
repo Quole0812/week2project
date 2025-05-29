@@ -19,8 +19,8 @@ const TopSongsList = ({ songs }) => {
             />
           </div>
           <div className="song-list-info-1">
-            <div className="song-list-title">{song.name}</div>
-            <div className="song-list-name">{song.artists[0]?.name || "Unknown"}</div>
+            <div className="song-list-title-1">{song.name}</div>
+            <div className="song-list-name-1">{song.artists[0]?.name || "Unknown"}</div>
           </div>
         </div>
       ))}
