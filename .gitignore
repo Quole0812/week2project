@@ -2,3 +2,4 @@ back/.env
 back/permissions.json
 back/*.pem
 node_modules/
+**/package-lock.json

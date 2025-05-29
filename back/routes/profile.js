@@ -104,7 +104,7 @@ router.post("/search/songs", async (req, res) => {
       {
         url: `https://api.spotify.com/v1/search?q=${encodeURIComponent(
           query
-        )}&type=track&market=US&limit=10&offset=${offset}`,
+        )}&type=track&limit=5&offset=${offset}`,
         headers: {
           Authorization: "Bearer " + access_token,
         },
@@ -133,7 +133,7 @@ router.post("/search/artist", async (req, res) => {
       {
         url: `https://api.spotify.com/v1/search?q=${encodeURIComponent(
           query
-        )}&type=artist&market=US&limit=10&offset=${offset}`,
+        )}&type=artist&limit=5&offset=${offset}`,
         headers: {
           Authorization: "Bearer " + access_token,
         },
@@ -151,6 +151,19 @@ router.post("/search/artist", async (req, res) => {
     );
   } catch (e) {
     console.error("Error fetching artist search: ", e);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.put("/update", async (req, res) => {
+  const { id, userData } = req.body;
+
+  try {
+    const userRef = db.collection("users").doc(id);
+    const userRes = await userRef.set(userData, { merge: true });
+    res.status(200).json({ message: "User updated successfully" });
+  } catch (e) {
+    console.error("Error updating user: ", e);
     res.status(500).json({ error: "Internal server error" });
   }
 });
