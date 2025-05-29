@@ -11,7 +11,7 @@
 }
 
 /* ===== discover banner ===== */
-.discover-card {
+/* .discover-card {
   position: relative;
   background: linear-gradient(135deg, #ff4f79 0%, #7f46ff 100%);
   border-radius: 16px;
@@ -20,15 +20,18 @@
   align-items: center;
   overflow: hidden;
   color: #fff;
-}
+} */
 
-.discover-info h2  { font-size: 1.7rem; font-weight: 700; margin: 0 0 0.5rem; }
+.discover-info h2  { font-size: 1.7rem; font-weight: 700; margin: 0 0 0.5rem; } 
 .discover-info p   { max-width: 28rem; opacity: 0.85; margin-bottom: 1.2rem; }
+
 .connect-btn       {
   background:#fff; color:#1b1e2f; padding:0.55rem 1.6rem;
   border:none; border-radius:9999px; font-weight:600; cursor:pointer;
 }
-.disc-art {                /* decorative circle */
+
+/* decorative circle */
+.disc-art {                
   position:absolute; right:2.5rem; top:50%; transform:translateY(-50%);
   width:90px; height:90px; border-radius:50%; background:#fff; opacity:0.9;
 }
