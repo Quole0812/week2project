@@ -1,6 +1,7 @@
 .no-link-style {
   text-decoration: none;
-  color:white
+  color:white;
+  /* font-size: medium; */
 }
 
 .no-link-style:visited {
@@ -55,10 +56,14 @@
     margin-top: 15px;
 }
 
+.post-header2 {
+    margin-bottom: 8px;
+}
+
 
 .comment-input {
     position: absolute;
-    left: 585px;
+    left: 625px;
     width:100%;
     min-height: 60px;
     max-width: 1100px;
@@ -73,21 +78,30 @@
   opacity: 1; 
 }
 
-.create-btn {
-    position:absolute;
-    right:460px;
-    top:300px;
+.create-btn3 {
+    position:relative;
+    right:-1380px;
+    bottom:-80px;
+    background:linear-gradient(230deg, #C9184A 0%, #323949 110%);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 25px;
 }
 
-.comment-list {
+.create-btn3:hover {
+    opacity: 0.5;
+}
+
+.comment {
   background-color: #3a3f56;
   padding: 1rem;
   border-radius: 20px;
   width: 100%;
   max-width: 1100px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   line-height: 1.5;
-  position:absolute;
-  left:585px;
-  top:350px;
+  position:relative;
+  left:360px;
+  top:120px;
 }
