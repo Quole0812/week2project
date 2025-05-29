@@ -93,17 +93,14 @@ export default function Discover() {
                                 <div className="discover-container">
                                     {filteredUsers.length > 0 ? (
                                         filteredUsers.map((user) => (
-                                            <Link to={`../profile/${user.id}`} key={user.id}>
-                                                <div className="discover-card">
+                                            <div className="discover-card">
+                                                <Link to={`../profile/${user.id}`} className="discover-card-link">
                                                     <div className="discover-profile-picture-wrapper">
-                                                        <img
-                                                            src={user?.profile_picture}
-                                                            className="discover-profile-picture"
-                                                        />
+                                                    <img src={user?.profile_picture} className="discover-profile-picture" />
                                                     </div>
                                                     <strong className="discover-card-text">{user.name}</strong>
-                                                </div>
-                                            </Link>
+                                                </Link>
+                                            </div>
                                         ))
                                     ) : (
                                         <div>
@@ -114,17 +111,14 @@ export default function Discover() {
                             ) : (
                                 <div className="discover-container">
                                     {users.map((user) => (
-                                        <Link to={`../profile/${user.id}`} key={user.id}>
-                                            <div className="discover-card">
+                                        <div className="discover-card">
+                                            <Link to={`../profile/${user.id}`} className="discover-card-link">
                                                 <div className="discover-profile-picture-wrapper">
-                                                    <img
-                                                        src={user?.profile_picture}
-                                                        className="discover-profile-picture"
-                                                    />
+                                                <img src={user?.profile_picture} className="discover-profile-picture" />
                                                 </div>
                                                 <strong className="discover-card-text">{user.name}</strong>
-                                            </div>
-                                        </Link>
+                                            </Link>
+                                        </div>
                                     ))}
                                 </div>
                             )}

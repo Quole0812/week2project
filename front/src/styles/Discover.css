@@ -82,6 +82,24 @@
   
 }
 
+.discover-card a {
+  all: unset;
+  display: contents;
+  background: none !important;
+  color: inherit !important;
+}
+
+.discover-card-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+}
+
 .discover-card:hover {
   background-color: #4C5265;
   cursor: pointer; 
