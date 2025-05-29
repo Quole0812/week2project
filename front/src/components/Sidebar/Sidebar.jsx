@@ -76,7 +76,7 @@ export default function Sidebar() {
 
                             <div className="section">
                                 <p className="section-label">Library</p>
-                                <Link to={`/`}>My Profile</Link>
+                                <Link onClick={() => login()}>My Profile</Link>
                                 <Link to="/liked">Liked Songs</Link>
                             </div>
 

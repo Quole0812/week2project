@@ -12,6 +12,7 @@ export default function LikedSongs() {
   const [total,  setTotal]  = useState(0);
   const [busy,   setBusy]   = useState(false);
   const [tab,    setTab]    = useState("recent");
+  const [tab,    setTab]    = useState("recent");
 
   const fetchBatch = (batchOffset) => {
     if (busy) return;
@@ -23,6 +24,7 @@ export default function LikedSongs() {
     )
       .then((r) => (r.ok ? r.json() : Promise.reject(r)))
       .then(({ tracks: newT, nextOffset, total }) => {
+        setTracks((prev) => [...prev, ...newT]);
         setTracks((prev) => [...prev, ...newT]);
         setOffset(nextOffset);
         setTotal(total);
@@ -38,6 +40,7 @@ export default function LikedSongs() {
     }
   }, [user]);
 
+  if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
   if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
 
   return (
