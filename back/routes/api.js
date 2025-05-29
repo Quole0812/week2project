@@ -30,6 +30,7 @@ router.get("/login", function (req, res) {
     "user-read-private",
     "user-read-email",
     "user-library-read",
+    "user-top-read",
   ].join(" ");
 
   res.redirect(
@@ -356,6 +357,131 @@ router.get("/liked-songs", async (req, res) => {
       console.error(e);
       return res.status(500).json({ error: "spotify_fetch_failed" });
     }
+  }
+});
+
+// router.get("/top-artists", async (req, res) => {
+//   const limit = req.query.limit || 3;
+//   const token = req.cookies.access_token;
+//   if (!token) return res.status(401).json({ error: "Not logged in" });
+
+//   request.get(
+//     {
+//       url: "https://api.spotify.com/v1/me/top/artists",
+//       qs:  { limit, time_range: "short_term" },
+//       headers: { Authorization: "Bearer " + token },
+//       json: true,
+//     },
+//     (err, r, body) => {
+//       if (err || r.statusCode !== 200)
+//         return res.status(r.statusCode).json({ error: body || err });
+//       const items = body.items.map((a) => ({
+//         id: a.id,
+//         name: a.name,
+//         image: a.images?.[1]?.url,
+//         play_count: a.popularity,
+//       }));
+//       res.json({ items });
+//     }
+//   );
+// });
+
+// router.get("/top-songs", async (req, res) => {
+//   const limit = req.query.limit || 4;
+//   const token = req.cookies.access_token;
+//   if (!token) return res.status(401).json({ error: "Not logged in" });
+
+//   request.get(
+//     {
+//       url: "https://api.spotify.com/v1/me/top/tracks",
+//       qs:  { limit, time_range: "short_term" },
+//       headers: { Authorization: "Bearer " + token },
+//       json: true,
+//     },
+//     (err, r, body) => {
+//       if (err || r.statusCode !== 200)
+//         return res.status(r.statusCode).json({ error: body || err });
+
+//       const items = body.items.map((t) => ({
+//         id:         t.id,
+//         name:       t.name,
+//         artist:     t.artists.map((a) => a.name).join(", "),
+//         play_count: t.popularity,
+//       }));
+//       res.json({ items });
+//     }
+//   );
+// });
+router.get("/top-artists", async (req, res) => {
+  let access_token = req.cookies.access_token;
+  let refresh_token = req.cookies.refresh_token;
+
+  if (!access_token) {
+    if (!refresh_token) {
+      return res.status(401).json({ error: "Not logged in" });
+    }
+
+    // Refresh token logic
+    var authOptions = {
+      url: "https://accounts.spotify.com/api/token",
+      headers: {
+        "content-type": "application/x-www-form-urlencoded",
+        Authorization:
+          "Basic " +
+          new Buffer.from(client_id + ":" + client_secret).toString("base64"),
+      },
+      form: {
+        grant_type: "refresh_token",
+        refresh_token: refresh_token,
+      },
+      json: true,
+    };
+
+    request.post(authOptions, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+        access_token = body.access_token;
+        refresh_token = body.refresh_token || refresh_token;
+
+        // store new access token in cookies
+        res.cookie("access_token", access_token, {
+          httpOnly: true,
+          secure: false,
+          sameSite: "Lax",
+          maxAge: 3600 * 1000,
+        });
+
+        // Now fetch top artists with new token
+        fetchTopArtists(access_token);
+      } else {
+        return res.status(401).json({ error: "Failed to refresh token" });
+      }
+    });
+  } else {
+    // If we have a valid access token, use it directly
+    fetchTopArtists(access_token);
+  }
+
+  function fetchTopArtists(token) {
+    const timeRange = req.query.time_range || 'medium_term'; // short_term, medium_term, or long_term
+    const limit = req.query.limit || 20;
+
+    request.get(
+      {
+        url: `https://api.spotify.com/v1/me/top/artists?time_range=${timeRange}&limit=${limit}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        json: true,
+      },
+      function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+          return res.json(body);
+        } else {
+          console.error("Error fetching top artists:", error || body);
+          return res.status(500).json({ error: "Failed to fetch top artists" });
+        }
+      }
+    );
   }
 });
 

@@ -23,7 +23,7 @@ export default function Sidebar() {
                         <>
                             <Link className="no-link-style" to={`/profile/${user.id}`}>
                                 <div className="user-card">
-                                    <img className="avatar" src={user.images[1].url}></img>
+                                    <img className="avatar1" src={user.images[1].url}></img>
                                     <div className="user-info">
                                     <p className="name">{user.display_name}</p>
                                     <p className="premium">{user.product.charAt(0).toUpperCase() + user.product.slice(1)}</p>
