@@ -92,8 +92,8 @@ export default function Discover() {
                             ) : searchValue !== "" ? (
                                 <div className="discover-container">
                                     {filteredUsers.length > 0 ? (
-                                        filteredUsers.map((user) => (
-                                            <div className="discover-card">
+                                        filteredUsers.map((user, index) => (
+                                            <div className="discover-card" key={index}>
                                                 <Link to={`../profile/${user.id}`} className="discover-card-link">
                                                     <div className="discover-profile-picture-wrapper">
                                                     <img src={user?.profile_picture} className="discover-profile-picture" />
@@ -110,8 +110,8 @@ export default function Discover() {
                                 </div>
                             ) : (
                                 <div className="discover-container">
-                                    {users.map((user) => (
-                                        <div className="discover-card">
+                                    {users.map((user, index) => (
+                                        <div className="discover-card" key={index}>
                                             <Link to={`../profile/${user.id}`} className="discover-card-link">
                                                 <div className="discover-profile-picture-wrapper">
                                                 <img src={user?.profile_picture} className="discover-profile-picture" />
