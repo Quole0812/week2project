@@ -343,7 +343,7 @@ function EditProfile() {
                     )}
                 </div>
               </div>
-              <div className="songsContainer">
+              <div className="artistContainer">
                 <div className="songsHeaderText">Displayed Songs</div>
                 <div className="displayedSongsContainer">
                     {songs && songs.length > 0 ? (songs.map((song) => (
