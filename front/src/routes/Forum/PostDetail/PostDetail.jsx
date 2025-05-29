@@ -125,7 +125,7 @@ export default function PostDetail() {
           <div className="post-header2">
             <img src={profilePic} alt="Profile" className="profile-pic" />
             <span className="username">
-              {postAuthor.name}
+              {users.find(u => u.id === post.userId).name}
             </span>
           </div>
        </Link>
