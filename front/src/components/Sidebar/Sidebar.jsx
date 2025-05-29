@@ -3,6 +3,14 @@ import Dupifylogo from "./dupifylogo.png"
 import "./Sidebar.css";
 import { use, useContext, useState } from "react";
 import { AuthContext } from "../../components/AuthContext";
+import HomeFilledIcon from '@mui/icons-material/HomeFilled';
+import ModeStandbyIcon from '@mui/icons-material/ModeStandby';
+import StarIcon from '@mui/icons-material/Star';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import PersonIcon from '@mui/icons-material/Person';
+import MailIcon from '@mui/icons-material/Mail';
+import ArticleIcon from '@mui/icons-material/Article';
 
 export default function Sidebar() {
     const { user, login, logout, loading } = useContext(AuthContext);
@@ -41,25 +49,37 @@ export default function Sidebar() {
                                     to="/home"
                                     className={location.pathname === "/home" ? "link-active" : ""}
                                 >
-                                    Home
+                                    <div className="link-content">
+                                        <HomeFilledIcon />
+                                        Home
+                                    </div>
                                 </Link>
                                 <Link 
                                     to="/discover"
                                     className={location.pathname === "/discover" ? "link-active" : ""}
                                 >
-                                    Discover
+                                    <div className="link-content">
+                                        <ModeStandbyIcon/>
+                                        Discover
+                                    </div>
                                 </Link>
                                 <Link 
                                     to="/top-artists" 
                                     className={location.pathname === "/top-artists" ? "link-active" : ""}
                                 >
-                                    Top Artists
+                                    <div className="link-content">
+                                        <StarIcon/>
+                                        Top Artists
+                                    </div>
                                 </Link>
                                 <Link 
                                     to="/top-songs"
                                     className={location.pathname === "/top-songs" ? "link-active" : ""}
                                 >
-                                    Top Songs
+                                    <div className="link-content">
+                                        <MusicNoteIcon/>
+                                        Top Songs
+                                    </div>
                                 </Link>
                             </div>
 
@@ -69,16 +89,22 @@ export default function Sidebar() {
                             <div className="section">
                                 <p className="section-label">Library</p>
                                 <Link 
-                                    to={`/profile/${user.id}`}
-                                    className={location.pathname === `/profile/${user.id}` ? "link-active" : ""}
-                                >
-                                    My Profile
-                                </Link>
-                                <Link 
                                     to="/liked"
                                     className={location.pathname === "/liked" ? "link-active" : ""}
                                 >
-                                    Liked Songs
+                                    <div className="link-content">
+                                        <FavoriteIcon/>
+                                        Liked Songs
+                                    </div>
+                                </Link>
+                                <Link 
+                                    to={`/profile/${user.id}`}
+                                    className={location.pathname === `/profile/${user.id}` ? "link-active" : ""}
+                                >
+                                    <div className="link-content">
+                                        <PersonIcon/>
+                                        My Profile
+                                    </div>
                                 </Link>
                             </div>
 
@@ -90,12 +116,22 @@ export default function Sidebar() {
                                 <Link 
                                     to="/inbox" 
                                     className={location.pathname === "/inbox" ? "link-active" : "inbox-link"}>
-                                    Inbox 
+                                    <div className="link-content">
+                                        <MailIcon/>
+                                        {/*add function to show inbox notifications/badges*/}
+                                        Inbox
+                                    </div> 
                                 {/* <span className="badge">3</span> */}
                                 </Link>
                                 <Link 
                                     to="/forum" 
-                                    className={location.pathname === "/forum" ? "link-active" : ""}> Forum</Link>
+                                    className={location.pathname === "/forum" ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <ArticleIcon/>
+                                            {/*add function to show inbox notifications/badges*/}
+                                            Forum
+                                        </div> 
+                                </Link>
                             </div>
                         </>
                     ) : (

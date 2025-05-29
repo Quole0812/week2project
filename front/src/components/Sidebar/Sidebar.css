@@ -95,6 +95,7 @@
   text-decoration: none;
   padding: 0.8rem 1.3rem;
   transition: background 0.2s ease;
+  
 }
 
 .section a:hover {
@@ -103,11 +104,22 @@
 }
 
 .section a.link-active {
-  background: none !important;
-  text-decoration: underline;
-  text-decoration-color: #c9184a;
-  text-underline-offset: 6px;
-  color: white !important;
+  
+  background-color: #c9184a;
+  border-radius: 6px;
+  
+  
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section a .MuiSvgIcon-root {
+  font-size: 1.2rem;
+  margin-bottom: 2px;
 }
 
 .space-padding {
@@ -153,7 +165,7 @@
   font-weight: bold;
   font-size: 0.9rem;
   width: 70%;
-  background-color: #e03e58;
+  background: linear-gradient(230deg, #C9184A 0%, #323949 110%);
   border-radius: 4px;
   border: 0;
   box-shadow: rgba(1,60,136,.5) 0 -1px 3px 0 inset,rgba(82, 0, 97, 0.1) 0 3px 6px 0;
