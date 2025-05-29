@@ -104,7 +104,7 @@ The backend server should now be running on port 3001, and the development serve
 ### post
 ```javascript
 {
-  useriD: "/users/reference1",
+  userId: "/users/reference1",
   title: "ExampleSubject",
   content: "ExampleMessage",
   upvotes: 0,
