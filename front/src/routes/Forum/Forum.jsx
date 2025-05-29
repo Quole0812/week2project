@@ -102,7 +102,7 @@ export default function Forum() {
         <h1 className='forum-title'>Forum Page</h1>
 
         <div className="forum-controls">
-            <button className="filter-btn">filter by: Recent</button>
+            {/* <button className="filter-btn">filter by: Recent</button> */}
             <Link to="/forum/create">
             <button className="create-btn">Create Post</button></Link>
         </div>
@@ -110,8 +110,10 @@ export default function Forum() {
 
         {filteredPosts.map((post) => (
           <div key={post.id} className="post-card">
+            <Link to={`http://127.0.0.1:5173/profile/${post.userId}`} className="no-link-style">
             <div className="post-header">
-              <div className="avatar-circle"></div>
+
+              {/* <div className="avatar-circle"></div> */}
               <img
                 src={
                     (users.find(u => u.id === post.userId)?.profile_picture) || "https://images.unsplash.com/11/sky-rose.jpg?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -121,6 +123,7 @@ export default function Forum() {
                 />
               <span className="username">{users.find(u => u.id === post.userId)?.name }</span>
             </div>
+            </Link>
             <Link to={`/forum/posts/${post.id}`} className="post-card no-link-style">
             <div className="post-title">{post.title}</div>
             {/* <div className="post-content">{post.content || "No content."}</div> */}

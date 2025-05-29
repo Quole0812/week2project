@@ -1,6 +1,7 @@
 .no-link-style {
   text-decoration: none;
-  color:white
+  color:white;
+  /* font-size: medium; */
 }
 
 .no-link-style:visited {
@@ -62,7 +63,7 @@
 
 .comment-input {
     position: absolute;
-    left: 585px;
+    left: 625px;
     width:100%;
     min-height: 60px;
     max-width: 1100px;
@@ -79,13 +80,17 @@
 
 .create-btn3 {
     position:relative;
-    right:-1320px;
+    right:-1380px;
     bottom:-80px;
-    background-color: #c9184a;
+    background:linear-gradient(230deg, #C9184A 0%, #323949 110%);
   color: white;
   padding: 0.5rem 1.25rem;
   border: none;
   border-radius: 25px;
+}
+
+.create-btn3:hover {
+    opacity: 0.5;
 }
 
 .comment {
@@ -97,6 +102,6 @@
   margin-bottom: 1rem;
   line-height: 1.5;
   position:relative;
-  left:320px;
+  left:360px;
   top:120px;
 }

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../../components/AuthContext.jsx";
 import axios from "axios";
@@ -121,13 +121,14 @@ export default function PostDetail() {
         <Sidebar />
       <main className="forum-container">
         <div className="post-card">
+            <Link to={`http://127.0.0.1:5173/profile/${post.userId}`} className="no-link-style">
           <div className="post-header2">
-            <div className="avatar-circle"></div>
             <img src={profilePic} alt="Profile" className="profile-pic" />
             <span className="username">
               {postAuthor.name}
             </span>
           </div>
+       </Link>
 
           <div className="post-title">{post.title}</div>
           <div className="post-content">{post.content}</div>
@@ -155,10 +156,12 @@ export default function PostDetail() {
             const commenterPic = commenter?.profile_picture || profilePic;
             return (
               <div key={c.id} className="comment">
+                <Link to={`http://127.0.0.1:5173/profile/${c.userId}`} className="no-link-style">
                 <div className="post-header">
                   <img src={commenterPic} alt="pfp" className="profile-pic" />
-                  <span className="username">{users.filter((u) => u.id === c.userId)[0].name}</span>
+                  <span className="username">{users.find((u) => u.id === c.userId).name}</span>
                 </div>
+                </Link>
                 <div className="post-content">{c.content}</div>
               </div>
             );
