@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext }   from "../components/AuthContext";
-import Sidebar           from "../components/Sidebar/Sidebar";
+import SidebarLanding          from "../components/Sidebar/SidebarLanding";
 import { Link }          from "react-router-dom";
 import "../styles/Home.css";
 
@@ -38,7 +38,7 @@ export default function Home() {
   if (!user && !loading)
     return (
       <>
-        <Sidebar />
+        <SidebarLanding />
         <main className="home-container">
           <button className="login-btn" onClick={login}>
             Login with Spotify
@@ -49,22 +49,26 @@ export default function Home() {
 
   return (
     <>
-      <Sidebar />
+      <SidebarLanding />
       <main className="home-container">
         <h1 className="page-title">Home</h1>
 
         <section className="discover-card">
           <div className="discover-info">
             <h2>Discover Users</h2>
+
+            <p>
+              Connect with fellow music lovers and create a community
+              exploring new sounds together.
+            </p>
+
             <Link to="/discover" className="connect-btn">
-              <p>
-              Connect with fellow music lovers and create a community exploring
-              new sounds together.
-              </p>
+              Connect Now
             </Link>
           </div>
+
           <div className="disc-art" />
-        </section>
+      </section>
 
         <section className="two-col">
           <div className="dark-panel">

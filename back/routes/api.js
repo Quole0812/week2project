@@ -31,6 +31,7 @@ router.get("/login", function (req, res) {
     "user-read-email",
     "user-library-read",
     "user-top-read",
+    "user-read-recently-played",
   ].join(" ");
 
   res.redirect(
@@ -430,6 +431,75 @@ router.get("/top-artists", async (req, res) => {
         }
       }
     );
+  }
+});
+
+router.get("/recently-played", async (req, res) => {
+  const limit         = req.query.limit || 5;
+  let   access_token  = req.cookies.access_token;
+  const refresh_token = req.cookies.refresh_token;
+
+  const fetchRecent = (token) => new Promise((resolve, reject) => {
+    request.get(
+      {
+        url: "https://api.spotify.com/v1/me/player/recently-played",
+        qs:  { limit },
+        headers: { Authorization: "Bearer " + token },
+        json: true,
+      },
+      (err, { statusCode }, body) => {
+        if (err)               return reject(err);
+        if (statusCode === 401) return reject({ code: 401 });
+        if (statusCode !== 200) return reject(body);
+        resolve(body);
+      }
+    );
+  });
+
+  try {
+    const data = await fetchRecent(access_token);
+    const songs = data.items.map(({ track }) => ({
+      id:   track.id,
+      name: track.name,
+    }));
+    res.json({ songs });
+  } catch (e) {
+    if (e.code === 401 && refresh_token) {
+      request.post(
+        {
+          url: "https://accounts.spotify.com/api/token",
+          form: { grant_type: "refresh_token", refresh_token },
+          headers: {
+            "content-type": "application/x-www-form-urlencoded",
+            Authorization:
+              "Basic " + Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          },
+          json: true,
+        },
+        async (err2, r2, body2) => {
+          if (err2 || r2.statusCode !== 200)
+            return res.status(401).json({ error: "token_refresh_failed" });
+
+          access_token = body2.access_token;
+          res.cookie("access_token", access_token, {
+            httpOnly: true, secure: false, sameSite: "Lax", maxAge: 3600 * 1000,
+          });
+
+          try {
+            const data2 = await fetchRecent(access_token);
+            const songs = data2.items.map(({ track }) => ({
+              id: track.id,
+              name: track.name,
+            }));
+            res.json({ songs });
+          } catch (e2) {
+            res.status(500).json({ error: "spotify_fetch_failed" });
+          }
+        }
+      );
+    } else {
+      res.status(500).json({ error: "spotify_fetch_failed" });
+    }
   }
 });
 
