@@ -17,7 +17,7 @@ export default function Discover() {
     const [filteredUsers, setFilteredUsers] = useState([]);
 
 
-    const apiUrl = "http://127.0.0.1:3001/profile";
+    const apiUrl = "http://127.0.0.1:3001/discover";
       
     useEffect(() => {
         const fetchUsers = async () => {
