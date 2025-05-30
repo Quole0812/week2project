@@ -15,38 +15,70 @@
   margin:0;
 }
 
-.discover-card{
-  width:100%;
-  max-width:3000px;
-  box-sizing:border-box;
-  position:relative;
-  min-height:140px;
-  background:linear-gradient(135deg,#ff4f79 0%,#323949 100%);
-  border-radius:16px;
-  padding: 1.5rem 2.3rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  overflow:hidden;
-  cursor: default !important;
-  margin-left: 0;
+.guest-home {
+  margin-left: 240px; /* assuming sidebar width */
+  padding: 4rem 2rem;
+  height: 100vh;
+  background: linear-gradient(270deg, #C9184A 0%, #323949 105%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.guest-home h1 {
+  font-size: 2.5rem;
+  line-height: 1.4;
+  max-width: 600px;
+}
+
+.home-discover-card {
+  background: linear-gradient(135deg, #c9184a 0%, #23263a 100%);
+  padding: 2.5rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  cursor: default;
 }
 
 .discover-info{max-width:1000px;}
 
-.discover-info h2{
-  font-size:1.45rem;
-  font-weight:700;
-  margin:0 0 .6rem;
+.home-discover-card .discover-info h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
 }
 
-.discover-info p{
-  opacity:.85;
-  margin:0 0 1.2rem;
-  line-height:1.35;
+.home-discover-card .discover-info p {
+  max-width: 420px;
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.6;
 }
 
-.discover-card .connect-btn-1{
+.connect-now-btn {
+  margin-top: 1.2rem;
+  padding: 0.6rem 1.5rem;
+  background-color: #fff;
+  color: #c9184a;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.connect-now-btn:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-1px);
+}
+
+.connect-btn-1{
   display: inline-block;
   padding: 0.8em 1.5em;
   font-size: 1rem;
@@ -63,6 +95,14 @@
   margin-top: 1.5em;
   letter-spacing: 0.02em;
   cursor: pointer !important;
+}
+
+
+.home-discover-card .disc-art {
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 @media(max-width:600px){
@@ -266,3 +306,49 @@
 }
 .artist-list-image{width:100%;height:100%;object-fit:cover}
 .artist-grid-name{font-size:0.3rem;font-weight:100;margin:0}
+
+.home-discover-banner {
+  width: 100%;
+  background: linear-gradient(135deg, #ff4f79 0%, #323949 100%);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.banner-content {
+  max-width: 700px;
+}
+
+.banner-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+
+.banner-content p {
+  font-size: 1.1rem;
+  color: #f1f1f1;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.banner-btn {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+  color: #b12a50;
+  background: #fff;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.banner-btn:hover {
+  background: #f0f0f0;
+}

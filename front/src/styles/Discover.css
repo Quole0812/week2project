@@ -34,6 +34,26 @@
   margin-bottom: 40px;
 }
 
+.discover-search-input-wrapper {
+  position: relative;
+  width: 420px;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #aaa;
+}
+
+.discover-search-bar {
+  width: 100%;
+  font-size: 1.5rem;
+  padding: 5px 48px 12px 40px; /* make room for icon on the left */
+  box-shadow: 5px 10px #0002;
+}
+
 .discover-search-bar{
   width: 420px;
   font-size: 1.5rem;

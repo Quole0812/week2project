@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext }   from "../components/AuthContext";
-import SidebarLanding          from "../components/Sidebar/SidebarLanding";
+import SidebarLanding from "../components/Sidebar/SidebarLanding";
+import Sidebar from "../components/Sidebar/Sidebar";
 import { Link }          from "react-router-dom";
 import "../styles/Home.css";
 
@@ -44,38 +45,32 @@ export default function Home() {
   }, [user]);
 
   if (!user && !loading)
-  if (!user && !loading)
-    return (
-      <>
-        <SidebarLanding />
-        <main className="home-container">
-          <button className="login-btn" onClick={login}>
-            Login with Spotify
-          </button>
-        </main>
-      </>
-    );
+  return (
+    <>
+      <Sidebar />
+      <div className="home-container guest-home">
+        <h1>Welcome to Spotify's all new social experience! </h1>
+      </div>
+    </>
+  );
+
 
   return (
     <>
       <SidebarLanding />
       <main className="home-container">
-        <section className="discover-card">
-          <div className="discover-info">
-            <h2>Discover Users</h2>
-
-            <p>
-              Connect with fellow music lovers and create a community
-              exploring new sounds together.
-            </p>
-
-            <Link to="/discover" className="connect-btn-1">
-              Connect Now
-            </Link>
-          </div>
-
-          <div className="disc-art" />
-        </section>
+        <section className="home-discover-banner">
+  <div className="banner-content">
+    <h2>Discover Users</h2>
+    <p>
+      Connect with fellow music lovers and create a community exploring new
+      sounds together.
+    </p>
+    <Link to="/discover" className="banner-btn">
+      Connect Now
+    </Link>
+  </div>
+</section>
 
         <section className="two-col">
           <div className="dark-panel">

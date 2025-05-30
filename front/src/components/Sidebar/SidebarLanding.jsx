@@ -3,6 +3,7 @@ import { Link }           from "react-router-dom";
 import Dupifylogo         from "./dupifylogo.png";
 import "./SidebarLanding.css";
 import { AuthContext }    from "../../components/AuthContext";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export default function Sidebar() {
   const { user, login, logout, loading } = useContext(AuthContext);
@@ -66,7 +67,12 @@ export default function Sidebar() {
           {/* ——— LIBRARY ——— */}
           <div className="section">
             <p className="section-label">Library</p>
-            <Link to="/liked">Liked Songs</Link>
+            <Link to="/liked" className={location.pathname === "/liked" ? "link-active" : ""}>
+              <div className="link-content">
+                <FavoriteIcon />
+                Liked Songs
+              </div>
+            </Link>
           </div>
          
           <div className="space-padding"></div>
