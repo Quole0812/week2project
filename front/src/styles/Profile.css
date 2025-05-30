@@ -252,14 +252,14 @@ html, body {
 
 .bioContainer {
     margin: 2rem 0rem;
-    max-width: calc(100% - 240px);
+    /* max-width: calc(100% - 240px); */
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
 .bioEditTextField {
-  width: 89%;
+  width: 85%;
   padding: 12px 16px;
   background-color: #1e1e25;
   color: #e5e7eb;
