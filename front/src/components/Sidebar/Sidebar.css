@@ -32,9 +32,9 @@
 
 .logo-title {
     /* padding-bottom: 1rem; */
-    font-size:1.5rem;
+    font-size:2rem;
     color: white;
-    padding-left: 2%;
+    padding-left: 5%;
     font-family: 'Courier New', Courier;
 }
 
@@ -105,7 +105,7 @@
 
 .section a.link-active {
   
-  background-color: #c9184a;
+  background: linear-gradient(230deg, #C9184A 0%, #323949 110%);
   border-radius: 6px;
   
   
