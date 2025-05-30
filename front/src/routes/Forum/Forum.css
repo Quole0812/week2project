@@ -12,6 +12,9 @@
   background-color: #212129;
   min-height: 100vh;
   color: white;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-bar {
@@ -39,10 +42,17 @@
   /* display: flex;
   justify-content: space-between; */
   position:relative;
-  right:-960px;
+  /* right:-960px; */
   margin: 1rem 0;
-  width:60%;
-  margin-left: 360px;
+  /* width:60%; */
+  /* margin-left: 360px; */
+  display: flex;
+  justify-content: flex-end;
+
+  width:84%;
+  align-items: center;
+  
+  
 }
 
 .create-btn {
@@ -51,6 +61,7 @@
   padding: 0.5rem 1.25rem;
   border: none;
   border-radius: 25px;
+  right:40%
 }
 
 .create-btn:hover { 
@@ -64,11 +75,11 @@
   margin-bottom: 1rem;
   width:60%;
   /* position:relative; */
-  margin-left: 360px;
+  /* margin-left: 360px; */
   /* font-size: 1rem; */
   /* display: flex;
-  justify-content: center;
-  margin-bottom: 1rem; */
+  justify-content: center; */
+  /* margin-bottom: 1rem; */
 }
 
 .username {
@@ -126,6 +137,8 @@
   border-radius: 50%; /* circle shape */
   object-fit: cover;
   margin-right: 5px;
+  /* z-index: 100; */
+  position: relative;
 }
 
 
@@ -135,5 +148,12 @@
 
 .no-link-style:visited {
   text-decoration: none;
+}
+
+.all-post {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 

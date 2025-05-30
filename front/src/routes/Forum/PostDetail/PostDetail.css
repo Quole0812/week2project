@@ -10,7 +10,7 @@
 
 /* Main container for the detail page */
 .post-detail-container {
-  margin-left: 230px;
+  margin-left: 240px;
   padding: 2rem;
   background-color: #212129;
   min-height: 100vh;
@@ -18,6 +18,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  min-width: 1100px;
 }
 
 /* Post title and author */
@@ -39,7 +41,7 @@
   padding: 1rem;
   border-radius: 20px;
   width: 100%;
-  max-width: 640px;
+  /* max-width: 600px; */
   margin-bottom: 2rem;
   line-height: 1.5;
 }
@@ -54,10 +56,12 @@
 }
 
 
+
 .comment-input {
-    position: absolute;
-    left: 625px;
+    /* position: absolute;
+    left: 625px; */
     width:100%;
+    min-width: 1100px;
     min-height: 60px;
     max-width: 1100px;
     background-color: #3a3f56;
@@ -72,15 +76,24 @@
 }
 
 .create-btn3 {
-    position:relative;
-    right:-1380px;
-    bottom:-80px;
+    /* position:relative; */
+    /* right:-1380px;
+    bottom:-80px; */
     background:linear-gradient(230deg, #C9184A 0%, #323949 110%);
   color: white;
   padding: 0.5rem 1.25rem;
   border: none;
   border-radius: 25px;
+  /* left:90%; */
+  margin-top: 5px;
+  /* top:10%; */
 }
+
+.buttonfix {
+    display: flex;
+    justify-content: flex-end;
+}
+
 
 .create-btn3:hover {
     opacity: 0.5;
@@ -91,10 +104,41 @@
   padding: 1rem;
   border-radius: 20px;
   width: 100%;
+  min-width: 750px;
   max-width: 1100px;
   margin-bottom: 1rem;
   line-height: 1.5;
   position:relative;
-  left:360px;
-  top:120px;
+  margin-top: 10px;
+  /* left:360px;
+  top:120px; */
+  /* margin-top: 10px; */
+}
+
+.post-card {
+    /* align-items: center; */
+    justify-content: center;
+    min-width: 1100px;
+}
+
+.forum-container2 {
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    margin-left: 240px;
+    margin-top: 20px;
+    overflow-x: hidden;
+}
+
+.comment-form {
+    /* align-items: center; */
+    /* margin-left:70px */
+    display: flex;
+    flex-direction: column;
+    /* align-items: right; */
+}
+
+.comment-list {
+    min-width: 1100px;
 }
