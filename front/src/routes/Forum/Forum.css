@@ -10,7 +10,7 @@
   margin-left: 230px; 
   padding: 2rem;
   background-color: #212129;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   color: white;
   justify-content: center;
   display: flex;

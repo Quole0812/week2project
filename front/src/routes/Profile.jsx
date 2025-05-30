@@ -69,9 +69,7 @@ function Profile() {
       } catch (err) {
         console.error("Error fetching user data: ", err);
       } finally {
-          setTimeout(() => {
             setPageLoading(false);
-          }, 1000);
       }
     };
     fetchData();

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../components/AuthContext";
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
@@ -37,6 +37,7 @@ function EditProfile() {
 
   const [searchArtist, setSearchArtist] = useState("");
   const [searchSong, setSearchSong] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -160,6 +161,7 @@ function EditProfile() {
             const errorData = await res.json();
             console.error("Save failed:", errorData);
         }
+        navigate(`/profile/${id}`);
     } catch (e) {
         console.error("Error saving edits: ", e);
     }
@@ -266,9 +268,9 @@ function EditProfile() {
                     <div className="profileUsernameText">
                       @{userData.name}
                     </div>
-                    <Link className="profileEditLink" to={`/profile/${id}?refresh=true`}>
+                    {/* <Link className="profileEditLink" to={`/profile/${id}?refresh=true`}> */}
                         <button className="profileSaveButton" onClick={() => saveEdit()}>Save</button>
-                    </Link>
+                    {/* </Link> */}
                     <Link className="profileEditLink" to={`/profile/${id}`}>
                         <button className="profileEditButton">Cancel</button>
                     </Link>
