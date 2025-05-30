@@ -15,6 +15,9 @@ export default function CreatePost() {
     const [content, setContent] = useState('');
     const [flair, setFlair] = useState('');
     const maxChars = 300; //set a limit on title 
+    const [selectedFlairs, setSelectedFlairs] = useState([]);
+    const [showFlairOptions, setShowFlairOptions] = useState(false);
+    const flairOptions = ["Discussion", "Question", "News"];
 
     //handle buttom submit here
     const handleSubmit = async (e) => {
@@ -55,14 +58,65 @@ export default function CreatePost() {
                      <span className='char-count'>{title.length}/{maxChars}</span>
 
                 </div>
-                <button
+                {/* <button
                     type="button"
                     className="add-flair-btn"
                     onClick={() => setFlair('Discussion')} // maybe add a dropdown
                 >
                     add filter
-                </button>
+                </button> */}
+                
+                {/* <div className="flair-selector">
+            <button
+                type="button"
+                className="add-flair-btn"
+                onClick={() => setShowFlairOptions(!showFlairOptions)}
+            >
+                {selectedFlairs.length > 0 ? `Flairs (${selectedFlairs.length})` : "Add Flairs"}
+            </button>
 
+            {showFlairOptions && (
+                <ul className="flair-dropdown">
+                {flairOptions.map((option) => {
+                    const isSelected = selectedFlairs.includes(option);
+                    return (
+                    <li
+                        key={option}
+                        className={isSelected ? "selected" : ""}
+                        onClick={() => {
+                        if (isSelected) {
+                            setSelectedFlairs(selectedFlairs.filter(f => f !== option));
+                        } else {
+                            setSelectedFlairs([...selectedFlairs, option]);
+                        }
+                        }}
+                    >
+                        {isSelected ? "✓ " : ""}{option}
+                    </li>
+                    );
+                })}
+                </ul>
+            )}
+
+
+            <div className="selected-flairs">
+                    {selectedFlairs.map(flair => (
+                        <span key={flair} className="flair-chip">
+                            {flair}
+                            <button
+                            type="button"
+                            className="remove-flair"
+                            onClick={() =>
+                                setSelectedFlairs(selectedFlairs.filter(f => f !== flair))
+                            }
+                            >
+                            ✕
+                            </button>
+                        </span>
+                        ))}
+                    </div>
+                </div>
+                 */}
                 <textarea
                     className="body-textarea"
                     placeholder="Body Text (optional)"

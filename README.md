@@ -14,16 +14,16 @@ This project is a web-based music social media app that allows users to login th
 
 - **Liked Songs Page**: Displays user’s liked songs with album pictures. Clicking on the song opens the song on Spotify.
 	- Status: Complete
-- **User’s Top Artists Page**: Displays the user’s top artists for the last 4 weeks, the last 6 months, and the last twelve months. Clicking on an artist's picture opens the artist's profile on Spotify.
+- **User’s Top Artists Page**: Displays the user’s top artists for the last 4 weeks and the last twelve months. Clicking on an artist's picture opens the artist's profile on Spotify.
 	- Status: Complete
-- **User’s Top Songs Page:**: Displays the user’s top songs for the last 4 weeks, the last 6 months, and the last twelve months. Clicking on the album picture opens the album on Spotify. 
+- **User’s Top Songs Page:**: Displays the user’s top songs for the last 4 weeks and the last twelve months. Clicking on the album picture opens the album on Spotify. 
     - Status: Complete
 - **User Profile Page:** Allows users to view and edit their profile. They can choose to display artists and songs from their Top/Liked pages. They can also make their profile private (different from their Spotify profile). 
     - Status: Complete
 - **Discover Page:**: Allows searching for users in the database with links to view their profiles, and displays recently searched users.
     - Status: Complete
-- **Forums Page:**: Displays all discussion boards, which users can click on to access the posts. Forums can also be public or private, have moderators, and allow users to reply and react to posts.
-    - Status: Not functional
+- **Forums Page:**: Displays all discussion boards, which users can click on to access the posts. Forums allow users to reply and react to posts.
+    - Status: Functional
 - **Inbox Page**: Displays chats with other users on the website and allows users to send messages.
 	- Status: Functional with a few bugs 
 

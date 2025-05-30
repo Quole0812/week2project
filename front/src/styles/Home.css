@@ -2,7 +2,7 @@
   margin-left:220px;
   padding:2rem 2.5rem;
   min-height:100vh;
-  background:#0f111d;
+  background:#212129;
   color:#fff;
   display:flex;
   flex-direction:column;
@@ -33,15 +33,21 @@
   max-width: 600px;
 }
 
-.home-discover-card {
-  background: linear-gradient(135deg, #c9184a 0%, #23263a 100%);
-  padding: 2.5rem;
-  border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #fff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.home-discover-card{
+  width:100%;
+  max-width:3000px;
+  box-sizing:border-box;
+  position:relative;
+  min-height:140px;
+  background:linear-gradient(135deg,#ff4f79 0%,#323949 100%);
+  border-radius:16px;
+  padding: 1.5rem 2.3rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  overflow:hidden;
+  cursor: default !important;
+  margin-left: 0;
 }
 
 .discover-info{max-width:1000px;}
@@ -76,14 +82,23 @@
   transform: translateY(-1px);
 }
 
-.connect-btn{
-  background:#fff;
-  color:#1b1e2f;
-  padding:.55rem 1.6rem;
-  border:none;
-  border-radius:9999px;
-  font-weight:600;
-  cursor:pointer;
+.discover-card .connect-btn-1{
+  display: inline-block;
+  padding: 0.8em 1.5em;
+  font-size: 1rem;
+  color: #b12a50 !important; /* dark pink */
+  background: #fff !important;
+  border: none;
+  border-radius: 999px; /* pill shape */
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-top: 1.5em;
+  letter-spacing: 0.02em;
+  cursor: pointer !important;
 }
 
 .disc-art {
@@ -105,7 +120,7 @@
 }
 
 .dark-panel{
-  background:#1b1e2f;
+  background:#323949;
   border-radius:12px;
   padding:1.5rem 1.4rem;
   display:flex;
@@ -176,7 +191,7 @@
 }
 
 .song-list li{
-  background:#262a3d;
+  background:#4C5265;
   border-radius:8px;
   padding:.6rem .8rem;
   display:grid;
@@ -293,4 +308,4 @@
   margin: 0 auto .6rem auto;
 }
 .artist-list-image{width:100%;height:100%;object-fit:cover}
-.artist-grid-name{font-size:0.5rem;font-weight:200;margin:0}
+.artist-grid-name{font-size:0.3rem;font-weight:100;margin:0}

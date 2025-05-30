@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext }   from "../components/AuthContext";
-import Sidebar           from "../components/Sidebar/Sidebar";
+import SidebarLanding          from "../components/Sidebar/SidebarLanding";
 import { Link }          from "react-router-dom";
 import "../styles/Home.css";
 
@@ -18,12 +18,20 @@ export default function Home() {
   useEffect(() => {
     if (!user) return;
 
-    fetchJSON("http://127.0.0.1:3001/api/top-artists?limit=3")
+    fetchJSON("http://127.0.0.1:3001/api/top-artists?limit=10")
       .then((d) => setTopArtists((d.items || []).sort((a,b)=>b.play_count-a.play_count)))
       .catch(console.error);
 
-    fetchJSON("http://127.0.0.1:3001/api/top-songs?limit=4")
+    fetchJSON("http://127.0.0.1:3001/api/top-songs?limit=6")
       .then((d) => setTopSongs((d.items || []).sort((a,b)=>b.play_count-a.play_count)))
+      .catch(console.error);
+
+    fetchJSON("http://127.0.0.1:3001/api/messages?limit=3")
+      .then((d) => setMessages(d.items || []))
+      .catch(console.error);
+
+    fetchJSON("http://127.0.0.1:3001/api/forum-activity?limit=2")
+      .then((d) => setThreads(d.items || []))
       .catch(console.error);
 
     fetchJSON("http://127.0.0.1:3001/api/messages?limit=3")
@@ -45,22 +53,26 @@ export default function Home() {
     </>
   );
 
+
   return (
     <>
-      <Sidebar />
+      <SidebarLanding />
       <main className="home-container">
-        <h1 className="page-title">Home</h1>
 
-        <section className="home-discover-card">
+        <section className="discover-card">
           <div className="discover-info">
             <h2>Discover Users</h2>
+
             <p>
-              Connect with fellow music lovers and create a community exploring new sounds together.
+              Connect with fellow music lovers and create a community
+              exploring new sounds together.
             </p>
-            <Link to="/discover" className="connect-now-btn">
+
+            <Link to="/discover" className="connect-btn-1">
               Connect Now
             </Link>
           </div>
+
           <div className="disc-art" />
         </section>
 
@@ -75,7 +87,7 @@ export default function Home() {
               <p className="empty-note">No data yet.</p>
             ) : (
               <div className="artist-grid">
-                {topArtists.map((a) => {
+                {topArtists.slice(0, 10).map((a) => {
                   const imgSrc =
                     a.images?.[0]?.url
                     || a.image
@@ -108,16 +120,15 @@ export default function Home() {
               <p className="empty-note">No data yet.</p>
             ) : (
               <ol className="song-list">
-                {topSongs.map((s, idx) => (
-                  <li key={s.id}>
-                    <span className="rank">{String(idx + 1).padStart(2, "0")}</span>
-                    <div className="song-meta">
-                      <strong>{s.name}</strong>
-                      <em>{s.artist}</em>
-                    </div>
-                    
-                  </li>
-                ))}
+              {topSongs.slice(0, 6).map((s, idx) => (
+                <li key={s.id}>
+                  <span className="rank">{String(idx + 1).padStart(2, "0")}</span>
+                  <div className="song-meta">
+                    <strong>{s.name}</strong>
+                    <em>{s.artist}</em>
+                  </div>
+                </li>
+              ))}
               </ol>
             )}
           </div>
