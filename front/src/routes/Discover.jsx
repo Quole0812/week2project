@@ -90,6 +90,9 @@ export default function Discover() {
                         )}
 
                         <div className="discover-main-content">
+                            <div className="scrollable-content">
+
+                            
                             {loading ? (
                                 <div className="discover-container">
                                     {[...Array(3)].map((_, index) => (
@@ -134,6 +137,7 @@ export default function Discover() {
                                     ))}
                                 </div>
                             )}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -72,22 +72,16 @@
 
 .discover-main-content {
   background: #323949;
-  /* overflow-y: auto; */
-  overflow: auto;
   border-radius: 18px;
   width: 100%;
   max-width: 900px;
-  padding: 2rem;
-  min-height: 300px;
-  max-height: 500px;
+  padding: 0; /* No padding here! Move it inside */
+  height: 500px;
   box-shadow: 0 6px 32px #00000030;
+  overflow: hidden; /* clip scrollbars visually */
+  display: flex;
+  flex-direction: column;
 }
-
-.discover-main-content::-webkit-scrollbar {
-  display:none;
-}
-
-
 
 .discover-container {
   display: grid;
@@ -140,4 +134,31 @@
 
 .discover-card:hover .discover-profile-picture {
   border: 2px solid #C9184A;
+}
+
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+  scrollbar-width: thin;
+  scrollbar-color: #C9184A #2b2f3b;
+}
+
+/* WebKit (Chrome) styling */
+.scrollable-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background: #2b2f3b;
+  border-radius: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background: #C9184A;
+  border-radius: 8px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: #ff3366;
 }
