@@ -115,11 +115,13 @@ export default function PostDetail() {
     "https://images.unsplash.com/11/sky-rose.jpg?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 
-    if (!post) return <div>Something happened to the post</div>;
+    if (!post || !users) {
+        return <div>Something happened to the post</div>;
+    } else {
     return (
         <>
         <Sidebar />
-      <main className="forum-container">
+      <main className="forum-container2">
         <div className="post-card">
             <Link to={`http://127.0.0.1:5173/profile/${post.userId}`} className="no-link-style">
           <div className="post-header2">
@@ -146,7 +148,9 @@ export default function PostDetail() {
             placeholder="Add a comment..."
             className="comment-input"
           />
+          <div className="buttonfix">
           <button type="submit" className="create-btn3">Post</button>
+            </div>
         </form>
         </div>
 
@@ -172,4 +176,5 @@ export default function PostDetail() {
     );
 
     
+}
 }

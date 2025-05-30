@@ -102,12 +102,11 @@ export default function Forum() {
         <h1 className='forum-title'>Forum Page</h1>
 
         <div className="forum-controls">
-            {/* <button className="filter-btn">filter by: Recent</button> */}
             <Link to="/forum/create">
             <button className="create-btn">Create Post</button></Link>
         </div>
 
-
+        <div className='all-post'>
         {filteredPosts.map((post) => (
           <div key={post.id} className="post-card">
             <Link to={`http://127.0.0.1:5173/profile/${post.userId}`} className="no-link-style">
@@ -136,6 +135,7 @@ export default function Forum() {
             </div>
           </div>
         ))}
+        </div>
 
 
         </main>
