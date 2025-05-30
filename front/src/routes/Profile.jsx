@@ -24,6 +24,9 @@ function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setTimeout(function() {
+          console.log("Delayed execution");
+        }, 1000);
         const userRes = await fetch(`http://127.0.0.1:3001/profile/${id}`);
         const userJson = await userRes.json();
         setUserData(userJson);
