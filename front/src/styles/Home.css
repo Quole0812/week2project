@@ -306,3 +306,49 @@
 }
 .artist-list-image{width:100%;height:100%;object-fit:cover}
 .artist-grid-name{font-size:0.3rem;font-weight:100;margin:0}
+
+.home-discover-banner {
+  width: 100%;
+  background: linear-gradient(135deg, #ff4f79 0%, #323949 100%);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.banner-content {
+  max-width: 700px;
+}
+
+.banner-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: #fff;
+}
+
+.banner-content p {
+  font-size: 1.1rem;
+  color: #f1f1f1;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.banner-btn {
+  display: inline-block;
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+  color: #b12a50;
+  background: #fff;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.banner-btn:hover {
+  background: #f0f0f0;
+}

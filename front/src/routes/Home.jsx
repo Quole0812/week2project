@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext }   from "../components/AuthContext";
-import SidebarLanding          from "../components/Sidebar/SidebarLanding";
+import SidebarLanding from "../components/Sidebar/SidebarLanding";
+import Sidebar from "../components/Sidebar/Sidebar";
 import { Link }          from "react-router-dom";
 import "../styles/Home.css";
 
@@ -58,17 +59,17 @@ export default function Home() {
     <>
       <SidebarLanding />
       <main className="home-container">
-        <section className="home-discover-card">
-  <div className="discover-info">
+        <section className="home-discover-banner">
+  <div className="banner-content">
     <h2>Discover Users</h2>
     <p>
-      Connect with fellow music lovers and create a community exploring new sounds together.
+      Connect with fellow music lovers and create a community exploring new
+      sounds together.
     </p>
-    <Link to="/discover" className="connect-now-btn">
+    <Link to="/discover" className="banner-btn">
       Connect Now
     </Link>
   </div>
-  <div className="disc-art" />
 </section>
 
         <section className="two-col">
