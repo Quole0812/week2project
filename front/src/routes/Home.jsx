@@ -58,23 +58,18 @@ export default function Home() {
     <>
       <SidebarLanding />
       <main className="home-container">
-
-        <section className="discover-card">
-          <div className="discover-info">
-            <h2>Discover Users</h2>
-
-            <p>
-              Connect with fellow music lovers and create a community
-              exploring new sounds together.
-            </p>
-
-            <Link to="/discover" className="connect-btn-1">
-              Connect Now
-            </Link>
-          </div>
-
-          <div className="disc-art" />
-        </section>
+        <section className="home-discover-card">
+  <div className="discover-info">
+    <h2>Discover Users</h2>
+    <p>
+      Connect with fellow music lovers and create a community exploring new sounds together.
+    </p>
+    <Link to="/discover" className="connect-now-btn">
+      Connect Now
+    </Link>
+  </div>
+  <div className="disc-art" />
+</section>
 
         <section className="two-col">
           <div className="dark-panel">
