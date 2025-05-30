@@ -3,6 +3,7 @@ import { AuthContext } from "../components/AuthContext";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Favorite from "@mui/icons-material/Favorite";
 import "../styles/LikedSongs.css";
+import { useNavigate } from "react-router-dom";
 
 export default function LikedSongs() {
   const { user, login, loading } = useContext(AuthContext);
@@ -11,6 +12,13 @@ export default function LikedSongs() {
   const [offset, setOffset] = useState(0);
   const [total,  setTotal]  = useState(0);
   const [busy,   setBusy]   = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
   const fetchBatch = (batchOffset) => {
     if (busy) return;
@@ -37,8 +45,8 @@ export default function LikedSongs() {
     }
   }, [user]);
 
-  if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
-  if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
+  // if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
+  // if (!user && !loading) return <button onClick={login}>Login with Spotify</button>;
 
   return (
     <>

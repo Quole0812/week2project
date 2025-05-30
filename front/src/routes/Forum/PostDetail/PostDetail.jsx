@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../../components/AuthContext.jsx";
 import axios from "axios";
@@ -7,11 +7,19 @@ import "./PostDetail.css";
 
 export default function PostDetail() {
     const { postId } = useParams();
-    const { user } = useContext(AuthContext);
+    // const { user } = useContext(AuthContext);
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
     const [users, setUsers] = useState([]);
     const [newComment, setNewComment] = useState("");
+    const navigate = useNavigate();
+    const { user, login, logout, loading } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
     const handleUpvote = async (postId) => {
         const fetchData = async () => {
@@ -122,6 +130,9 @@ export default function PostDetail() {
         <>
         <Sidebar />
       <main className="forum-container2">
+         <Link to={`http://127.0.0.1:5173/forum`} className="no-link-style">
+        <button className="return-btn3">Return</button>
+        </Link>
         <div className="post-card">
             <Link to={`http://127.0.0.1:5173/profile/${post.userId}`} className="no-link-style">
           <div className="post-header2">

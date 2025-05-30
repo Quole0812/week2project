@@ -2,9 +2,9 @@
   margin-left: 220px;
   padding: 2rem 3rem;
   min-height: 100vh;
-  background: #0f111d;
+  background: #212129;
   color: #fff;
-  background: #0f111d;
+  background: #212129;
   color: #fff;
 }
 
@@ -30,10 +30,10 @@
 }
 
 .card {
-  background:#1b1e2f;
+  background:#323949;
   border-radius:12px; padding:.8rem; display:flex; flex-direction:column; gap:.55rem;
   transition:transform 120ms ease;
-  background:#1b1e2f;
+  background:#323949;
   border-radius:12px; padding:.8rem; display:flex; flex-direction:column; gap:.55rem;
   transition:transform 120ms ease;
 }

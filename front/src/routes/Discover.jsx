@@ -6,6 +6,7 @@ import { AuthContext } from "../components/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -16,6 +17,13 @@ export default function Discover() {
     const [error, setError] = useState(null);
     const [searchValue, setSearchValue] = useState("");
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
 
     const apiUrl = "http://127.0.0.1:3001/discover";

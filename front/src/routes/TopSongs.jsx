@@ -6,6 +6,7 @@ import TopSongsGrid from "../components/TopSongs/TopSongsGrid.jsx";
 import TopSongsList from "../components/TopSongs/TopSongsList";
 import axios from "axios";
 import "../styles/TopSongs.css";
+import { useNavigate } from "react-router-dom";
 
 const TopSongs = () => {
   const { user, loading } = useContext(AuthContext);
@@ -13,6 +14,13 @@ const TopSongs = () => {
   const [timeRange, setTimeRange] = useState("medium_term");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
   const timeRangeLabels = {
     short_term: "Last month",
@@ -60,12 +68,14 @@ const TopSongs = () => {
             <h2>Error</h2>
             <p>{error}</p>
           </div>
-        ) : !user ? (
-          <div className="not-logged-in">
-            <h2>Please log in to view your top songs</h2>
-            <p>You need to be logged in with Spotify to see your top songs.</p>
-          </div>
-        ) : (
+        ) 
+        // : !user ? (
+        //   <div className="not-logged-in">
+        //     <h2>Please log in to view your top songs</h2>
+        //     <p>You need to be logged in with Spotify to see your top songs.</p>
+        //   </div>
+        // ) 
+        : (
           <>
             <TopSongsGrid songs={songs.slice(0, 3)} />
             <TopSongsList songs={songs.slice(3)} />

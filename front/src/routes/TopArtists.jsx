@@ -6,6 +6,8 @@ import TopArtistsGrid from "../components/TopArtists/TopArtistsGrid";
 import TopArtistsList from "../components/TopArtists/TopArtistsList";
 import axios from "axios";
 import "../styles/TopArtists.css";
+import { useNavigate } from "react-router-dom";
+
 
 const TopArtists = () => {
   const { user, loading } = useContext(AuthContext);
@@ -13,6 +15,13 @@ const TopArtists = () => {
   const [timeRange, setTimeRange] = useState("medium_term");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
   const timeRangeLabels = {
     short_term: "Last month",

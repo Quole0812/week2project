@@ -82,7 +82,7 @@
   display: inline-block;
   padding: 0.8em 1.5em;
   font-size: 1rem;
-  color: #b12a50 !important; /* dark pink */
+  color: #C9184A  !important; /* dark pink */
   background: #fff !important;
   border: none;
   border-radius: 999px; /* pill shape */
@@ -138,12 +138,12 @@
 
 .panel-head a{
   font-size:.78rem;
-  color:#ff4f79;
+  color:#C9184A ;
   text-decoration:none;
 }
 
 .pill{
-  background:#ff4f79;
+  background:#C9184A ;
   color:#fff;
   font-size:.75rem;
   padding:.05rem .6rem;
@@ -221,7 +221,7 @@
   width:72px;
   height:72px;
   border-radius:50%;
-  background:#ff4f79 center/cover no-repeat;
+  background:#C9184A  center/cover no-repeat;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -268,7 +268,7 @@
   width:36px;
   height:36px;
   border-radius:50%;
-  background:#ff4f79;
+  background:#C9184A ;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -309,7 +309,7 @@
 
 .home-discover-banner {
   width: 100%;
-  background: linear-gradient(135deg, #ff4f79 0%, #323949 100%);
+  background: linear-gradient(135deg, #C9184A  0%, #323949 100%);
   border-radius: 16px;
   padding: 2rem 3rem;
   display: flex;
@@ -341,7 +341,7 @@
   display: inline-block;
   padding: 0.75rem 1.6rem;
   font-size: 1rem;
-  color: #b12a50;
+  color: #C9184A ;
   background: #fff;
   border-radius: 9999px;
   font-weight: 600;
