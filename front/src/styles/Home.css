@@ -19,7 +19,7 @@
   margin-left: 0px; /* assuming sidebar width */
   padding: 4rem 2rem;
   height: 100vh;
-  background: linear-gradient(270deg, #C9184A 0%, #323949 105%);
+  background: linear-gradient(270deg, #C9184A 0%, #323949 80%);
   color: white;
   display: flex;
   align-items: center;
