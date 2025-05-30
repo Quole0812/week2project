@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import SearchIcon from '@mui/icons-material/Search';
 
 
 
@@ -63,12 +64,15 @@ export default function Discover() {
                 <div className="discover-center-wrapper">
                     <div className="discover-top">
                         <div className="discover-search-wrapper">
-                            <input
+                            <div className="discover-search-input-wrapper">
+                                <SearchIcon className="search-icon" />
+                                <input
                                 type="search"
                                 className="discover-search-bar"
                                 placeholder="Search for users..."
                                 onChange={(e) => handleSearch(users, e.target.value)}
-                            />
+                                />
+                            </div>
                         </div>
 
                         {searchValue !== "" ? (
@@ -93,14 +97,14 @@ export default function Discover() {
                                 <div className="discover-container">
                                     {filteredUsers.length > 0 ? (
                                         filteredUsers.map((user, index) => (
-                                            <div className="discover-card" key={index}>
-                                                <Link to={`../profile/${user.id}`} className="discover-card-link">
+                                            <Link to={`../profile/${user.id}`} className="discover-card-link">
+                                                <div className="discover-card" key={index}>
                                                     <div className="discover-profile-picture-wrapper">
                                                     <img src={user?.profile_picture} className="discover-profile-picture" />
                                                     </div>
                                                     <strong className="discover-card-text">{user.name}</strong>
-                                                </Link>
-                                            </div>
+                                                </div>
+                                            </Link>
                                         ))
                                     ) : (
                                         <div>
@@ -111,14 +115,14 @@ export default function Discover() {
                             ) : (
                                 <div className="discover-container">
                                     {users.map((user, index) => (
-                                        <div className="discover-card" key={index}>
-                                            <Link to={`../profile/${user.id}`} className="discover-card-link">
+                                        <Link to={`../profile/${user.id}`} className="discover-card-link">
+                                            <div className="discover-card" key={index}>
                                                 <div className="discover-profile-picture-wrapper">
                                                 <img src={user?.profile_picture} className="discover-profile-picture" />
                                                 </div>
                                                 <strong className="discover-card-text">{user.name}</strong>
-                                            </Link>
-                                        </div>
+                                            </div>
+                                        </Link>
                                     ))}
                                 </div>
                             )}

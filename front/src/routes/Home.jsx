@@ -44,22 +44,21 @@ export default function Home() {
   }, [user]);
 
   if (!user && !loading)
-  if (!user && !loading)
-    return (
-      <>
-        <SidebarLanding />
-        <main className="home-container">
-          <button className="login-btn" onClick={login}>
-            Login with Spotify
-          </button>
-        </main>
-      </>
-    );
+  return (
+    <>
+      <Sidebar />
+      <div className="home-container guest-home">
+        <h1>Welcome to Spotify's all new social experience! </h1>
+      </div>
+    </>
+  );
+
 
   return (
     <>
       <SidebarLanding />
       <main className="home-container">
+
         <section className="discover-card">
           <div className="discover-info">
             <h2>Discover Users</h2>
