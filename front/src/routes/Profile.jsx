@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../components/AuthContext";
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
@@ -20,6 +20,13 @@ function Profile() {
   const [userData, setUserData] = useState(null);
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
+  const navigate = useNavigate();
+
+   useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {

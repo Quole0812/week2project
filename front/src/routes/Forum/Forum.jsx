@@ -1,17 +1,25 @@
 import Sidebar from '../../components/Sidebar/Sidebar.jsx';
 import { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/AuthContext.jsx";
 import './Forum.css'
 import axios from "axios";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ShareIcon from '@mui/icons-material/Share';
 
+
 export default function Forum() {
     const { user, login, logout, loading } = useContext(AuthContext);
     const [posts, setPosts] = useState([]);
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
+
+        useEffect(() => {
+        if (!loading && !user) {
+            navigate('/home');
+        }
+    }, [user, loading, navigate]);
 
     const filteredPosts = posts.filter(post =>
         post.title.toLowerCase().includes(searchTerm.toLowerCase())

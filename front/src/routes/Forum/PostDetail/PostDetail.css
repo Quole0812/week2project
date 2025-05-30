@@ -94,6 +94,24 @@
     justify-content: flex-end;
 }
 
+.return-btn3 {
+    position:relative;
+    /* right:-1380px;
+    bottom:-80px; */
+    background:linear-gradient(230deg, #C9184A 0%, #323949 110%);
+  color: white;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 25px;
+  left:-500px;
+  margin-top: 5px;
+  /* top:10%; */
+  margin-bottom: 5px;
+}
+
+.return-btn3:hover {
+    opacity: 0.5;
+}
 
 .create-btn3:hover {
     opacity: 0.5;
