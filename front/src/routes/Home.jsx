@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     if (!user) return;
 
-    fetchJSON("http://127.0.0.1:3001/api/top-artists?limit=10")
+    fetchJSON("http://127.0.0.1:3001/api/top-artists?limit=16")
       .then((d) => setTopArtists((d.items || []).sort((a,b)=>b.play_count-a.play_count)))
       .catch(console.error);
 
@@ -83,7 +83,7 @@ export default function Home() {
               <p className="empty-note">No data yet.</p>
             ) : (
               <div className="artist-grid">
-                {topArtists.slice(0, 10).map((a) => {
+                {topArtists.slice(0, 14).map((a) => {
                   const imgSrc =
                     a.images?.[0]?.url
                     || a.image
