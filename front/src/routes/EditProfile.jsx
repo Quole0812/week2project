@@ -266,7 +266,7 @@ function EditProfile() {
                     <div className="profileUsernameText">
                       @{userData.name}
                     </div>
-                    <Link className="profileEditLink" to={`/profile/${id}`}>
+                    <Link className="profileEditLink" to={`/profile/${id}?refresh=true`}>
                         <button className="profileSaveButton" onClick={() => saveEdit()}>Save</button>
                     </Link>
                     <Link className="profileEditLink" to={`/profile/${id}`}>

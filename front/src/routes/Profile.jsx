@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useNavigate } from "react-router";
+import { Link, useParams, useNavigate, useLocation } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../components/AuthContext";
 import Sidebar from '../components/Sidebar/Sidebar.jsx';
@@ -20,6 +20,7 @@ function Profile() {
   const [userData, setUserData] = useState(null);
   const [artists, setArtists] = useState([]);
   const [songs, setSongs] = useState([]);
+  const location = useLocation();
   const navigate = useNavigate();
 
    useEffect(() => {
@@ -31,9 +32,6 @@ function Profile() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setTimeout(function() {
-          console.log("Delayed execution");
-        }, 1000);
         const userRes = await fetch(`http://127.0.0.1:3001/profile/${id}`);
         const userJson = await userRes.json();
         setUserData(userJson);
@@ -75,7 +73,7 @@ function Profile() {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, location.search]);
 
   const messageUser = async () => {
     try {
