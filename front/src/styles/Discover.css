@@ -1,7 +1,15 @@
 .flex-row {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
+  gap: 1.5rem;
+}
+
+.discover-top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* ⬅️ stays */
+  gap: 1.5rem;
 }
 
 .discover-main-bg {
@@ -11,32 +19,27 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding: 6rem 1rem;
 }
 
 .discover-center-wrapper {
-  display: flex;
-  justify-content: center;
   width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  margin-left: 240px; 
 }
 
-.discover-top {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Keep this for left-aligning header + content */
-}
 
 .discover-search-wrapper {
+  width: 100%;
   display: flex;
-  justify-content: center;
-  width: 100%; /* 👈 this is key */
-  margin-bottom: 40px;
+  justify-content: flex-start; 
 }
 
 .discover-search-input-wrapper {
   position: relative;
-  width: 420px;
+  width: 100%;
+  max-width: 420px;
 }
 
 .search-icon {
@@ -49,97 +52,65 @@
 
 .discover-search-bar {
   width: 100%;
-  font-size: 1.5rem;
-  padding: 5px 48px 12px 40px; /* make room for icon on the left */
+  font-size: 1.2rem;
+  padding: 0.6rem 1.5rem 0.8rem 2.5rem;
   box-shadow: 5px 10px #0002;
-}
-
-.discover-search-bar{
-  width: 420px;
-  font-size: 1.5rem;
-  padding: 5px 48px 12px 40px;
-  box-shadow: 5px 10px #0002;
+  border: none;
+  border-radius: 8px;
 }
 
 .discover-results-header {
   color: white;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 5px;
-  display: flex;
+  margin-bottom: 0.5rem;
+  font-family: "Inter", sans-serif;
 }
 
 .discover-main-content {
   background: #323949;
   overflow-y: auto;
   border-radius: 18px;
-  width: 900px;
-  padding: 40px;
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
   min-height: 300px;
   max-height: 500px;
   box-shadow: 0 6px 32px #00000030;
-  
-}
-
-
-
-.discover-card {
-  background-color: #323949;
-  /* border: 1px solid #000000; */
-  padding: 10px;
-  font-size: 30px;
-  min-height: 300px;
-  max-width: 300px;
-  text-align: center;
-  margin: 15px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  
-}
-
-.discover-card a {
-  all: unset;
-  display: contents;
-  background: none !important;
-  color: inherit !important;
-}
-
-.discover-card-link {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  width: 100%;
-  height: 100%;
-}
-
-.discover-card:hover {
-  background-color: #4C5265;
-  cursor: pointer; 
-}
-
-.discover-card-text {
-  color: white;
-  font-family: "Inter", sans-serif;
-  font-style: normal;
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-top: auto;
-  vertical-align: bottom;
 }
 
 .discover-container {
   display: grid;
-  grid-template-columns: 30% 30% 30%;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
   justify-content: center;
-  background-color:#323949;
+  background-color: #323949;
+  padding: 2rem 1rem;
+}
+
+.discover-card {
+  background-color: #323949;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.discover-card:hover {
+  background-color: #4C5265;
+  cursor: pointer;
+}
+
+.discover-card-text {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: left;
+  width: 100%;
 }
 
 .discover-profile-picture-wrapper {
@@ -149,23 +120,14 @@
 }
 
 .discover-profile-picture {
-  /* Ellipse 6 */
-  display: flex;
-  align-items: center;
-  box-sizing: border-box;
   border-radius: 50%;
-  width: 182px;
-  height: 182px;
+  width: 100%;
+  max-width: 182px;
+  aspect-ratio: 1 / 1;
   margin-top: 12px;
   background: #323949;
-  
-
 }
 
 .discover-card:hover .discover-profile-picture {
   border: 2px solid #C9184A;
-}
-
-.discover-item {
-  position: relative;
 }
