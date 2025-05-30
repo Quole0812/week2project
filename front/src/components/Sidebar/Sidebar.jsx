@@ -15,206 +15,118 @@ import ArticleIcon from '@mui/icons-material/Article';
 export default function Sidebar() {
     const { user, login, logout, loading } = useContext(AuthContext);
     const location = useLocation();
+    const hideLinks = location.pathname === "/home";
     const [activeLink, setActiveLink] = useState(location.pathname);
 
-    if(loading) {
-        return <div className="sidebar"></div>
-    } else {
-        return (
-            <>
-            {console.log("User in:", activeLink)}
-                <div className="sidebar">
-                    <div className="logo-container">
+    if (loading) {
+        return <div className="sidebar"></div>;
+    }
+
+    return (
+        <>
+            <div className="sidebar">
+                <div className="logo-container">
                     <Link to="/">
-                    <img src={Dupifylogo} alt="Dupify-logo" className="sidebar-logo" />
+                        <img src={Dupifylogo} alt="Dupify-logo" className="sidebar-logo" />
                     </Link>
-                    <h1 className = "logo-title">Dupify</h1>
-                    </div>
-                    {user ? (
-                        // logged in view
-                        <>
-                            <Link className="no-link-style" to={`/profile/${user.id}`}>
-                                <div className="user-card">
-                                    <img className="avatar1" src={user.images[1].url}></img>
-                                    <div className="user-info">
+                    <h1 className="logo-title">Dupify</h1>
+                </div>
+
+                {user && (
+                    <>
+                        <Link className="no-link-style" to={`/profile/${user.id}`}>
+                            <div className="user-card">
+                                <img className="avatar1" src={user.images[1].url}></img>
+                                <div className="user-info">
                                     <p className="name">{user.display_name}</p>
                                     <p className="premium">{user.product.charAt(0).toUpperCase() + user.product.slice(1)}</p>
-                                    </div>
                                 </div>
-                            </Link>
-
-                            <div className="section">
-                                <p className="section-label">Menu</p>
-                                <Link 
-                                    to="/home"
-                                    className={location.pathname === "/home" ? "link-active" : ""}
-                                >
-                                    <div className="link-content">
-                                        <HomeFilledIcon />
-                                        Home
-                                    </div>
-                                </Link>
-                                <Link 
-                                    to="/discover"
-                                    className={location.pathname === "/discover" ? "link-active" : ""}
-                                >
-                                    <div className="link-content">
-                                        <ModeStandbyIcon/>
-                                        Discover
-                                    </div>
-                                </Link>
-                                <Link 
-                                    to="/top-artists" 
-                                    className={location.pathname === "/top-artists" ? "link-active" : ""}
-                                >
-                                    <div className="link-content">
-                                        <StarIcon/>
-                                        Top Artists
-                                    </div>
-                                </Link>
-                                <Link 
-                                    to="/top-songs"
-                                    className={location.pathname === "/top-songs" ? "link-active" : ""}
-                                >
-                                    <div className="link-content">
-                                        <MusicNoteIcon/>
-                                        Top Songs
-                                    </div>
-                                </Link>
                             </div>
+                        </Link>
 
-                            <div className="space-padding">
-                            </div>
-
-                            <div className="section">
-                                <p className="section-label">Library</p>
-                                <Link 
-                                    to="/liked"
-                                    className={location.pathname === "/liked" ? "link-active" : ""}
-                                >
-                                    <div className="link-content">
-                                        <FavoriteIcon/>
-                                        Liked Songs
-                                    </div>
-                                </Link>
-                                <Link 
-                                    to={`/profile/${user.id}`}
-                                    className={location.pathname === `/profile/${user.id}` ? "link-active" : ""}
-                                >
-                                    <div className="link-content">
-                                        <PersonIcon/>
-                                        My Profile
-                                    </div>
-                                </Link>
-                            </div>
-
-                            <div className="space-padding">
-                            </div>
-
-                            <div className="section">
-                                <p className="section-label">Social</p>
-                                <Link 
-                                    to="/inbox" 
-                                    className={location.pathname === "/inbox" ? "link-active" : "inbox-link"}>
-                                    <div className="link-content">
-                                        <MailIcon/>
-                                        {/*add function to show inbox notifications/badges*/}
-                                        Inbox
-                                    </div> 
-                                {/* <span className="badge">3</span> */}
-                                </Link>
-                                <Link 
-                                    to="/forum" 
-                                    className={location.pathname === "/forum" ? "link-active" : ""}>
+                        {!hideLinks && (
+                            <>
+                                <div className="section">
+                                    <p className="section-label">Menu</p>
+                                    <Link to="/home" className={location.pathname === "/home" ? "link-active" : ""}>
                                         <div className="link-content">
-                                            <ArticleIcon/>
-                                            {/*add function to show inbox notifications/badges*/}
+                                            <HomeFilledIcon />
+                                            Home
+                                        </div>
+                                    </Link>
+                                    <Link to="/discover" className={location.pathname === "/discover" ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <ModeStandbyIcon />
+                                            Discover
+                                        </div>
+                                    </Link>
+                                    <Link to="/top-artists" className={location.pathname === "/top-artists" ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <StarIcon />
+                                            Top Artists
+                                        </div>
+                                    </Link>
+                                    <Link to="/top-songs" className={location.pathname === "/top-songs" ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <MusicNoteIcon />
+                                            Top Songs
+                                        </div>
+                                    </Link>
+                                </div>
+
+                                <div className="space-padding"></div>
+
+                                <div className="section">
+                                    <p className="section-label">Library</p>
+                                    <Link to="/liked" className={location.pathname === "/liked" ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <FavoriteIcon />
+                                            Liked Songs
+                                        </div>
+                                    </Link>
+                                    <Link to={`/profile/${user.id}`} className={location.pathname === `/profile/${user.id}` ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <PersonIcon />
+                                            My Profile
+                                        </div>
+                                    </Link>
+                                </div>
+
+                                <div className="space-padding"></div>
+
+                                <div className="section">
+                                    <p className="section-label">Social</p>
+                                    <Link to="/inbox" className={location.pathname === "/inbox" ? "link-active" : "inbox-link"}>
+                                        <div className="link-content">
+                                            <MailIcon />
+                                            Inbox
+                                        </div>
+                                    </Link>
+                                    <Link to="/forum" className={location.pathname === "/forum" ? "link-active" : ""}>
+                                        <div className="link-content">
+                                            <ArticleIcon />
                                             Forum
-                                        </div> 
-                                </Link>
-                            </div>
-                        </>
-                    ) : (
-                        // logged out view
-                        <>
-                            <div className="section">
-                                <p className="section-label">Menu</p>
-                                <Link 
-                                    to="/home"
-                                    className={location.pathname === "/home" ? "link-active" : ""}
-                                >
-                                    Home
-                                </Link>
-                                <Link 
-                                    to="/discover"
-                                    className={location.pathname === "/discover" ? "link-active" : ""}
-                                >
-                                    Discover
-                                </Link>
-                                <Link 
-                                    to="/top-artists" 
-                                    className={location.pathname === "/top-artists" ? "link-active" : ""}
-                                >
-                                    Top Artists
-                                </Link>
-                                <Link 
-                                    to="/top-songs"
-                                    className={location.pathname === "/top-songs" ? "link-active" : ""}
-                                >
-                                    Top Songs
-                                </Link>
-                            </div>
-
-                            <div className="space-padding"></div>
-
-                            <div className="section">
-                                <p className="section-label">Library</p>
-                                <Link to={`/home`} className={location.pathname === `/` ? "link-active" : ""}
-                                >
-                                    My Profile
-                                </Link>
-                                <Link to="/liked" className={location.pathname === "/liked" ? "link-active" : ""}>
-                                    Liked Songs
-                                </Link>
-                            </div>
-
-                            <div className="space-padding">
-                            </div>
-
-                            <div className="section">
-                                <p className="section-label">Social</p>
-                                <Link 
-                                    to="/inbox" 
-                                    className={location.pathname === "/inbox" ? "link-active" : "inbox-link"}
-                                >
-                                    Inbox 
-                                {/* <span className="badge">3</span> */}
-                                </Link>
-                                <Link 
-                                    to="/forum" 
-                                    className={location.pathname === "/forum" ? "link-active" : "forum-link active"}> 
-                                    Forum
-                                </Link>
-                            </div>
-                        </>
-                    )}
-
-                    <div className="footerContainer">
-                        {user ? (
-                            <div className="loginContainer">
-                                <button className="login" onClick={() => logout()}>Logout</button>
-                            </div>
-                        ) : (
-                            <div className="loginContainer">
-                                <button className="login" onClick={() => login()}>Login</button>
-                            </div>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </>
                         )}
-                        <div className="footer">
-                            © 2025 Dupify
+                    </>
+                )}
+
+                <div className="footerContainer">
+                    {user ? (
+                        <div className="loginContainer">
+                            <button className="login" onClick={() => logout()}>Logout</button>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="loginContainer">
+                            <button className="login" onClick={() => login()}>Login</button>
+                        </div>
+                    )}
+                    <div className="footer">© 2025 Dupify</div>
                 </div>
-            </>
-    )
-    }
+            </div>
+        </>
+    );
 }

@@ -36,16 +36,14 @@ export default function Home() {
   }, [user]);
 
   if (!user && !loading)
-    return (
-      <>
-        <Sidebar />
-        <main className="home-container">
-          <button className="login-btn" onClick={login}>
-            Login with Spotify
-          </button>
-        </main>
-      </>
-    );
+  return (
+    <>
+      <Sidebar />
+      <div className="home-container guest-home">
+        <h1>Welcome to Spotify's all new social experience! </h1>
+      </div>
+    </>
+  );
 
   return (
     <>
@@ -53,14 +51,14 @@ export default function Home() {
       <main className="home-container">
         <h1 className="page-title">Home</h1>
 
-        <section className="discover-card">
+        <section className="home-discover-card">
           <div className="discover-info">
             <h2>Discover Users</h2>
-            <Link to="/discover" className="connect-btn">
-              <p>
-              Connect with fellow music lovers and create a community exploring
-              new sounds together.
-              </p>
+            <p>
+              Connect with fellow music lovers and create a community exploring new sounds together.
+            </p>
+            <Link to="/discover" className="connect-now-btn">
+              Connect Now
             </Link>
           </div>
           <div className="disc-art" />
